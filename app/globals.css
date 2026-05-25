@@ -24,3 +24,50 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Improved marquee — two speeds */
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+.animate-marquee-slow {
+  animation: marquee 55s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Swiper pagination custom */
+.testimonial-dots .swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: #1A2240 !important;
+  border: 1px solid #1A2240 !important;
+  opacity: 1 !important;
+  transition: all 0.3s !important;
+}
+.testimonial-dots .swiper-pagination-bullet-active {
+  background: #0F5EFF !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+}
+
+/* Details summary arrow */
+details summary::-webkit-details-marker { display: none; }
+details[open] summary span:last-child { content: '−'; }
+
+/* Form inputs */
+input, select, textarea {
+  font-family: var(--font-body);
+}
+input::placeholder, textarea::placeholder { color: rgba(136,146,164,0.5); }
+
+/* Image brightness helper */
+.img-overlay-dark img { filter: brightness(0.75); }
+
+/* Mobile menu panel scrollbar */
+.mobile-menu-panel::-webkit-scrollbar { width: 3px; }
+.mobile-menu-panel::-webkit-scrollbar-thumb { background: #1A2240; }
+
+/* Perspective for 3D cards */
+.perspective-1000 { perspective: 1000px; }
