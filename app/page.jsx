@@ -4,7 +4,8 @@ import StatsSection from '../components/sections/StatsSection';
 import ServicesSection from '../components/sections/ServiceSection';
 import ProductsSection from '../components/sections/ProductsSection';
 import ProjectsSection from '../components/sections/ProjectsSection';
-//import { WhyChooseUsSection, ClientsSection } from '../components/sections/TrustSection';
+import ClientsSection from '../components/sections/TrustSection';
+import WhyChooseUsSection from '../components/sections/WhyChooseUsSection';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import CTABanner from '../components/sections/CTABanner';
 import HeroSection from '../components/sections/Herosection';
@@ -30,10 +31,10 @@ export default function HomePage() {
       <FAQSchema faqs={faqs} />
 
       <HeroSection />
-     {/*  <ClientsSection /> */}
+      <ClientsSection />
       <StatsSection />
       <ServicesSection />
-      {/* <WhyChooseUsSection /> */}
+      <WhyChooseUsSection />
       <ProductsSection />
       <ProjectsSection />
       <TestimonialsSection />

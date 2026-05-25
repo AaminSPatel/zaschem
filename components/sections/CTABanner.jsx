@@ -14,7 +14,7 @@ export default function CTABanner() {
           alt="Industrial infrastructure"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-darker/97 via-brand-darker/90 to-brand-blue/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/97 via-brand-darker/90 to-brand-blue/20" />
         <div className="absolute inset-0 grid-lines opacity-20" />
       </div>
 

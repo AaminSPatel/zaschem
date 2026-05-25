@@ -1,31 +1,49 @@
-'use client';
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
-import { siteConfig } from '@/app/data/siteData';
-import { motion, AnimatePresence } from 'framer-motion';
-import ThemeButtons from '../theme/ThemeButtons';
-
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
+import { siteConfig } from "@/app/data/siteData";
+import { motion, AnimatePresence } from "framer-motion";
+import ThemeButtons from "../theme/ThemeButtons";
 
 const navLinks = [
-  { label: 'Home', href: '/' },
+  { label: "Home", href: "/" },
   {
-    label: 'Services', href: '/services',
+    label: "Services",
+    href: "/services",
     children: [
-      { label: 'Waterproofing Systems', href: '/services/waterproofing-systems' },
-      { label: 'Structural Strengthening', href: '/services/structural-strengthening' },
-      { label: 'Repair & Rehabilitation', href: '/services/repair-rehabilitation' },
-      { label: 'Acid Resistant Lining', href: '/services/acid-resistant-lining' },
-      { label: 'Industrial Flooring', href: '/services/industrial-flooring' },
-      { label: 'Polyurea Waterproofing', href: '/services/polyurea-waterproofing' },
-      { label: 'Heat Reflective Coating', href: '/services/heat-reflective-coating' },
-      { label: 'PU Waterproofing', href: '/services/pu-waterproofing' },
+      {
+        label: "Waterproofing Systems",
+        href: "/services/waterproofing-systems",
+      },
+      {
+        label: "Structural Strengthening",
+        href: "/services/structural-strengthening",
+      },
+      {
+        label: "Repair & Rehabilitation",
+        href: "/services/repair-rehabilitation",
+      },
+      {
+        label: "Acid Resistant Lining",
+        href: "/services/acid-resistant-lining",
+      },
+      { label: "Industrial Flooring", href: "/services/industrial-flooring" },
+      {
+        label: "Polyurea Waterproofing",
+        href: "/services/polyurea-waterproofing",
+      },
+      {
+        label: "Heat Reflective Coating",
+        href: "/services/heat-reflective-coating",
+      },
+      { label: "PU Waterproofing", href: "/services/pu-waterproofing" },
     ],
   },
-  { label: 'Products', href: '/products' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: "Products", href: "/products" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -36,14 +54,16 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   const toggleMobileExpand = (label) => {
@@ -55,10 +75,16 @@ export default function Navbar() {
       {/* Top bar — desktop only */}
       <div className="hidden lg:flex items-center justify-between px-8 py-2 bg-brand-darker border-b border-brand-border text-xs text-brand-muted">
         <div className="flex items-center gap-6">
-          <a href={`tel:${siteConfig.phone}`} className="flex items-center gap-1.5 hover:text-brand-orange transition-colors">
+          <a
+            href={`tel:${siteConfig.phone}`}
+            className="flex items-center gap-1.5 hover:text-brand-orange transition-colors"
+          >
             <Phone size={11} className="text-brand-orange" /> {siteConfig.phone}
           </a>
-          <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-1.5 hover:text-brand-blue transition-colors">
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="flex items-center gap-1.5 hover:text-brand-blue transition-colors"
+          >
             <Mail size={11} className="text-brand-blue" /> {siteConfig.email}
           </a>
         </div>
@@ -69,31 +95,56 @@ export default function Navbar() {
       </div>
 
       {/* Main nav */}
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-brand-darker/32 backdrop-blur-md shadow-lg shadow-black/40 border-b border-brand-border'
-          : 'bg-brand-dark backdrop-blur-sm'
-      }`}>
+      <header
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-brand-darker/32 backdrop-blur-md shadow-lg shadow-black/40 border-b border-brand-border"
+            : "bg-brand-dark backdrop-blur-sm"
+        }`}
+      >
         <nav className="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-tight group z-10" onClick={() => setMobileOpen(false)}>
-            <span className="font-display font-black text-xl lg:text-2xl tracking-widest text-on-bg group-hover:text-brand-blue transition-colors">
-              ZAS CHEM
-            </span>
-            <span className="font-mono text-[9px] tracking-[0.3em] text-brand-orange">INDIA PVT. LTD.</span>
+          <Link
+            href="/"
+            className="flex gap-4 leading-tight group z-10"
+            onClick={() => setMobileOpen(false)}
+          >
+            <img
+              src="/logo.png"
+              alt="Zaschem India PVT LTD - BUILDING THE FUTURE TOGETHER"
+              className="h-12 w-12"
+            />
+            <div className="flex flex-col ">
+              <span className="font-display font-black text-xl lg:text-2xl tracking-widest text-on-bg group-hover:text-brand-blue transition-colors">
+                ZAS CHEM
+              </span>
+              <span className="font-mono text-[9px] tracking-[0.3em] text-brand-orange">
+                INDIA PVT. LTD.
+              </span>
+            </div>{" "}
           </Link>
 
           {/* Desktop nav links */}
           <ul className="hidden lg:flex items-center">
             {navLinks.map((link) => (
-              <li key={link.href} className="relative"
-                onMouseEnter={() => link.children && setActiveDropdown(link.label)}
-                onMouseLeave={() => setActiveDropdown(null)}>
-                <Link href={link.href}
-                  className="flex items-center gap-1 px-4 py-5 font-display font-semibold text-sm tracking-wider text-on-bg hover:text-on-bg transition-colors uppercase relative group">
+              <li
+                key={link.href}
+                className="relative"
+                onMouseEnter={() =>
+                  link.children && setActiveDropdown(link.label)
+                }
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link
+                  href={link.href}
+                  className="flex items-center gap-1 px-4 py-5 font-display font-semibold text-sm tracking-wider text-on-bg hover:text-on-bg transition-colors uppercase relative group"
+                >
                   {link.label}
                   {link.children && (
-                    <ChevronDown size={13} className={`transition-transform duration-200 ${activeDropdown === link.label ? 'rotate-180 text-brand-blue' : ''}`} />
+                    <ChevronDown
+                      size={13}
+                      className={`transition-transform duration-200 ${activeDropdown === link.label ? "rotate-180 text-brand-blue" : ""}`}
+                    />
                   )}
                   <span className="absolute bottom-3 left-4 right-4 h-0.5 bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                 </Link>
@@ -109,9 +160,12 @@ export default function Navbar() {
                     >
                       <div className="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-transparent via-brand-blue to-transparent" />
                       {link.children.map((child) => (
-                        <Link key={child.href} href={child.href}
+                        <Link
+                          key={child.href}
+                          href={child.href}
                           className="flex items-center gap-2 px-5 py-2.5 text-sm text-brand-muted hover:text-on-bg hover:bg-brand-border/50 hover:pl-7 transition-all font-body"
-                          onClick={() => setActiveDropdown(null)}>
+                          onClick={() => setActiveDropdown(null)}
+                        >
                           <span className="w-1 h-1 bg-brand-orange rounded-full flex-shrink-0" />
                           {child.label}
                         </Link>
@@ -125,12 +179,12 @@ export default function Navbar() {
 
           {/* Desktop CTA + Mobile toggle */}
           <div className="flex items-center gap-3">
-            <div className='m-0 p-0 hidden lg:flex'>
-<Link href="/contact" className="btn-primary text-sm py-2.5 px-5">
-              GET QUOTE
-            </Link>
+            <div className="m-0 p-0 hidden lg:flex">
+              <Link href="/contact" className="btn-primary text-sm py-2.5 px-5">
+                GET QUOTE
+              </Link>
             </div>
-            
+
             <ThemeButtons />
 
             <button
@@ -158,30 +212,45 @@ export default function Navbar() {
             />
             {/* Menu panel */}
             <motion.div
-              initial={{ x: '100%' }}
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
               className="fixed top-0 right-0 bottom-0 w-80 max-w-full bg-brand-darker border-l border-brand-border z-50 lg:hidden flex flex-col overflow-y-auto"
             >
               {/* Mobile header */}
               <div className="flex items-center justify-between px-5 py-4 border-b border-brand-border flex-shrink-0">
                 <div>
-<p className="font-display font-black text-lg tracking-widest text-on-bg">ZAS CHEM</p>
-                  <p className="font-mono text-[9px] tracking-[0.3em] text-brand-orange">INDIA PVT. LTD.</p>
+                  <p className="font-display font-black text-lg tracking-widest text-on-bg">
+                    ZAS CHEM
+                  </p>
+                  <p className="font-mono text-[9px] tracking-[0.3em] text-brand-orange">
+                    INDIA PVT. LTD.
+                  </p>
                 </div>
-                <button onClick={() => setMobileOpen(false)} className="w-9 h-9 flex items-center justify-center text-brand-muted hover:text-on-bg border border-brand-border hover:border-brand-blue transition-colors">
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="w-9 h-9 flex items-center justify-center text-brand-muted hover:text-on-bg border border-brand-border hover:border-brand-blue transition-colors"
+                >
                   <X size={18} />
                 </button>
               </div>
 
               {/* Contact strip */}
               <div className="px-5 py-3 bg-brand-card border-b border-brand-border flex-shrink-0">
-                <a href={`tel:${siteConfig.phone}`} className="flex items-center gap-2 text-xs text-brand-muted hover:text-on-bg transition-colors mb-1.5">
-                  <Phone size={11} className="text-brand-orange" /> {siteConfig.phone}
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="flex items-center gap-2 text-xs text-brand-muted hover:text-on-bg transition-colors mb-1.5"
+                >
+                  <Phone size={11} className="text-brand-orange" />{" "}
+                  {siteConfig.phone}
                 </a>
-                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 text-xs text-brand-muted hover:text-on-bg transition-colors">
-                  <Mail size={11} className="text-brand-blue" /> {siteConfig.email}
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="flex items-center gap-2 text-xs text-brand-muted hover:text-on-bg transition-colors"
+                >
+                  <Mail size={11} className="text-brand-blue" />{" "}
+                  {siteConfig.email}
                 </a>
               </div>
 
@@ -190,9 +259,13 @@ export default function Navbar() {
                 {navLinks.map((link, i) => (
                   <div key={link.href}>
                     <div className="flex items-center">
-                      <Link href={link.href}
-                        onClick={() => { if (!link.children) setMobileOpen(false); }}
-                        className="flex-1 flex items-center py-3 px-3 font-display font-bold tracking-wider text-brand-muted hover:text-on-bg hover:bg-brand-card transition-all uppercase text-sm rounded-sm">
+                      <Link
+                        href={link.href}
+                        onClick={() => {
+                          if (!link.children) setMobileOpen(false);
+                        }}
+                        className="flex-1 flex items-center py-3 px-3 font-display font-bold tracking-wider text-brand-muted hover:text-on-bg hover:bg-brand-card transition-all uppercase text-sm rounded-sm"
+                      >
                         {link.label}
                       </Link>
                       {link.children && (
@@ -200,7 +273,10 @@ export default function Navbar() {
                           onClick={() => toggleMobileExpand(link.label)}
                           className="w-10 h-10 flex items-center justify-center text-brand-muted hover:text-on-bg transition-colors"
                         >
-                          <ChevronDown size={16} className={`transition-transform ${mobileExpanded === link.label ? 'rotate-180 text-brand-blue' : ''}`} />
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform ${mobileExpanded === link.label ? "rotate-180 text-brand-blue" : ""}`}
+                          />
                         </button>
                       )}
                     </div>
@@ -210,16 +286,19 @@ export default function Navbar() {
                       {link.children && mobileExpanded === link.label && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
+                          animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.2 }}
                           className="overflow-hidden"
                         >
                           <div className="ml-3 pl-4 border-l-2 border-brand-blue/40 mb-2 space-y-0.5">
                             {link.children.map((child) => (
-                              <Link key={child.href} href={child.href}
+                              <Link
+                                key={child.href}
+                                href={child.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="flex items-center gap-2 py-2.5 px-3 text-xs text-brand-muted hover:text-brand-blue hover:bg-brand-card transition-all rounded-sm">
+                                className="flex items-center gap-2 py-2.5 px-3 text-xs text-brand-muted hover:text-brand-blue hover:bg-brand-card transition-all rounded-sm"
+                              >
                                 <span className="w-1 h-1 bg-brand-orange rounded-full flex-shrink-0" />
                                 {child.label}
                               </Link>
@@ -229,18 +308,26 @@ export default function Navbar() {
                       )}
                     </AnimatePresence>
 
-                    {i < navLinks.length - 1 && <div className="h-px bg-brand-border mx-3" />}
+                    {i < navLinks.length - 1 && (
+                      <div className="h-px bg-brand-border mx-3" />
+                    )}
                   </div>
                 ))}
               </div>
 
               {/* Bottom CTA */}
               <div className="px-5 py-5 border-t border-brand-border flex-shrink-0 space-y-3">
-                <Link href="/contact" onClick={() => setMobileOpen(false)}
-                  className="btn-primary w-full flex items-center justify-center gap-2 py-3">
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="btn-primary w-full flex items-center justify-center gap-2 py-3"
+                >
                   GET FREE QUOTE
                 </Link>
-                <a href={`tel:${siteConfig.phone}`} className="btn-secondary w-full flex items-center justify-center gap-2 py-3 text-sm">
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="btn-secondary w-full flex items-center justify-center gap-2 py-3 text-sm"
+                >
                   <Phone size={14} /> CALL NOW
                 </a>
               </div>

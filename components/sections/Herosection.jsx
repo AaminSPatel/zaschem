@@ -30,7 +30,7 @@ export default function HeroSection() {
         {heroSlides.map((s) => (
           <SwiperSlide key={s.id}>
             <div className="absolute inset-0 z-0">
-              <img src={s.image} alt={s.title} className="w-full h-full object-cover" fetchpriority={s.id === 1 ? 'high' : 'auto'} />
+<img src={s.image} alt={s.title} className="w-full h-full object-cover" fetchPriority={s.id === 1 ? 'high' : 'auto'} />
               {/* Strong dark gradient — bottom 70% very dark for text legibility */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#060810] via-[#060810]/30 to-[#060810]/10" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#060810]/60 via-[#060810]/30 to-transparent" />
@@ -83,7 +83,7 @@ export default function HeroSection() {
                 <Link href={slide.cta.href} className="btn-primary flex items-center gap-2 justify-center text-sm sm:text-base py-3 sm:py-4 px-6 sm:px-8">
                   {slide.cta.label} <ArrowRight size={16} />
                 </Link>
-                <a href="tel:+91-XXXXXXXXXX" className="btn-secondary flex items-center gap-2 justify-center text-sm sm:text-base py-3 sm:py-4 px-6 sm:px-8">
+                <a href="tel:+91-7004298988" className="btn-secondary flex items-center gap-2 justify-center text-sm sm:text-base py-3 sm:py-4 px-6 sm:px-8">
                   <Phone size={15} /> CALL NOW
                 </a>
               </div>
