@@ -14,7 +14,7 @@ export function generateMetadata({ params }) {
   if (!project) return { title: 'Project Not Found' };
 
   return {
-    title: `${project.title} | ZAS Chem India Project Portfolio`,
+    title: `${project.title} | ZasChem India Project Portfolio`,
     description: `Case study: ${project.problem.substring(0, 140)}`,
     alternates: { canonical: `https://www.zaschem.in/projects/${project.slug}` },
     openGraph: { title: project.title, description: project.problem, images: [{ url: project.image }] },
@@ -115,7 +115,7 @@ export default function ProjectDetailPage({ params }) {
             <div className="p-8 bg-brand-card border border-brand-border">
               <h3 className="font-display font-bold text-xl text-on-bg mb-3">About This Project</h3>
               <p className="text-brand-muted text-sm leading-relaxed">
-                This project exemplifies ZAS Chem India&apos;s capability to handle complex industrial infrastructure challenges with engineering precision. Our team mobilized rapidly, conducted thorough assessment, and delivered a solution that addressed the root cause rather than applying temporary fixes. The client&apos;s structure is now protected for decades to come, with complete documentation and warranty support in place.
+                This project exemplifies ZasChem India&apos;s capability to handle complex industrial infrastructure challenges with engineering precision. Our team mobilized rapidly, conducted thorough assessment, and delivered a solution that addressed the root cause rather than applying temporary fixes. The client&apos;s structure is now protected for decades to come, with complete documentation and warranty support in place.
               </p>
             </div>
           </div>

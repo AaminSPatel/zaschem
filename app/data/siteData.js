@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "ZAS CHEM INDIA PVT. LTD.",
+  name: "ZasChem INDIA PVT. LTD.",
   tagline: "BUILDING THE FUTURE TOGETHER",
   description: "India's trusted industrial waterproofing, infrastructure protection, and structural rehabilitation specialists. Serving power plants, tunnels, dams, and industrial facilities across India.",
-  email: "meraj@zaschem.in",
+  email: "info@zaschem.in",
   // Displayed in footer/header as a single phone line.
   phone: "+91-120-4349606 (Tel) / +91-7004298988 (Mob)",
   address:
-    "Regd. Office: G-72, Kalindi Kunj Road, Sarita Vihar Road, New Delhi-110025\n\nZAS CHEM INDIA PVT. LTD.\nAn ISO 9001:2008 Certified Company\n\nCorp Off: 529, Floor PS, Block B, Urbtech NPX, Sector 152, Noida, U.P. 201310",
+    "Regd. Office: G-72, Kalindi Kunj Road, Sarita Vihar Road, New Delhi-110025\n\nZasChem INDIA PVT. LTD.\nAn ISO 9001:2008 Certified Company\n\nCorp Off: 529, Floor PS, Block B, Urbtech NPX, Sector 152, Noida, U.P. 201310",
   social: {
     linkedin: "#",
     twitter: "#",
@@ -23,7 +23,7 @@ export const heroSlides = [
     subtitle: "Industrial-Grade Protection for Critical Infrastructure",
     description: "Specialized waterproofing solutions for cooling towers, turbine halls, and transformer bunds. Zero downtime. Maximum protection.",
     cta: { label: "Explore Service", href: "/services/waterproofing-systems" },
-    image: "/power_plant.jpg",
+    image: "/nuclear_power_plant.avif",
     accent: "#0F5EFF",
   },
   {
@@ -33,7 +33,7 @@ export const heroSlides = [
     subtitle: "Structural Repair & Waterproofing for Underground Infrastructure",
     description: "Advanced tunnel lining repair, crack injection, and waterproof membrane application for metro, highway, and railway tunnels.",
     cta: { label: "View Projects", href: "/services/repair-rehabilitation" },
-    image: "/tunnel_rehabilation.jpg",
+    image: "/tunnel_rehabilation.avif",
     accent: "#F97316",
   },
   {
@@ -43,7 +43,7 @@ export const heroSlides = [
     subtitle: "Chemical Plant & Effluent Treatment Protection",
     description: "Furan resin-based acid and alkali resistant lining systems for chemical reactors, ETP tanks, and industrial floors.",
     cta: { label: "Learn More", href: "/services/acid-resistant-lining" },
-    image: "/acid_lining.jpg",
+    image: "/p1.avif",
     accent: "#0F5EFF",
   },
   {
@@ -53,7 +53,7 @@ export const heroSlides = [
     subtitle: "High-Performance Flooring for Factories & Warehouses",
     description: "Anti-static, chemical resistant, and heavy-duty epoxy & PU flooring systems designed for harsh industrial environments.",
     cta: { label: "Get Quote", href: "/services/industrial-flooring" },
-    image: "/epoxy.jpg",
+    image: "/epoxy.avif",
     accent: "#F97316",
   },
   {
@@ -63,7 +63,7 @@ export const heroSlides = [
     subtitle: "Restoring Strength to Ageing Concrete Structures",
     description: "Carbon fiber wrapping, rebar treatment, crack injection, and polymer-modified repair mortars for complete structural restoration.",
     cta: { label: "Explore Solutions", href: "/services/structural-rehabilitation" },
-    image: "/structural_rehabilation.jpg",
+    image: "/structural_rehabilation.avif",
     accent: "#0F5EFF",
   },
 ];
@@ -71,7 +71,7 @@ export const heroSlides = [
 export const stats = [
   { id: 1, value: "150+", label: "Civil Engineers Served", icon: "Users" },
   { id: 2, value: "25+", label: "Power Plants Protected", icon: "Zap" },
-  { id: 3, value: "12+", label: "Years of Experience", icon: "Award" },
+  { id: 3, value: "14+", label: "Years of Experience", icon: "Award" },
   { id: 4, value: "100+", label: "Projects Completed", icon: "CheckCircle" },
   { id: 5, value: "15+", label: "States Covered", icon: "MapPin" },
   { id: 6, value: "98%", label: "Client Satisfaction", icon: "ThumbsUp" },
@@ -83,7 +83,7 @@ export const services = [
     slug: "waterproofing-systems",
     title: "Waterproofing Systems",
     shortDesc: "Comprehensive waterproofing solutions for roofs, basements, terraces, water tanks, and industrial structures using crystalline, cementitious, and membrane-based systems.",
-    description: `ZAS Chem India delivers comprehensive waterproofing systems engineered for India's diverse climate and infrastructure needs. Our waterproofing solutions combine crystalline technology, cementitious coatings, and high-performance membrane systems to provide lasting protection for rooftops, basements, water-retaining structures, and industrial facilities.
+    description: `ZasChem India delivers comprehensive waterproofing systems engineered for India's diverse climate and infrastructure needs. Our waterproofing solutions combine crystalline technology, cementitious coatings, and high-performance membrane systems to provide lasting protection for rooftops, basements, water-retaining structures, and industrial facilities.
 
     We specialize in positive-side and negative-side waterproofing, ensuring complete moisture control from both directions. Our systems are compatible with new construction and retrofitting of existing structures, minimizing disruption while maximizing protection.
 
@@ -91,8 +91,8 @@ export const services = [
     features: ["Crystalline Waterproofing", "Cementitious Coating", "HDPE/TPO Membrane", "Liquid Applied Systems", "Injection Grouting", "Positive & Negative Side"],
     applications: ["Rooftops & Terraces", "Basements & Foundations", "Water Tanks & Sumps", "Retaining Walls", "Swimming Pools", "Underground Structures"],
     icon: "Droplets",
-    image: "/power_plant.jpg",
-    metaTitle: "Industrial Waterproofing Systems | ZAS Chem India",
+    image: "/power_plant.avif",
+    metaTitle: "Industrial Waterproofing Systems | ZasChem India",
     metaDesc: "Expert waterproofing contractors in India. Crystalline, cementitious & membrane waterproofing for industrial, power plant, and infrastructure projects.",
     keywords: ["industrial waterproofing India", "waterproofing contractors India", "roof waterproofing", "basement waterproofing"],
   },
@@ -105,12 +105,12 @@ export const services = [
 
     We provide column jacketing, beam strengthening, slab reinforcement, and shear wall upgrades using internationally certified materials. Our structural engineers conduct thorough assessment before designing a customized rehabilitation program.
 
-    ZAS Chem India has strengthened structures across power plants, bridges, industrial facilities, and heritage buildings — extending service life by decades while meeting current load requirements.`,
+    ZasChem India has strengthened structures across power plants, bridges, industrial facilities, and heritage buildings — extending service life by decades while meeting current load requirements.`,
     features: ["CFRP Wrapping", "FRP Laminates", "Column Jacketing", "Beam Strengthening", "Structural Adhesives", "Load Capacity Enhancement"],
     applications: ["Bridges & Flyovers", "Power Plant Structures", "Industrial Buildings", "Parking Decks", "Historical Structures", "Marine Structures"],
     icon: "Building2",
-    image: "/structural_rehabilation.jpg",
-    metaTitle: "Structural Strengthening & Carbon Fiber Wrapping | ZAS Chem India",
+    image: "/structural_rehabilation.avif",
+    metaTitle: "Structural Strengthening & Carbon Fiber Wrapping | ZasChem India",
     metaDesc: "CFRP structural strengthening services for bridges, power plants and industrial structures. Certified structural rehabilitation contractors across India.",
     keywords: ["structural strengthening India", "carbon fiber wrapping", "CFRP strengthening", "structural rehabilitation"],
   },
@@ -119,7 +119,7 @@ export const services = [
     slug: "repair-rehabilitation",
     title: "Repair & Rehabilitation",
     shortDesc: "Concrete repair, crack injection, spall repair, and complete structural rehabilitation for deteriorated infrastructure assets.",
-    description: `Concrete deterioration is inevitable, but with ZAS Chem India's repair and rehabilitation services, your infrastructure can regain its original strength and serve for decades more. We tackle every form of concrete distress — carbonation, chloride attack, alkali-silica reaction, freeze-thaw damage, and mechanical impact.
+    description: `Concrete deterioration is inevitable, but with ZasChem India's repair and rehabilitation services, your infrastructure can regain its original strength and serve for decades more. We tackle every form of concrete distress — carbonation, chloride attack, alkali-silica reaction, freeze-thaw damage, and mechanical impact.
 
     Our repair methodology follows a systematic process: damage assessment, cause analysis, surface preparation (hydrodemolition or mechanical), primer application, polymer-modified repair mortar placement, and protective coating. Every repair is designed to be durable, bonded, and compatible with the existing substrate.
 
@@ -127,8 +127,8 @@ export const services = [
     features: ["Crack Injection", "Spall Repair", "Carbonation Treatment", "Hydrodemolition", "Polymer Mortars", "Protective Overlays"],
     applications: ["Industrial Plants", "Bridges & Viaducts", "Dams & Reservoirs", "Chimneys & Silos", "Marine Structures", "Airports & Ports"],
     icon: "Wrench",
-    image: "/tunnel.jpg",
-    metaTitle: "Concrete Repair & Rehabilitation Services India | ZAS Chem India",
+    image: "/tunnel.avif",
+    metaTitle: "Concrete Repair & Rehabilitation Services India | ZasChem India",
     metaDesc: "Professional concrete repair and structural rehabilitation across India. Crack injection, spall repair, and complete infrastructure restoration services.",
     keywords: ["concrete repair India", "structural rehabilitation", "crack injection", "concrete restoration"],
   },
@@ -137,7 +137,7 @@ export const services = [
     slug: "acid-resistant-lining",
     title: "Acid Resistant Lining",
     shortDesc: "Furan resin, epoxy phenolic, and vinyl ester-based chemical resistant lining for ETP tanks, reactors, and industrial floors exposed to aggressive chemicals.",
-    description: `Industrial chemical environments demand protective linings that can withstand constant exposure to acids, alkalis, solvents, and high-temperature conditions. ZAS Chem India provides engineering-grade acid and alkali resistant lining systems using furan resin, epoxy phenolic, and vinyl ester binders with chemical-resistant tiles, bricks, or monolithic membranes.
+    description: `Industrial chemical environments demand protective linings that can withstand constant exposure to acids, alkalis, solvents, and high-temperature conditions. ZasChem India provides engineering-grade acid and alkali resistant lining systems using furan resin, epoxy phenolic, and vinyl ester binders with chemical-resistant tiles, bricks, or monolithic membranes.
 
     Our certified applicators prepare surfaces to near-white blasting standards, ensuring maximum adhesion and barrier effectiveness. We provide complete turnkey solutions including design, material supply, surface preparation, application, and QA/QC documentation.
 
@@ -145,8 +145,8 @@ export const services = [
     features: ["Furan Resin Systems", "Epoxy Phenolic Coatings", "Vinyl Ester Linings", "Acid-Proof Brick Lining", "Chemical Resistant Tiles", "High-Temp Resistant"],
     applications: ["ETP & STP Plants", "Chemical Reactors", "Fertilizer Plants", "Pharma Facilities", "Steel Plants", "Paper Mills"],
     icon: "FlaskConical",
-    image: "/acid_lining.jpg",
-    metaTitle: "Acid Resistant Lining Contractors India | ZAS Chem India",
+    image: "/acid_lining.avif",
+    metaTitle: "Acid Resistant Lining Contractors India | ZasChem India",
     metaDesc: "Furan resin & epoxy-based acid resistant lining for chemical plants, ETP tanks & industrial floors. Expert chemical resistant coating services across India.",
     keywords: ["acid resistant lining India", "chemical resistant coating", "furan resin lining", "ETP tank lining"],
   },
@@ -155,7 +155,7 @@ export const services = [
     slug: "industrial-flooring",
     title: "Industrial Flooring",
     shortDesc: "Epoxy, polyurethane, and polished concrete flooring systems for factories, warehouses, pharmaceutical plants, and food processing facilities.",
-    description: `Industrial floors endure constant mechanical stress, chemical spills, thermal cycling, and hygiene demands that conventional flooring cannot handle. ZAS Chem India engineers and installs high-performance industrial flooring systems tailored to the specific operational requirements of each facility.
+    description: `Industrial floors endure constant mechanical stress, chemical spills, thermal cycling, and hygiene demands that conventional flooring cannot handle. ZasChem India engineers and installs high-performance industrial flooring systems tailored to the specific operational requirements of each facility.
 
     Our flooring range includes self-levelling epoxy coatings, heavy-duty epoxy toppings, polyurethane screed for thermal cycling environments, methyl methacrylate (MMA) floors for rapid return to service, and decorative polished concrete.
 
@@ -163,8 +163,8 @@ export const services = [
     features: ["Self-Levelling Epoxy", "Anti-Static Flooring", "PU Screed", "MMA Flooring", "Polished Concrete", "Conductive Flooring"],
     applications: ["Automotive Plants", "Food & Beverage", "Pharmaceutical", "Warehouses & Logistics", "Electronics Manufacturing", "Power Plants"],
     icon: "Layers",
-    image: "/epoxy.jpg",
-    metaTitle: "Industrial Epoxy Flooring Contractors India | ZAS Chem India",
+    image: "/epoxy.avif",
+    metaTitle: "Industrial Epoxy Flooring Contractors India | ZasChem India",
     metaDesc: "Anti-static, chemical resistant epoxy & PU industrial flooring. Expert installation for factories, pharma, and power plants across India.",
     keywords: ["industrial epoxy flooring India", "anti-static flooring", "PU flooring India", "factory floor coating"],
   },
@@ -173,7 +173,7 @@ export const services = [
     slug: "polyurea-waterproofing",
     title: "Polyurea Waterproofing",
     shortDesc: "Rapid-cure, seamless polyurea spray coating for roofs, secondary containment, tunnels, and water tanks requiring flexible, high-elongation waterproofing.",
-    description: `Polyurea is the most advanced spray-applied waterproofing technology available today, offering unmatched speed, flexibility, chemical resistance, and durability. ZAS Chem India operates professional plural-component heated spray equipment to apply polyurea systems across large areas rapidly, with minimal downtime.
+    description: `Polyurea is the most advanced spray-applied waterproofing technology available today, offering unmatched speed, flexibility, chemical resistance, and durability. ZasChem India operates professional plural-component heated spray equipment to apply polyurea systems across large areas rapidly, with minimal downtime.
 
     Polyurea cures within seconds of application, reaches full strength within hours, and forms a completely seamless membrane with excellent elongation (>300%) and tensile strength. It adheres to concrete, steel, wood, and foam, making it ideal for complex geometric surfaces.
 
@@ -182,7 +182,7 @@ export const services = [
     applications: ["Roof Waterproofing", "Secondary Containment", "Tunnel Lining", "Water Reservoirs", "Bridge Decks", "Marine Structures"],
     icon: "Waves",
     image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80",
-    metaTitle: "Polyurea Waterproofing Services India | ZAS Chem India",
+    metaTitle: "Polyurea Waterproofing Services India | ZasChem India",
     metaDesc: "Professional polyurea spray waterproofing for roofs, tunnels, and containment structures. Fast-cure seamless membrane application across India.",
     keywords: ["polyurea waterproofing India", "spray polyurea coating", "seamless waterproofing", "polyurea contractors India"],
   },
@@ -191,7 +191,7 @@ export const services = [
     slug: "heat-reflective-coating",
     title: "Heat Reflective Coating",
     shortDesc: "Solar reflective and cool roof coating systems that reduce building surface temperature by 10-20°C, lowering cooling loads and improving occupant comfort.",
-    description: `India's intense solar radiation causes roof and wall surfaces to absorb massive heat, dramatically increasing air conditioning loads and shortening structural life. ZAS Chem India's heat reflective coating systems use advanced reflective pigments and IR-blocking technology to reflect up to 90% of solar radiation.
+    description: `India's intense solar radiation causes roof and wall surfaces to absorb massive heat, dramatically increasing air conditioning loads and shortening structural life. ZasChem India's heat reflective coating systems use advanced reflective pigments and IR-blocking technology to reflect up to 90% of solar radiation.
 
     Our cool roof coatings reduce roof surface temperatures by 15-20°C, translating to energy savings of 15-25% in air conditioning costs. They also provide waterproofing benefits, UV protection, and thermal expansion relief — extending roof life significantly.
 
@@ -199,8 +199,8 @@ export const services = [
     features: ["Solar Reflectance >85%", "Waterproofing Benefit", "UV Resistant", "Energy Saving", "Reduces Heat Islands", "GRIHA Compatible"],
     applications: ["Commercial Buildings", "Industrial Sheds", "Cold Storage", "Pre-Engineered Buildings", "Warehouses", "Residential Rooftops"],
     icon: "Sun",
-    image: "/industries.jfif",
-    metaTitle: "Heat Reflective Coating for Roofs India | ZAS Chem India",
+    image: "/industries.avif",
+    metaTitle: "Heat Reflective Coating for Roofs India | ZasChem India",
     metaDesc: "Cool roof & heat reflective coatings reducing roof temperature by 15-20°C. Energy-saving waterproofing solutions for industrial and commercial buildings.",
     keywords: ["heat reflective coating India", "cool roof coating", "solar reflective paint", "roof insulation coating"],
   },
@@ -209,7 +209,7 @@ export const services = [
     slug: "pu-waterproofing",
     title: "PU Waterproofing",
     shortDesc: "Polyurethane-based liquid applied waterproofing membranes offering excellent flexibility, UV resistance, and adhesion for exposed roofs and terraces.",
-    description: `Polyurethane waterproofing represents the gold standard for exposed application areas where flexibility, UV resistance, and aesthetic finish are equally important. ZAS Chem India provides single and two-component PU waterproofing systems in various grades including traffic-bearing, UV-stable, and chemical-resistant formulations.
+    description: `Polyurethane waterproofing represents the gold standard for exposed application areas where flexibility, UV resistance, and aesthetic finish are equally important. ZasChem India provides single and two-component PU waterproofing systems in various grades including traffic-bearing, UV-stable, and chemical-resistant formulations.
 
     PU membranes bond seamlessly to concrete, masonry, metal, and existing substrates, forming an elastic membrane that accommodates structural movement without cracking. They are applied at 1-2mm thickness and can be reinforced with fiberglass mesh for added tear resistance.
 
@@ -217,8 +217,8 @@ export const services = [
     features: ["High Elongation (>200%)", "UV Stable", "Traffic Bearing Grade", "Single & Two-Component", "Fiberglass Reinforced", "Multiple Colors"],
     applications: ["Exposed Terraces", "Podium Slabs", "Planter Boxes", "Green Roofs", "Parking Decks", "Balconies"],
     icon: "Shield",
-    image: "water_proofing.jfif",
-    metaTitle: "PU Waterproofing Contractors India | ZAS Chem India",
+    image: "water_proofing.avif",
+    metaTitle: "PU Waterproofing Contractors India | ZasChem India",
     metaDesc: "Polyurethane liquid applied waterproofing for terraces, roofs & parking decks. UV stable, flexible PU membrane systems applied by certified applicators.",
     keywords: ["PU waterproofing India", "polyurethane waterproofing", "liquid waterproofing membrane", "terrace waterproofing"],
   },
@@ -243,7 +243,7 @@ export const products = [
       temperature: "-20°C to +120°C service",
       packaging: "5 kg, 20 kg containers",
     },
-    image: "water_proofing.jfif",
+    image: "water_proofing.avif",
     metaTitle: "ZAS PU FLEX 500 - Polyurethane Waterproofing Membrane",
     metaDesc: "High-elongation single-component PU waterproofing membrane. >500% elongation for roofs, terraces, and buried structures.",
     keywords: ["PU waterproofing membrane", "polyurethane membrane India", "single component waterproofing"],
@@ -266,7 +266,7 @@ export const products = [
       temperature: "-10°C to +150°C service",
       packaging: "5L, 20L containers",
     },
-    image: "heat_reflect.jpg",
+    image: "heat_reflect.avif",
     metaTitle: "ZAS COOLROOF HRC-200 Heat Reflective Coating India",
     metaDesc: "Solar reflective cool roof coating reducing roof temperature by 15-20°C. Waterproofing + heat insulation for industrial and commercial roofs.",
     keywords: ["heat reflective coating India", "cool roof coating", "solar reflective paint India"],
@@ -289,7 +289,7 @@ export const products = [
       fireRating: "Class B1 available",
       packaging: "A+B components in sets",
     },
-     image: "roof_insulation.jfif",
+     image: "roof_insulation.avif",
      metaTitle: "Industrial Roof Insulation System India | ZAS INSOTHERM",
     metaDesc: "PU foam-based roof insulation providing R-20+ thermal resistance. 30% energy savings for industrial, commercial and cold storage facilities.",
     keywords: ["roof insulation India", "PU foam insulation", "thermal insulation for roofs", "industrial insulation"],
@@ -312,7 +312,7 @@ export const products = [
       compStrength: ">80 MPa",
       packaging: "Set packs: 5kg, 25kg",
     },
-    image: "Industrial_Epoxy_Flooring.jfif",
+    image: "Industrial_Epoxy_Flooring.avif",
      metaTitle: "Furan Resin Acid Resistant Mortar India | ZAS FURAN ARF-100",
     metaDesc: "Industrial furan resin system for acid brick lining. Resists 98% H₂SO₄ up to 180°C. Chemical plant, ETP & fertilizer plant applications.",
     keywords: ["furan resin India", "acid resistant mortar", "chemical resistant lining", "acid proof brick mortar"],
@@ -320,11 +320,11 @@ export const products = [
   {
     id: 5,
     slug: "acid-resistant-lining-system",
-    name: "ZAS CHEMLINE ARL-400",
+    name: "ZasChemLINE ARL-400",
     category: "Acid Resistant Lining",
     tagline: "Complete Chemical Resistant Lining System for Industrial Floors & Tanks",
     shortDesc: "Epoxy novolac and vinyl ester-based chemical resistant lining system for industrial floors, tanks, and trenches.",
-    description: `ZAS CHEMLINE ARL-400 is an advanced chemical resistant lining system based on epoxy novolac and vinyl ester resins, providing comprehensive protection against a wide spectrum of chemicals including acids, alkalis, solvents, and hydrocarbons.
+    description: `ZasChemLINE ARL-400 is an advanced chemical resistant lining system based on epoxy novolac and vinyl ester resins, providing comprehensive protection against a wide spectrum of chemicals including acids, alkalis, solvents, and hydrocarbons.
 
     The system is applied as a monolithic seamless coating in multiple layers, eliminating joints and penetration points. It bonds directly to concrete and steel, forming a durable chemical barrier that protects the substrate from degradation.`,
     features: ["Broad Chemical Resistance", "Seamless Application", "High Bond Strength", "Thermal Shock Resistant", "FDA Compliant Grade", "Anti-Static Option"],
@@ -335,8 +335,8 @@ export const products = [
       tempResistance: "Up to 120°C continuous",
       packaging: "A+B packs: 5kg, 20kg",
     },
-    image: "acid_lining.jpg",
-     metaTitle: "Chemical Resistant Lining System India | ZAS CHEMLINE ARL-400",
+    image: "acid_lining.avif",
+     metaTitle: "Chemical Resistant Lining System India | ZasChemLINE ARL-400",
     metaDesc: "Epoxy novolac & vinyl ester chemical resistant floor and tank lining. Seamless protection for chemical plants, pharma & food processing facilities.",
     keywords: ["chemical resistant lining India", "epoxy novolac coating", "vinyl ester lining", "tank lining India"],
   },
@@ -354,7 +354,7 @@ export const projects = [
     problem: "Severe leakage and concrete deterioration in 8 cooling tower cells causing water loss and structural damage.",
     solution: "Applied ZAS PU FLEX 500 polyurethane waterproofing with crystalline treatment to internal surfaces. Structural cracks injected with epoxy resins.",
     outcome: "100% leakage control achieved. Structural integrity restored. 15-year protection warranty.",
-     image: "power_plant.jpg",
+     image: "power_plant.avif",
     tags: ["Waterproofing", "Power Plant", "PU Membrane"],
     featured: true,
   },
@@ -369,7 +369,7 @@ export const projects = [
     problem: "Water ingress through cracks and construction joints in 2.5km metro tunnel section causing service disruption risk.",
     solution: "Polyurethane foam injection for active leaks, epoxy resin injection for structural cracks, crystalline coating on tunnel lining.",
     outcome: "Complete waterproofing achieved within 60-hour maintenance window. Zero re-occurrence in 18 months.",
-     image: "tunnel.jpg",
+     image: "tunnel.avif",
      tags: ["Tunnel Repair", "Crack Injection", "Metro"],
     featured: true,
   },
@@ -384,7 +384,7 @@ export const projects = [
     problem: "Chemical attack destroying ETP tank concrete within 2 years of construction due to pH 2-3 effluent.",
     solution: "ZAS FURAN ARF-100 acid brick lining with furan resin joints on tank floor and walls. Carbon steel subframe for elevated areas.",
     outcome: "Tank life extended by 20+ years. Complete chemical resistance to pH 0-14.",
-     image: "industries.jfif",
+     image: "industries.avif",
      tags: ["Acid Lining", "ETP", "Chemical Resistance"],
     featured: true,
   },
@@ -399,7 +399,7 @@ export const projects = [
     problem: "Worn concrete floor causing dust generation, forklift damage, and hygiene compliance issues in 50,000 sq.ft. warehouse.",
     solution: "Shot-blasted substrate, 3mm heavy-duty epoxy broadcast system with anti-static properties, line marking and safety zones.",
     outcome: "Dust-free, ESD-compliant floor completed in 7 days. Meets OSHA and warehouse safety standards.",
-    image: "epoxy.jpg",
+    image: "epoxy.avif",
      tags: ["Epoxy Flooring", "Anti-Static", "Warehouse"],
     featured: false,
   },
@@ -414,7 +414,7 @@ export const projects = [
     problem: "Deteriorated spillway and dam face with severe carbonation, rebar corrosion, and honeycombing over 40-year-old structure.",
     solution: "Hydrodemolition, rebar treatment with migrating inhibitor, polymer-modified repair mortar, crystalline waterproofing, CFRP strengthening at critical sections.",
     outcome: "Structural integrity restored to original design. 25-year life extension achieved.",
-    image: "dam_rehabilation.jfif",
+    image: "dam_rehabilation.avif",
      tags: ["Dam Repair", "Structural", "Rehabilitation"],
     featured: true,
   },
@@ -429,7 +429,7 @@ export const projects = [
     problem: "Existing floor failed GMP audit due to joints, coating failure, and chemical permeation in production blocks.",
     solution: "Coved PU screed flooring system with integral cove base, chemical resistant and FDA-compliant grade for production areas.",
     outcome: "GMP compliance achieved. Passed FDA audit. Seamless, hygienic floor with 10-year guarantee.",
-     image: "epoxy.jpg",
+     image: "epoxy.avif",
      tags: ["PU Flooring", "Pharma", "GMP Compliant"],
     featured: false,
   },
@@ -441,7 +441,7 @@ export const testimonials = [
     name: "Rajiv Sharma",
     designation: "Chief Engineer",
     company: "NTPC Limited",
-    quote: "ZAS Chem India's waterproofing solution for our cooling towers exceeded all expectations. The technical team demonstrated exceptional knowledge of power plant environments and delivered a lasting solution within our tight shutdown schedule.",
+    quote: "ZasChem India's waterproofing solution for our cooling towers exceeded all expectations. The technical team demonstrated exceptional knowledge of power plant environments and delivered a lasting solution within our tight shutdown schedule.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
   },
@@ -450,7 +450,7 @@ export const testimonials = [
     name: "Priya Nair",
     designation: "Project Director",
     company: "Delhi Metro Rail Corporation",
-    quote: "Working with ZAS Chem on our metro tunnel waterproofing was a seamless experience. Their team understood the criticality of the work, mobilized rapidly, and completed the repair within our 60-hour maintenance window. Highly recommended.",
+    quote: "Working with ZasChem on our metro tunnel waterproofing was a seamless experience. Their team understood the criticality of the work, mobilized rapidly, and completed the repair within our 60-hour maintenance window. Highly recommended.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
   },
@@ -459,7 +459,7 @@ export const testimonials = [
     name: "Amit Agarwal",
     designation: "VP - Projects",
     company: "Chemical Industries Ltd",
-    quote: "The acid resistant lining installed by ZAS Chem in our ETP tanks has been performing without any issues for over 2 years now. Their understanding of chemical environments and appropriate material selection saved us significant costs.",
+    quote: "The acid resistant lining installed by ZasChem in our ETP tanks has been performing without any issues for over 2 years now. Their understanding of chemical environments and appropriate material selection saved us significant costs.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
   },
@@ -468,7 +468,7 @@ export const testimonials = [
     name: "Suresh Kumar",
     designation: "Maintenance Head",
     company: "Steel Authority of India",
-    quote: "ZAS Chem's concrete repair methodology is thorough and systematic. They don't just patch problems — they diagnose the root cause and provide comprehensive solutions. Our plant structures have never been in better condition.",
+    quote: "ZasChem's concrete repair methodology is thorough and systematic. They don't just patch problems — they diagnose the root cause and provide comprehensive solutions. Our plant structures have never been in better condition.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
   },
@@ -477,29 +477,29 @@ export const testimonials = [
     name: "Dr. Meera Pillai",
     designation: "Facility Manager",
     company: "Sun Pharma",
-    quote: "Our pharmaceutical facility's flooring upgrade by ZAS Chem helped us sail through FDA audit. The PU screed system is exactly what GMP compliance demands — seamless, hygienic, and chemically resistant.",
+    quote: "Our pharmaceutical facility's flooring upgrade by ZasChem helped us sail through FDA audit. The PU screed system is exactly what GMP compliance demands — seamless, hygienic, and chemically resistant.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&q=80",
   },
 ];
 
 export const clients = [
-  { id: 1, name: "NTPC Limited", logo: null },
-  { id: 2, name: "DMRC", logo: null },
-  { id: 3, name: "Steel Authority of India", logo: null },
-  { id: 4, name: "ONGC", logo: null },
-  { id: 5, name: "Sun Pharma", logo: null },
-  { id: 6, name: "Reliance Industries", logo: null },
-  { id: 7, name: "L&T Construction", logo: null },
-  { id: 8, name: "Tata Steel", logo: null },
-  { id: 9, name: "NHAI", logo: null },
-  { id: 10, name: "SAIL", logo: null },
-  { id: 11, name: "BHEL", logo: null },
-  { id: 12, name: "Indian Oil", logo: null },
+  { id: 1, name: "NTPC Limited", logo: "./ntpc.avif" },
+  { id: 2, name: "DMRC", logo: "./dmrc.avif" },
+  { id: 3, name: "Steel Authority of India", logo: './sail.avif' },
+  { id: 4, name: "ONGC", logo: './ongc.avif' },
+  { id: 5, name: "Sun Pharma", logo: ' ./sun_pharma.avif' },
+  { id: 6, name: "Reliance Industries", logo: ' ./reliance.avif' },
+  { id: 7, name: "L&T Construction", logo: ' ./l&t.avif' },
+  { id: 8, name: "Tata Steel", logo: ' ./tata_steel.avif' },
+  { id: 9, name: "NHAI", logo: ' ./nhai.avif' },
+  { id: 10, name: "SAIL", logo: ' ./sail.avif' },
+  { id: 11, name: "BHEL", logo: ' ./bhel.avif' },
+  { id: 12, name: "Indian Oil", logo: ' ./indian_oil.avif' },
 ];
 
 export const whyChooseUs = [
-  { id: 1, title: "12+ Years Industrial Experience", desc: "Deep domain expertise in power plant, tunnel, dam, and industrial facility waterproofing and rehabilitation.", icon: "Award" },
+  { id: 1, title: "14+ Years Industrial Experience", desc: "Deep domain expertise in power plant, tunnel, dam, and industrial facility waterproofing and rehabilitation.", icon: "Award" },
   { id: 2, title: "Certified Engineering Team", desc: "Team of 50+ certified applicators, engineers, and QC specialists trained on international standards.", icon: "Users" },
   { id: 3, title: "Turnkey Project Execution", desc: "From survey and design to material supply, application, testing, and warranty — complete project delivery.", icon: "CheckCircle" },
   { id: 4, title: "Critical Shutdown Work", desc: "Specialized in executing high-quality work within tight plant shutdown windows with zero rework.", icon: "Clock" },
@@ -512,40 +512,40 @@ export const whyChooseUs = [
 // ============================================
 export const seoData = {
   home: {
-    title: "ZAS Chem India Pvt. Ltd. | Industrial Waterproofing & Infrastructure Protection",
+    title: "ZasChem India Pvt. Ltd. | Industrial Waterproofing & Infrastructure Protection",
     description: "India's trusted specialist in industrial waterproofing, power plant protection, tunnel rehabilitation, acid resistant lining, and structural strengthening. 12+ years. 100+ projects.",
-    keywords: "industrial waterproofing India, waterproofing contractors India, power plant waterproofing, tunnel rehabilitation India, acid resistant lining, structural strengthening India, ZAS Chem India",
-    ogImage: "/og-home.jpg",
+    keywords: "industrial waterproofing India, waterproofing contractors India, power plant waterproofing, tunnel rehabilitation India, acid resistant lining, structural strengthening India, ZasChem India",
+    ogImage: "/og-home.avif",
   },
   about: {
-    title: "About ZAS Chem India | Industrial Infrastructure Protection Specialists",
-    description: "ZAS Chem India is a specialized contractor for industrial waterproofing, structural rehabilitation, and protective coating. 12+ years, 100+ completed projects, ISO certified.",
-    keywords: "about ZAS Chem India, industrial waterproofing company India, infrastructure protection specialists",
-    ogImage: "/og-about.jpg",
+    title: "About ZasChem India | Industrial Infrastructure Protection Specialists",
+    description: "ZasChem India is a specialized contractor for industrial waterproofing, structural rehabilitation, and protective coating. 12+ years, 100+ completed projects, ISO certified.",
+    keywords: "about ZasChem India, industrial waterproofing company India, infrastructure protection specialists",
+    ogImage: "/og-about.avif",
   },
   services: {
-    title: "Industrial Waterproofing & Protection Services | ZAS Chem India",
+    title: "Industrial Waterproofing & Protection Services | ZasChem India",
     description: "Comprehensive industrial waterproofing, structural strengthening, acid resistant lining, polyurea coating, PU waterproofing, and industrial flooring services across India.",
     keywords: "industrial waterproofing services India, structural repair services, acid resistant coating, polyurea waterproofing, industrial flooring contractors",
-    ogImage: "/og-services.jpg",
+    ogImage: "/og-services.avif",
   },
   products: {
-    title: "Industrial Waterproofing & Coating Products | ZAS Chem India",
-    description: "Browse ZAS Chem India's range of industrial waterproofing membranes, heat reflective coatings, acid resistant systems, and protective coating products.",
+    title: "Industrial Waterproofing & Coating Products | ZasChem India",
+    description: "Browse ZasChem India's range of industrial waterproofing membranes, heat reflective coatings, acid resistant systems, and protective coating products.",
     keywords: "waterproofing products India, PU membrane, heat reflective coating, acid resistant lining products",
-    ogImage: "/og-products.jpg",
+    ogImage: "/og-products.avif",
   },
   projects: {
-    title: "Industrial Project Portfolio | ZAS Chem India",
-    description: "Explore ZAS Chem India's portfolio of completed industrial waterproofing, tunnel repair, power plant protection, and structural rehabilitation projects.",
+    title: "Industrial Project Portfolio | ZasChem India",
+    description: "Explore ZasChem India's portfolio of completed industrial waterproofing, tunnel repair, power plant protection, and structural rehabilitation projects.",
     keywords: "industrial waterproofing projects India, power plant projects, tunnel repair portfolio",
-    ogImage: "/og-projects.jpg",
+    ogImage: "/og-projects.avif",
   },
   contact: {
-    title: "Contact ZAS Chem India | Get a Project Quote",
-    description: "Contact ZAS Chem India for industrial waterproofing, structural repair, and protective coating services. Get a technical consultation and project quote.",
-    keywords: "contact ZAS Chem India, waterproofing contractor quote, industrial repair consultation India",
-    ogImage: "/og-contact.jpg",
+    title: "Contact ZasChem India | Get a Project Quote",
+    description: "Contact ZasChem India for industrial waterproofing, structural repair, and protective coating services. Get a technical consultation and project quote.",
+    keywords: "contact ZasChem India, waterproofing contractor quote, industrial repair consultation India",
+    ogImage: "/og-contact.avif",
   },
 };
 
@@ -564,8 +564,8 @@ export const blogIdeas = [
 
 export const faqs = [
   {
-    q: "What areas of India does ZAS Chem India serve?",
-    a: "ZAS Chem India serves pan-India with active operations across 15+ states including Delhi, Noida, Ranchi, Cuttack, Hyderabad, Mumbai, and all major industrial hubs.",
+    q: "What areas of India does ZasChem India serve?",
+    a: "ZasChem India serves pan-India with active operations across 15+ states including Delhi, Noida, Ranchi, Cuttack, Hyderabad, Mumbai, and all major industrial hubs.",
   },
   {
     q: "Do you work on live industrial plant shutdowns?",
@@ -577,7 +577,7 @@ export const faqs = [
   },
   {
     q: "Can you handle both material supply and application?",
-    a: "Yes. ZAS Chem India provides complete turnkey solutions including material procurement, surface preparation, skilled application, quality testing, and documentation.",
+    a: "Yes. ZasChem India provides complete turnkey solutions including material procurement, surface preparation, skilled application, quality testing, and documentation.",
   },
   {
     q: "How soon can your team mobilize for emergency repair?",

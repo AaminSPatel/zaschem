@@ -52,11 +52,11 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.6 }}
-              className="max-w-2xl"
+              className="max-w-2xl md:ml-12"
             >
               {/* Label */}
               <div className="section-label mb-4 md:mb-5">
-                ZAS CHEM INDIA PVT. LTD.
+                ZasChem INDIA PVT. LTD.
               </div>
 
               {/* Title */}

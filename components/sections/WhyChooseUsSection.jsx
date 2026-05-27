@@ -36,7 +36,7 @@ export default function WhyChooseUsSection() {
           >
             <div className="relative overflow-hidden">
               <img
-                src="/p6.jpeg"
+                src="/p4.avif"
                 alt="Industrial waterproofing experts"
                 className="w-full h-[500px] object-cover"
               />

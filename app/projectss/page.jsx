@@ -4,10 +4,22 @@ import { projects } from '@/data/siteData';
 import CTABanner from '@/components/sections/CTABanner';
 
 export const metadata = {
-  title: 'Industrial Project Portfolio | ZAS Chem India',
-  description: 'Explore ZAS Chem India\'s portfolio of completed industrial waterproofing, tunnel repair, power plant protection, and structural rehabilitation projects across India.',
+  title: 'Industrial Project Portfolio | ZasChem India',
+  description: 'Explore ZasChem India\'s portfolio of completed industrial waterproofing, tunnel repair, power plant protection, and structural rehabilitation projects across India.',
   keywords: 'industrial waterproofing projects India, power plant waterproofing portfolio, tunnel repair case studies',
   alternates: { canonical: 'https://www.zaschem.in/projects' },
+  openGraph: {
+    title: 'Industrial Project Portfolio | ZasChem India',
+    description: 'Explore ZasChem India\'s portfolio of completed industrial waterproofing, tunnel repair, power plant protection, and structural rehabilitation projects across India.',
+    url: 'https://www.zaschem.in/projects',
+    images: [{ url: '/logo.avif', width: 1200, height: 630, alt: 'ZasChem India' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Industrial Project Portfolio | ZasChem India',
+    description: 'Explore ZasChem India\'s portfolio of completed industrial waterproofing, tunnel repair, power plant protection, and structural rehabilitation projects across India.',
+    images: ['/logo.avif'],
+  },
 };
 
 const categories = ['All', ...new Set(projects.map((p) => p.category))];

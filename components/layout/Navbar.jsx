@@ -40,8 +40,8 @@ const navLinks = [
       { label: "PU Waterproofing", href: "/services/pu-waterproofing" },
     ],
   },
-  { label: "Products", href: "/products" },
-  { label: "Projects", href: "/projects" },
+/*   { label: "Products", href: "/products" },
+ */  { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -110,13 +110,13 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
           >
             <img
-              src="/logo.png"
+              src="/logo_1.avif"
               alt="Zaschem India PVT LTD - BUILDING THE FUTURE TOGETHER"
-              className="h-12 w-12"
+              className="h-12 w-42"
             />
-            <div className="flex flex-col ">
-              <span className="font-display font-black text-xl lg:text-2xl tracking-widest text-on-bg group-hover:text-brand-blue transition-colors">
-                ZAS CHEM
+            <div className="flex hidden flex-col ">
+              <span className="font-display font-black text-xl lg:text-2xl tracking-widest text-on-bg group-hover:text-brand-blue transition-colors" sr-only='true'>
+                ZasChem
               </span>
               <span className="font-mono text-[9px] tracking-[0.3em] text-brand-orange">
                 INDIA PVT. LTD.
@@ -222,7 +222,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between px-5 py-4 border-b border-brand-border flex-shrink-0">
                 <div>
                   <p className="font-display font-black text-lg tracking-widest text-on-bg">
-                    ZAS CHEM
+                    ZasChem
                   </p>
                   <p className="font-mono text-[9px] tracking-[0.3em] text-brand-orange">
                     INDIA PVT. LTD.

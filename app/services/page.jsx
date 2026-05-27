@@ -8,6 +8,18 @@ export const metadata = {
   description: 'Comprehensive industrial waterproofing, structural strengthening, acid resistant lining, polyurea coating, PU waterproofing, and industrial flooring services across India.',
   keywords: 'industrial waterproofing services India, structural repair, acid resistant coating, polyurea waterproofing, industrial flooring contractors',
   alternates: { canonical: 'https://www.zaschem.in/services' },
+  openGraph: {
+    title: 'Industrial Waterproofing & Protection Services India',
+    description: 'Comprehensive industrial waterproofing, rehabilitation, and protective coating solutions engineered for India\'s most demanding industrial environments.',
+    url: 'https://www.zaschem.in/services',
+    images: [{ url: '/logo.avif', width: 1200, height: 630, alt: 'ZasChem India' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Industrial Waterproofing & Protection Services India',
+    description: 'Comprehensive industrial waterproofing, rehabilitation, and protective coating solutions engineered for India\'s most demanding industrial environments.',
+    images: ['/logo.avif'],
+  },
 };
 
 const iconMap = { Droplets, Building2, Wrench, FlaskConical, Layers, Waves, Sun, Shield };
@@ -30,36 +42,61 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid (same card style as products) */}
       <section className="pb-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => {
-              const Icon = iconMap[service.icon] || Droplets;
-              return (
-                <Link key={service.id} href={`/services/${service.slug}`}
-                  className="card-industrial p-7 group hover:border-brand-blue/50 transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-14 h-14 bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center mb-6 group-hover:bg-brand-blue/20 transition-colors">
-                    <Icon size={26} className="text-brand-blue" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <Link
+                key={service.id}
+                href={`/services/${service.slug}`}
+                className="group card-industrial overflow-hidden hover:border-brand-orange/60 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-orange/10"
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/30 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-brand-orange text-on-bg text-xs font-mono tracking-wider">
+                      {service.title}
+                    </span>
                   </div>
-                  <h2 className="font-display font-bold text-xl text-on-bg tracking-wide mb-3 group-hover:text-brand-blue transition-colors">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+                </div>
+
+                <div className="p-6">
+                  <p className="font-mono text-brand-orange text-xs tracking-[0.2em] mb-2">
+                    {service.title}
+                  </p>
+                  <h2 className="font-display font-black text-xl text-on-bg mb-2 tracking-wide group-hover:text-brand-orange transition-colors">
                     {service.title}
                   </h2>
-                  <p className="text-brand-muted text-sm leading-relaxed mb-5">{service.shortDesc}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {service.features.slice(0, 4).map((f) => (
-                      <span key={f} className="px-2 py-0.5 bg-brand-darker border border-brand-border text-xs text-brand-muted font-mono">{f}</span>
+                  <p className="text-brand-muted text-sm leading-relaxed mb-5 line-clamp-2">
+                    {service.shortDesc}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2 mb-5 p-3 bg-brand-darker border border-brand-border">
+                    {service.features.slice(0, 2).map((f) => (
+                      <div key={f}>
+                        <p className="text-brand-muted text-[10px] font-mono uppercase tracking-wider">FEATURE</p>
+                        <p className="text-on-bg text-xs font-semibold mt-0.5">{f}</p>
+                      </div>
                     ))}
                   </div>
-                  <div className="flex items-center gap-1.5 text-brand-blue text-sm font-display font-semibold tracking-wide group-hover:gap-3 transition-all">
+
+                  <div className="flex items-center gap-2 text-brand-orange text-sm font-display font-bold tracking-wide group-hover:gap-4 transition-all">
                     LEARN MORE <ArrowRight size={14} />
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
 
       <CTABanner />
     </div>

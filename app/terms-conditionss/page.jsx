@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 
 export const metadata = {
-  title: 'Terms & Conditions | ZAS Chem India Pvt. Ltd.',
-  description: 'Terms and conditions governing the use of ZAS Chem India services, website, and business engagements.',
+  title: 'Terms & Conditions | ZasChem India Pvt. Ltd.',
+  description: 'Terms and conditions governing the use of ZasChem India services, website, and business engagements.',
   alternates: { canonical: 'https://www.zaschem.in/terms-conditions' },
   robots: { index: false },
 };
@@ -11,11 +11,11 @@ export const metadata = {
 const sections = [
   {
     id: '01', title: 'Acceptance of Terms',
-    content: 'By accessing our website or engaging ZAS Chem India Pvt. Ltd. for any service, you agree to these terms in full. If you disagree with any part, please do not use our services or website.'
+    content: 'By accessing our website or engaging ZasChem India Pvt. Ltd. for any service, you agree to these terms in full. If you disagree with any part, please do not use our services or website.'
   },
   {
     id: '02', title: 'Services & Scope of Work',
-    content: 'All services provided by ZAS Chem India are subject to a formal written agreement or purchase order. Verbal commitments are not binding. Scope of work, materials, timeline, and pricing must be confirmed in writing before work commences.'
+    content: 'All services provided by ZasChem India are subject to a formal written agreement or purchase order. Verbal commitments are not binding. Scope of work, materials, timeline, and pricing must be confirmed in writing before work commences.'
   },
   {
     id: '03', title: 'Payment Terms',
@@ -27,15 +27,15 @@ const sections = [
   },
   {
     id: '05', title: 'Liability',
-    content: 'ZAS Chem India\'s liability is limited to the value of the specific contract under which any claim arises. We are not liable for indirect, consequential, or business interruption losses. Any claims must be made within 12 months of project completion.'
+    content: 'ZasChem India\'s liability is limited to the value of the specific contract under which any claim arises. We are not liable for indirect, consequential, or business interruption losses. Any claims must be made within 12 months of project completion.'
   },
   {
     id: '06', title: 'Intellectual Property',
-    content: 'All technical documents, method statements, specifications, and drawings provided by ZAS Chem India remain our intellectual property and may not be reproduced, shared, or used for other projects without written consent.'
+    content: 'All technical documents, method statements, specifications, and drawings provided by ZasChem India remain our intellectual property and may not be reproduced, shared, or used for other projects without written consent.'
   },
   {
     id: '07', title: 'Health & Safety',
-    content: 'ZAS Chem India follows strict HSE protocols on all project sites. Clients must ensure safe site access, isolate work areas as required, and provide necessary permits. We reserve the right to stop work if site conditions pose unacceptable safety risks.'
+    content: 'ZasChem India follows strict HSE protocols on all project sites. Clients must ensure safe site access, isolate work areas as required, and provide necessary permits. We reserve the right to stop work if site conditions pose unacceptable safety risks.'
   },
   {
     id: '08', title: 'Governing Law',
@@ -56,7 +56,7 @@ export default function TermsPage() {
           </nav>
           <div className="section-label mb-4">LEGAL</div>
           <h1 className="font-display font-black text-4xl md:text-5xl text-on-bg tracking-tight mb-4">TERMS & CONDITIONS</h1>
-          <p className="text-brand-muted">Last updated: January 2024 &nbsp;|&nbsp; ZAS Chem India Pvt. Ltd.</p>
+          <p className="text-brand-muted">Last updated: January 2024 &nbsp;|&nbsp; ZasChem India Pvt. Ltd.</p>
         </div>
       </section>
 
@@ -64,7 +64,7 @@ export default function TermsPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="card-industrial p-8 mb-8 border-l-4 border-l-brand-orange">
             <p className="text-brand-muted leading-relaxed">
-              These Terms & Conditions govern your use of ZAS Chem India Pvt. Ltd.&apos;s website, services, and business engagements. Please read them carefully. By engaging our services, you agree to be bound by these terms.
+              These Terms & Conditions govern your use of ZasChem India Pvt. Ltd.&apos;s website, services, and business engagements. Please read them carefully. By engaging our services, you agree to be bound by these terms.
             </p>
           </div>
 

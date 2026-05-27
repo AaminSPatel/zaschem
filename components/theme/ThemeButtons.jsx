@@ -11,7 +11,7 @@ function ThemeButton({ id, active, onClick, title }) {
       type="button"
       title={title}
       onClick={onClick}
-      className={`theme-btn ${active ? 'ring-2 ring-white/70' : ''}`}
+      className={`theme-btn hidden ${active ? 'ring-2 ring-white/70' : ''}`}
       aria-pressed={active}
     >
       <span
@@ -39,7 +39,7 @@ export default function ThemeButtons() {
   const btns = useMemo(() => themes.slice(0, 4), [themes]);
 
   return (
-    <div className="hidden sm:flex items-center gap-2 ml-3" aria-label="Theme selector">
+    <div className="hidden items-center gap-2 ml-3" aria-label="Theme selector">
       {mounted &&
         btns.map((t) => {
           const title = t.label;

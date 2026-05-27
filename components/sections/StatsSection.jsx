@@ -39,9 +39,9 @@ export default function StatsSection() {
                 className="bg-brand-card p-6 lg:p-8 text-center group hover:bg-brand-dark transition-colors relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-brand-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <Icon size={22} className="mx-auto mb-3 text-brand-orange group-hover:scale-110 transition-transform" />
-                <div className="stat-number mb-2">{stat.value}</div>
-                <p className="text-brand-muted text-xs font-mono tracking-wide leading-snug uppercase">{stat.label}</p>
+                <Icon size={26} className="mx-auto mb-3 font-extrabold text-brand-orange group-hover:scale-110 transition-transform" />
+                <div className="stat-number mb-2 font-semibold">{stat.value}</div>
+                <p className="text-brand-muted text-xs font-mono font-medium tracking-wide leading-snug uppercase">{stat.label}</p>
               </motion.div>
             );
           })}

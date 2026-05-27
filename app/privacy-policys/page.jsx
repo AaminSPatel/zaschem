@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ChevronRight, Shield } from 'lucide-react';
 
 export const metadata = {
-  title: 'Privacy Policy | ZAS Chem India Pvt. Ltd.',
-  description: 'Privacy policy governing how ZAS Chem India collects, uses, and protects your personal information.',
+  title: 'Privacy Policy | ZasChem India Pvt. Ltd.',
+  description: 'Privacy policy governing how ZasChem India collects, uses, and protects your personal information.',
   alternates: { canonical: 'https://www.zaschem.in/privacy-policy' },
   robots: { index: false },
 };
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
             <div className="section-label">YOUR DATA IS PROTECTED</div>
           </div>
           <h1 className="font-display font-black text-4xl md:text-5xl text-on-bg tracking-tight mb-4">PRIVACY POLICY</h1>
-          <p className="text-brand-muted">Last updated: January 2024 &nbsp;|&nbsp; ZAS Chem India Pvt. Ltd.</p>
+          <p className="text-brand-muted">Last updated: January 2026 &nbsp;|&nbsp; ZasChem India Pvt. Ltd.</p>
         </div>
       </section>
 
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="card-industrial p-8 mb-8 border-l-4 border-l-brand-blue">
             <p className="text-brand-muted leading-relaxed">
-              ZAS Chem India Pvt. Ltd. is committed to protecting your privacy. This policy explains how we collect, use, store, and protect information about you when you use our website or engage our services. We process your data in accordance with applicable Indian data protection laws.
+              ZasChem India Pvt. Ltd. is committed to protecting your privacy. This policy explains how we collect, use, store, and protect information about you when you use our website or engage our services. We process your data in accordance with applicable Indian data protection laws.
             </p>
           </div>
 
@@ -92,7 +92,7 @@ export default function PrivacyPage() {
             </p>
             <p className="text-brand-muted text-sm">
               Email: <a href="mailto:privacy@zaschem.in" className="text-brand-blue hover:underline">privacy@zaschem.in</a><br />
-              Address: {`ZAS Chem India Pvt. Ltd., Industrial Area, India`}
+              Address: {`ZasChem India Pvt. Ltd., Industrial Area, India`}
             </p>
           </div>
         </div>

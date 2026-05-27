@@ -24,8 +24,8 @@ const shareTechMono = Share_Tech_Mono({
 
 export const metadata = {
   title: {
-    default: 'ZAS Chem India Pvt. Ltd. | Industrial Waterproofing & Infrastructure Protection',
-    template: '%s | ZAS Chem India',
+    default: 'ZasChem India Pvt. Ltd. | Industrial Waterproofing & Infrastructure Protection',
+    template: '%s | ZasChem India',
   },
   description: "India's trusted specialist in industrial waterproofing, power plant protection, tunnel rehabilitation, acid resistant lining, and structural strengthening. 12+ years. 100+ projects.",
   keywords: ['industrial waterproofing India', 'power plant waterproofing', 'tunnel rehabilitation', 'acid resistant lining', 'structural strengthening'],
@@ -33,7 +33,8 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    siteName: 'ZAS Chem India Pvt. Ltd.',
+    siteName: 'ZasChem India Pvt. Ltd.',
+    images: [{ url: '/logo.avif', width: 1200, height: 630, alt: 'ZasChem India' }],
   },
   robots: { index: true, follow: true },
 };
