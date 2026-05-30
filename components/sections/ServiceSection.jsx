@@ -106,7 +106,7 @@ function Service3DCard({ service, index }) {
             <div className="grid grid-cols-2 gap-1.5 mb-4">
               {(service.features ?? []).slice(0, 2).map((f) => (
                 <div key={f} className="bg-brand-darker border border-brand-border px-2 py-1.5">
-                  <p className="font-mono text-[9px] text-brand-muted uppercase tracking-wider">
+                  <p className="font-mono text-xs text-brand-muted uppercase tracking-wider">
                     FEATURE
                   </p>
                   <p className="text-on-bg text-xs font-bold mt-0.5 leading-tight">{f}</p>
@@ -119,7 +119,7 @@ function Service3DCard({ service, index }) {
               {(service.features ?? []).slice(0, 3).map((f) => (
                 <span
                   key={f}
-                  className="px-1.5 py-0.5 border border-brand-border text-[10px] text-brand-muted font-mono"
+                  className="px-1.5 py-0.5 border border-brand-border text-xs text-brand-muted font-mono"
                 >
                   {f}
                 </span>

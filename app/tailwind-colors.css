@@ -8,7 +8,7 @@
   .bg-brand-card { background-color: var(--brand-card, #111111); }
 
   .text-brand-light { color: var(--brand-light, #ffffff); }
-  .text-brand-muted { color: var(--brand-muted, rgba(255, 255, 255, 0.7)); }
+  .text-brand-muted { color: var(--brand-muted, rgba(255, 255, 255, 0.9)); }
 
   .text-brand-blue { color: var(--brand-blue, #0F5EFF); }
   .text-brand-orange { color: var(--brand-orange, #f97316); }

@@ -31,8 +31,8 @@ export const THEMES = [
     label: 'Zaschem Classic Blue', 
     accentBlue: '#FF8800', 
     accentOrange: '#FF8800', 
-    bgDark: '#005FBA',     // Mid-tone corporate blue background
-    bgDarker: '#004385',   // Deeper blue
+    bgDark: '#005FcA',     // Mid-tone corporate blue background
+    bgDarker: '#004395',   // Deeper blue
     card: '#0071DC'        // Bright logo-blue card
   }/* ,
   { 
@@ -67,7 +67,7 @@ function applyThemeToDocument(themeId) {
   // Black & White ko rules ke mutabik control karne ke liye:
   // Sabhi themes dark-centric hain, isliye main text 'White' (#ffffff) rahega
   document.documentElement.style.setProperty('--brand-light', '#ffffff');
-  document.documentElement.style.setProperty('--brand-muted', 'rgba(255, 255, 255, 0.75)');
+  document.documentElement.style.setProperty('--brand-muted', 'rgba(255, 255, 255, 0.85)');
   document.documentElement.style.setProperty('--brand-border', 'rgba(255, 255, 255, 0.15)');
 
   // Contrast handling on colored backgrounds

@@ -38,12 +38,12 @@ export default function ProjectsSection({ limit = 4, showAll = false }) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-card/90 via-brand-card/20 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-brand-blue/90 text-on-bg text-xs font-mono tracking-wider">
+                    <span className="px-3 py-1 border-orange-400 border-1  text-on-bg text-xs font-mono tracking-wider">
                       {project.category}
                     </span>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <span className="px-2 py-1 bg-brand-darker/80 text-brand-muted text-xs font-mono">
+                    <span className="px-2 py-1 border-orange-400 border-1 text-brand-muted text-xs font-mono">
                       {project.year}
                     </span>
                   </div>
@@ -57,10 +57,10 @@ export default function ProjectsSection({ limit = 4, showAll = false }) {
 
                   <div className="flex items-center gap-4 mb-4 text-xs text-brand-muted">
                     <span className="flex items-center gap-1.5">
-                      <Building2 size={11} className="text-brand-orange" /> {project.client}
+                      <Building2 size={14} className="text-brand-orange" /> {project.client}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <MapPin size={11} className="text-brand-blue" /> {project.location}
+                      <MapPin size={14} className="text-brand-blue" /> {project.location}
                     </span>
                   </div>
 

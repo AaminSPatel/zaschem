@@ -16,7 +16,7 @@ export default function HeroSection() {
   const slide = heroSlides[activeIdx];
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative min-h-[600px] h-[100svh] overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade, Navigation]}
         effect="fade"
@@ -43,8 +43,9 @@ export default function HeroSection() {
       </Swiper>
 
       {/* CONTENT — fixed overlay on top of swiper */}
+      {/* Mobile text scaling fix: increase readability on small screens */}
       <div className="absolute inset-0 z-20 flex items-end md:items-center pointer-events-none">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 w-full pb-24 md:pb-0">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 w-full pb-16 md:pb-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIdx}
@@ -52,15 +53,16 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.6 }}
-              className="max-w-2xl md:ml-12"
+              className="w-full max-w-2xl md:ml-12"
             >
+              <div className="text-[22px] sm:text-[26px]" />
               {/* Label */}
               <div className="section-label mb-4 md:mb-5">
                 ZasChem INDIA PVT. LTD.
               </div>
 
               {/* Title */}
-              <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-none mb-3 md:mb-4">
+              <h1 className="font-display font-black text-4xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-none mb-2 md:mb-3">
                 {slide.title.split(' ').map((word, i) => (
                   <span key={i} className={i % 3 === 1 ? 'text-brand-blue' : 'text-white'}>
                     {word}{' '}
@@ -68,8 +70,9 @@ export default function HeroSection() {
                 ))}
               </h1>
 
+
               {/* Subtitle */}
-              <p className="font-display font-semibold text-base sm:text-lg md:text-xl text-brand-orange tracking-wide mb-3 md:mb-4">
+              <p className="font-display font-semibold text-[15px] sm:text-lg md:text-xl text-brand-orange tracking-wide mb-3 md:mb-4">
                 {slide.subtitle}
               </p>
 
@@ -89,7 +92,7 @@ export default function HeroSection() {
               </div>
 
               {/* Mobile swipe hint */}
-              <p className="sm:hidden mt-5 font-mono text-xs text-white  tracking-wider opacity-70">SWIPE TO EXPLORE →</p>
+              <p className="sm:hidden mt-4 font-mono text-[11px] tracking-wider opacity-70">SWIPE TO EXPLORE →</p>
             </motion.div>
           </AnimatePresence>
         </div>

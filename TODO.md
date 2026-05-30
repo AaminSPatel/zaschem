@@ -1,6 +1,8 @@
-# TODO
+# TODO - Mobile text size / responsive enhancements
 
-- [x] Update `/miraj/app/services/[slug]/page.jsx` to read slug from URL using `useParams()` (client component), so service lookup works on client navigation.
-- [ ] Ensure `notFound()` is triggered when slug not present.
-- [ ] Keep/verify `generateStaticParams()` and `generateMetadata()` continue to work.
-- [ ] Run dev/test: open `/services/<slug>` and click navigation links to ensure it resolves correctly.
+- [ ] Step 1: Inspect Tailwind/global styles for any missing mobile meta/typography rules.
+- [ ] Step 2: Improve Hero section typography & spacing for small screens (reduce h-screen overflow, tune font sizes, padding, CTA sizes).
+- [ ] Step 3: Ensure page-wide responsive base font/line-height and prevent accidental zoom/shrinking issues.
+- [ ] Step 4: Update any other most-visible sections if needed (Navbar/Footer already mostly responsive).
+- [ ] Step 5: Run Next.js build/lint (if available) and quickly sanity-check responsive classes.
+
