@@ -219,7 +219,7 @@ export default function AboutPage() {
               { title: 'Integrity First', desc: 'We recommend only what your structure truly needs. Honest assessment, transparent execution, no shortcuts.', accent: '#F97316' },
               { title: 'Long-term Partnership', desc: 'Our relationship extends beyond handover. Maintenance support and decade-long warranties are standard.', accent: '#0F5EFF' },
             ].map((v) => (
-              <div key={v.title} style={{ backgroundColor: bgDarkBlue, borderColor: borderLight }} className="border p-8 rounded-sm" style={{ borderTop: `2px solid ${v.accent}` }}>
+<div key={v.title} style={{ backgroundColor: bgDarkBlue, borderColor: borderLight, borderTop: `2px solid ${v.accent}` }} className="border p-8 rounded-sm">
                 <h3 className="font-display font-black text-xl text-white mb-3">{v.title}</h3>
                 <p className="text-brand-muted leading-relaxed">{v.desc}</p>
               </div>
