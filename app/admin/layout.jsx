@@ -1,7 +1,8 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { AdminProvider } from '@/context/AdminContext';
+import { AdminProvider, useAdmin } from '@/context/AdminContext';
+
 import Sidebar from '@/components/admin/Sidebar';
 import Topbar from '@/components/admin/Topbar';
 
@@ -21,7 +22,19 @@ function AdminShell({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isLogin = pathname === '/admin/login';
 
+  const { ensureAuth, admin, checkedAuth } = useAdmin();
+
+  useEffect(() => {
+    if (isLogin) return;
+    // ensureAuth() token check + refreshAdmin karega, aur redirect karega if invalid
+    // checkedAuth jaldi ensure karne ke liye: initial paint me flicker avoid
+    if (!checkedAuth) return;
+    ensureAuth();
+  }, [ensureAuth, isLogin, checkedAuth]);
+
   if (isLogin) return <>{children}</>;
+  if (!checkedAuth) return null;
+  if (!admin) return null;
 
   const title = PAGE_TITLES[pathname] || 'Admin';
 

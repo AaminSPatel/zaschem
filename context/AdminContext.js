@@ -5,19 +5,36 @@ import { authApi } from '@/lib/adminApi';
 
 const AdminContext = createContext(null);
 
+function getCookie(name) {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(new RegExp('(^| )' + name.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&') + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+function hasValidToken() {
+  if (typeof window === 'undefined') return false;
+  const tokenFromLS = localStorage.getItem('zci_token');
+  const tokenFromCookie = getCookie('zci_token');
+  return Boolean(tokenFromLS || tokenFromCookie);
+}
+
 export function AdminProvider({ children }) {
   const router = useRouter();
   const [admin, setAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
   const [toasts, setToasts] = useState([]);
+  const [checkedAuth, setCheckedAuth] = useState(false);
 
   useEffect(() => {
+    // UI guard ke liye: admin object + token presence check
     const stored = localStorage.getItem('zci_admin');
     if (stored) {
       try { setAdmin(JSON.parse(stored)); } catch {}
     }
     setLoading(false);
+    setCheckedAuth(true);
   }, []);
+
 
   const toast = useCallback((message, type = 'info') => {
     const id = Date.now();
@@ -54,12 +71,49 @@ export function AdminProvider({ children }) {
     if (res?.success) {
       setAdmin(res.data);
       localStorage.setItem('zci_admin', JSON.stringify(res.data));
+      return true;
     }
+    setAdmin(null);
+    return false;
   }, []);
 
+
+  // Admin pages ke liye guard-ready helpers
+  const ensureAuth = useCallback(async () => {
+    // login page ko bypass karke call kiya jana chahiye, but safe guard
+    const tokenExists = hasValidToken();
+    if (!tokenExists) {
+      setAdmin(null);
+      router.push('/admin/login');
+      return false;
+    }
+
+    // Agar localStorage me admin object hai, but token valid nahi ho sakta.
+    // Quick refresh attempt to avoid session hijack.
+    try {
+      const ok = await refreshAdmin();
+      if (!ok) {
+        setAdmin(null);
+        localStorage.removeItem('zci_token');
+        localStorage.removeItem('zci_refresh');
+        localStorage.removeItem('zci_admin');
+        document.cookie = 'zci_token=; path=/; max-age=0';
+        router.push('/admin/login');
+        return false;
+      }
+      return true;
+    } catch {
+      // silent failure -> redirect to login
+      setAdmin(null);
+      router.push('/admin/login');
+      return false;
+    }
+  }, [refreshAdmin, router]);
+
   return (
-    <AdminContext.Provider value={{ admin, loading, login, logout, toast, refreshAdmin }}>
+    <AdminContext.Provider value={{ admin, loading, checkedAuth, login, logout, toast, refreshAdmin, ensureAuth }}>
       {children}
+
       {/* Toast container */}
       <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none">
         {toasts.map((t) => (
