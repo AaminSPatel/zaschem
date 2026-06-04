@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { siteConfig, faqs } from '@/data/siteData';
-// TODO: Replace with backend API — submitContactForm('/api/contact')
-const submitContactForm = async () => ({ success: true });
+import { createContactInquiry } from '@/lib/apiClient';
 
 const services = [
   'Waterproofing Systems', 'Structural Strengthening', 'Repair & Rehabilitation',
@@ -22,14 +21,21 @@ export default function ContactPage() {
   const submit = async (e) => {
     e.preventDefault();
     setStatus('loading');
+
+    console.log('[ContactPage] submit clicked');
+    console.log('[ContactPage] payload =', form);
+
     try {
-      const res = await submitContactForm(form);
+      const res = await createContactInquiry(form);
+      console.log('[ContactPage] backend response =', res);
       if (res?.success) setStatus('success');
       else setStatus('error');
-    } catch {
+    } catch (err) {
+      console.error('[ContactPage] submit error =', err);
       setStatus('error');
     }
   };
+
 
   return (
     <div className="bg-brand-dark min-h-screen">

@@ -42,8 +42,7 @@ const navLinks = [
   },
 /*   { label: "Products", href: "/products" },
  */  { label: "Projects", href: "/projects" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about" }
 ];
 
 export default function Navbar() {

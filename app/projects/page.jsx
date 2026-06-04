@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import {
   MapPin,
@@ -6,10 +8,11 @@ import {
   ChevronRight,
   Calendar,
 } from "lucide-react";
-import { projects } from "@/data/siteData";
+import { useEffect, useMemo, useState } from "react";
 import CTABanner from "@/components/sections/CTABanner";
+import { fetchProjects } from "@/lib/apiClient";
 
-export const metadata = {
+/*  const metadata = {
   title: "Industrial Project Portfolio | ZasChem India",
   description:
     "Explore ZasChem India's portfolio of completed industrial waterproofing, tunnel repair, power plant protection, and structural rehabilitation projects across India.",
@@ -33,10 +36,42 @@ export const metadata = {
     images: ["/logo.avif"],
   },
 };
+ */
 
-const categories = ["All", ...new Set(projects.map((p) => p.category))];
 
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        setLoading(true);
+        const res = await fetchProjects();
+        const data = res?.data ?? res;
+        if (!mounted) return;
+        setProjects(Array.isArray(data) ? data : []);
+      } catch (e) {
+        if (!mounted) return;
+        setError(e?.message || 'Failed to load projects');
+        setProjects([]);
+      } finally {
+        if (!mounted) return;
+        setLoading(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const categories = useMemo(() => {
+    const catList = Array.isArray(projects) ? projects.map((p) => p.category).filter(Boolean) : [];
+    return ["All", ...new Set(catList)];
+  }, [projects]);
+
   return (
     <div className="bg-brand-dark min-h-screen">
       {/* Hero */}
@@ -67,6 +102,7 @@ export default function ProjectsPage() {
 
       {/* Stats strip */}
       <section className="border-y border-brand-border bg-brand-card">
+        {/* NOTE: Values are currently static; can be fetched from SiteSettings later */}
         <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-border">
           {[
             ["100+", "Projects"],
@@ -101,83 +137,85 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="pb-24">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link
-              key={project.id}
-              href={`/projects/${project.slug}`}
-              className="group card-industrial overflow-hidden hover:border-brand-blue/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-blue/10"
-            >
-              {/* Image */}
-              <div className="relative h-52 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/40 to-transparent" />
-                <div className="absolute top-3 left-3 flex gap-2">
-                  <span className="px-2 py-1 bg-brand-blue/90 text-on-bg text-xs font-mono">
-                    {project.category}
-                  </span>
-                  {project.featured && (
-                    <span className="px-2 py-1 bg-brand-orange/90 text-on-bg text-xs font-mono">
-                      FEATURED
-                    </span>
-                  )}
-                </div>
-                <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-brand-darker/80 px-2 py-1">
-                  <Calendar size={10} className="text-brand-muted" />
-                  <span className="font-mono text-xs text-brand-muted">
-                    {project.year}
-                  </span>
-                </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <h2 className="font-display font-bold text-lg text-on-bg mb-2 group-hover:text-brand-blue transition-colors leading-tight">
-                  {project.title}
-                </h2>
-                <div className="flex flex-wrap gap-3 mb-4 text-xs text-brand-muted">
-                  <span className="flex items-center gap-1">
-                    <Building2 size={10} className="text-brand-orange" />
-                    {project.client}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MapPin size={10} className="text-brand-blue" />
-                    {project.location}
-                  </span>
-                </div>
-                <div className="space-y-2 mb-4">
-                  <p className="text-xs text-brand-muted">
-                    <span className="text-brand-orange font-mono tracking-wider">
-                      CHALLENGE:{" "}
-                    </span>
-                    {project.problem.substring(0, 90)}...
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 bg-brand-darker border border-brand-border text-xs text-brand-muted"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-1.5 text-brand-blue text-sm font-display font-bold tracking-wide group-hover:gap-3 transition-all">
-                  VIEW CASE STUDY <ArrowRight size={13} />
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
 
+      {loading && (
+        <div className="max-w-7xl mx-auto px-6 py-16 text-brand-muted">Loading projects...</div>
+      )}
+      {!loading && error && (
+        <div className="max-w-7xl mx-auto px-6 py-16 text-red-400">{error}</div>
+      )}
+      {!loading && !error && (
+        <section className="pb-24">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project) => (
+              <Link
+                key={project._id}
+                href={`/projects/${project.slug}`}
+                className="group card-industrial overflow-hidden hover:border-brand-blue/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-blue/10"
+              >
+                <div className="relative h-52 overflow-hidden">
+                  <img
+                    src={project.image.url}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/40 to-transparent" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="px-2 py-1 bg-brand-blue/90 text-on-bg text-xs font-mono">
+                      {project.category}
+                    </span>
+                    {project.featured && (
+                      <span className="px-2 py-1 bg-brand-orange/90 text-on-bg text-xs font-mono">
+                        FEATURED
+                      </span>
+                    )}
+                  </div>
+                  <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-brand-darker/80 px-2 py-1">
+                    <Calendar size={10} className="text-brand-muted" />
+                    <span className="font-mono text-xs text-brand-muted">{project.year}</span>
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <h2 className="font-display font-bold text-lg text-on-bg mb-2 group-hover:text-brand-blue transition-colors leading-tight">
+                    {project.title}
+                  </h2>
+                  <div className="flex flex-wrap gap-3 mb-4 text-xs text-brand-muted">
+                    <span className="flex items-center gap-1">
+                      <Building2 size={10} className="text-brand-orange" />
+                      {project.client}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <MapPin size={10} className="text-brand-blue" />
+                      {project.location}
+                    </span>
+                  </div>
+                  <div className="space-y-2 mb-4">
+                    <p className="text-xs text-brand-muted">
+                      <span className="text-brand-orange font-mono tracking-wider">CHALLENGE:{" "}</span>
+                      {project.problem?.substring(0, 90)}...
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {(project.tags || []).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 bg-brand-darker border border-brand-border text-xs text-brand-muted"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-brand-blue text-sm font-display font-bold tracking-wide group-hover:gap-3 transition-all">
+                    VIEW CASE STUDY <ArrowRight size={13} />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
       <CTABanner />
     </div>
   );

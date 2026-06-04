@@ -1,29 +1,46 @@
 import { notFound } from 'next/navigation';
-
-import { services } from '@/app/data/siteData';
 import ServiceDetailClient from './ServiceSlugClient';
+import { fetchServiceBySlug, fetchServices } from '@/lib/apiClient';
 
+export const dynamic = 'force-dynamic';
 
-export const generateStaticParams = async () => {
-  return services.map((s) => ({ slug: s.slug }));
-};
+function normalizeSlug(slug) {
+  if (Array.isArray(slug)) return slug[0];
+  return slug;
+}
 
-export function generateMetadata({ params }) {
-  const slug = Array.isArray(params?.slug) ? params?.slug[0] : params?.slug;
-  const service = services?.find((s) => s.slug === slug);
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const slug = normalizeSlug(resolvedParams?.slug);
 
+  if (!slug) {
+    return { title: 'Service Not Found' };
+  }
 
+  const decodedSlug = decodeURIComponent(String(slug)).trim();
+
+  const res = await fetchServiceBySlug(decodedSlug).catch(() => null);
+  const service = res?.data;
+
+  if (!service) {
+    return { title: 'Service Not Found' };
+  }
+
+  const imageUrl = service?.image?.url || service?.image || '/logo.avif';
+
+  const title = `${service.title} | ZasChem India`;
+  const description = service?.shortDesc || service?.metaDesc || 'Industrial waterproofing service';
 
   return {
-    title: service?.metaTitle || service?.title || 'Service',
-    description: service?.metaDesc || service?.shortDesc || 'Industrial waterproofing service',
+    title,
+    description,
     openGraph: {
-      title: service?.metaTitle || service?.title || 'Service',
-      description: service?.metaDesc || service?.shortDesc || 'Industrial waterproofing service',
-      url: `https://www.zaschem.in/services/${slug}`,
+      title,
+      description,
+      url: `https://www.zaschem.in/services/${decodedSlug}`,
       images: [
         {
-          url: service?.image || '/logo.avif',
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: service?.title || 'ZasChem India',
@@ -32,33 +49,39 @@ export function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: service?.metaTitle || service?.title || 'Service',
-      description: service?.metaDesc || service?.shortDesc || 'Industrial waterproofing service',
-      images: [service?.image || '/logo.avif'],
+      title,
+      description,
+      images: [imageUrl],
     },
   };
 }
 
-export const dynamic = 'force-static';
+export default async function ServiceDetailPageServer({ params }) {
+  const resolvedParams = await params;
+  const slug = normalizeSlug(resolvedParams?.slug);
 
-export default function ServiceDetailPageServer({ params }) {
-  const slug = params?.slug;
-  // Normalize in case Next runtime provides array-like params.
-  const normalizedSlug = Array.isArray(slug) ? slug[0] : slug;
+  if (!slug) {
+    notFound();
+  }
 
-  if (!normalizedSlug) notFound();
+  const decodedSlug = decodeURIComponent(String(slug)).trim();
 
-  // Normalize URL slug: remove leading/trailing spaces and decode if needed.
-  const decodedSlug = typeof normalizedSlug === 'string' ? decodeURIComponent(normalizedSlug).trim() : normalizedSlug;
-
-  const service = services.find((s) => s.slug === decodedSlug);
-
+  const res = await fetchServiceBySlug(decodedSlug).catch(() => null);
+  const service = res?.data;
+console.log('service data', service)
   if (!service) notFound();
 
+  // Related services
+  const listRes = await fetchServices().catch(() => null);
+  const allServices = listRes?.data ?? listRes ?? [];
 
-  const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const related = Array.isArray(allServices)
+    ? allServices.filter((s) => s.slug !== service.slug).slice(0, 3)
+    : [];
 
+  // serviceSlugClient expects: { title, shortDesc, description, features, applications, image, slug }
   return <ServiceDetailClient service={service} related={related} />;
 }
+
 
 

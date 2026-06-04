@@ -14,7 +14,7 @@ export default function ServiceDetailPageClient({ service, related }) {
       {/* HERO */}
       <section className="relative h-[70vh] min-h-[480px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+          <img src={service.image?.url} alt={service.title} className="w-full h-full object-cover saturate-50 brightness-60" />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/70 to-brand-dark/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/70 to-brand-dark/60" />
           <div className="absolute inset-0 grid-lines opacity-20" />

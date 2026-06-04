@@ -62,7 +62,7 @@ export default function HeroSection() {
               </div>
 
               {/* Title */}
-              <h1 className="font-display font-black text-4xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-none mb-2 md:mb-3">
+              <h1 className="font-display text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-none mb-2 md:mb-3">
                 {slide.title.split(' ').map((word, i) => (
                   <span key={i} className={i % 3 === 1 ? 'text-brand-blue' : 'text-white'}>
                     {word}{' '}

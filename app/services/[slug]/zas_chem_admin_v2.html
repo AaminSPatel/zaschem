@@ -1,0 +1,1803 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1d6ef5;--blue-light:#e8f0fe;--blue-mid:#2563eb;
+  --orange:#f97316;--orange-light:#fff3e8;--orange-mid:#ea580c;
+  --white:#ffffff;--black:#000000;
+  --bg:#f5f6fa;--bg2:#ffffff;--bg3:#f0f2f8;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --success:#16a34a;--success-bg:#f0fdf4;
+  --danger:#dc2626;--danger-bg:#fef2f2;
+  --warn:#d97706;--warn-bg:#fffbeb;
+  --sidebar-w:220px;
+}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+
+.shell{display:flex;min-height:100vh}
+.sidebar{width:var(--sidebar-w);background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;transition:transform 0.25s}
+.sb-brand{padding:16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sb-logo{width:34px;height:34px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;letter-spacing:-0.5px}
+.sb-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.3}
+.sb-sub{font-size:10px;color:var(--orange);font-weight:600;letter-spacing:0.5px}
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0}
+.sb-nav::-webkit-scrollbar{width:0}
+.sb-group{padding:12px 14px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3)}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;border-left:3px solid transparent;transition:all 0.15s;color:var(--text2)}
+.sb-item:hover{background:var(--bg3);color:var(--text)}
+.sb-item.active{background:var(--blue-light);border-left-color:var(--blue);color:var(--blue)}
+.sb-item.active i{color:var(--blue)}
+.sb-item i{font-size:17px;flex-shrink:0}
+.sb-label{font-size:13px;font-weight:500}
+.sb-badge{margin-left:auto;background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px}
+.sb-badge.blue{background:var(--blue)}
+.sb-footer{padding:12px;border-top:1px solid var(--border)}
+.sb-user{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg3);border-radius:8px}
+.sb-avatar{width:30px;height:30px;border-radius:6px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.sb-uname{font-size:12px;font-weight:600;color:var(--text)}
+.sb-uemail{font-size:10px;color:var(--text3);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.topbar{height:52px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
+.tb-menu{width:32px;height:32px;border:1px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);font-size:16px;background:none;flex-shrink:0}
+.tb-menu:hover{background:var(--bg3)}
+.tb-title{font-size:15px;font-weight:600;color:var(--text);flex:1}
+.tb-search{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:6px 12px;font-size:13px;color:var(--text);outline:none;width:180px}
+.tb-search:focus{border-color:var(--blue)}
+.tb-btn{width:32px;height:32px;border:1px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);font-size:16px;background:var(--white);flex-shrink:0}
+.tb-btn:hover{background:var(--bg3)}
+.content{flex:1;overflow-y:auto;padding:16px}
+.content::-webkit-scrollbar{width:4px}
+.content::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+.ph{margin-bottom:16px}
+.ph-title{font-size:18px;font-weight:700;color:var(--text)}
+.ph-sub{font-size:13px;color:var(--text3);margin-top:2px}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--blue)}
+.kpi.orange{border-top-color:var(--orange)}
+.kpi.black{border-top-color:var(--black)}
+.kpi-val{font-size:24px;font-weight:700;color:var(--text);line-height:1}
+.kpi-lbl{font-size:12px;color:var(--text3);margin-top:4px}
+.kpi-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:10px}
+.kpi-icon.blue{background:var(--blue-light);color:var(--blue)}
+.kpi-icon.orange{background:var(--orange-light);color:var(--orange)}
+.kpi-icon.black{background:var(--bg3);color:var(--text)}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:14px}
+.card-hd{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.card-title{font-size:14px;font-weight:600;color:var(--text);flex:1}
+.card-body{padding:16px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+
+.bar-wrap{display:flex;align-items:flex-end;gap:6px;height:120px;padding:0 2px}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.bar-fill{width:100%;border-radius:3px 3px 0 0;min-height:3px;background:var(--blue);transition:height 0.3s}
+.bar-fill.orange{background:var(--orange)}
+.bar-lbl{font-size:9px;color:var(--text3);text-align:center}
+
+table{width:100%;border-collapse:collapse}
+thead tr{background:var(--bg3)}
+th{padding:9px 12px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;white-space:nowrap}
+td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg3)}
+.tbl-wrap{overflow-x:auto}
+
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.badge-active{background:var(--success-bg);color:var(--success)}
+.badge-inactive{background:var(--danger-bg);color:var(--danger)}
+.badge-draft{background:var(--warn-bg);color:var(--warn)}
+.badge-pending{background:var(--warn-bg);color:var(--warn)}
+.badge-blue{background:var(--blue-light);color:#1d4ed8}
+.badge-orange{background:var(--orange-light);color:#c2410c}
+.badge-gray{background:var(--bg3);color:var(--text2)}
+.stars{color:var(--orange);font-size:12px;letter-spacing:1px}
+
+.toolbar{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+input.srch{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:7px 11px;font-size:13px;color:var(--text);outline:none;min-width:160px;flex:1}
+input.srch:focus{border-color:var(--blue)}
+select.flt{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:6px 10px;font-size:13px;color:var(--text2);outline:none;cursor:pointer}
+.btn{padding:7px 14px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:6px;transition:opacity 0.15s}
+.btn:hover{opacity:0.85}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-outline{background:var(--white);color:var(--text2);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.btn-danger{background:var(--danger-bg);color:var(--danger);border:1px solid #fecaca}
+.btn-sm{padding:5px 10px;font-size:12px;border-radius:6px}
+.btn-icon{width:28px;height:28px;padding:0;justify-content:center;border-radius:6px}
+
+.toggle{width:36px;height:20px;background:var(--border2);border-radius:10px;position:relative;cursor:pointer;transition:background 0.2s;flex-shrink:0;border:none;outline:none}
+.toggle.on{background:var(--blue)}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;background:#fff;border-radius:50%;transition:left 0.2s}
+.toggle.on::after{left:19px}
+
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.4px}
+.form-input{width:100%;background:var(--white);border:1px solid var(--border);border-radius:7px;padding:9px 12px;font-size:13px;color:var(--text);outline:none;transition:border-color 0.15s}
+.form-input:focus{border-color:var(--blue)}
+.form-input.ta{height:80px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.upload-box{border:2px dashed var(--border2);border-radius:10px;padding:28px;text-align:center;cursor:pointer;background:var(--bg3);transition:all 0.15s}
+.upload-box:hover{border-color:var(--blue);background:var(--blue-light)}
+.upload-icon{font-size:28px;color:var(--text3);margin-bottom:8px}
+.upload-txt{font-size:13px;color:var(--text2);font-weight:500}
+.upload-sub{font-size:11px;color:var(--text3);margin-top:3px}
+
+.seo-preview{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:12px}
+.seo-url{font-size:12px;color:var(--success);margin-bottom:2px}
+.seo-ptitle{font-size:15px;color:#1a0dab;font-weight:500;margin-bottom:4px}
+.seo-pdesc{font-size:12px;color:var(--text2);line-height:1.5}
+
+.notif-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.notif-item:last-child{border-bottom:none}
+.notif-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.notif-txt{font-size:13px;color:var(--text);line-height:1.5}
+.notif-time{font-size:11px;color:var(--text3);margin-top:2px}
+.notif-new-dot{width:7px;height:7px;background:var(--blue);border-radius:50%;flex-shrink:0;margin-top:4px}
+
+.settings-tab-bar{display:flex;border-bottom:2px solid var(--border);margin-bottom:16px;overflow-x:auto}
+.stab{padding:9px 16px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.stab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.stab:hover{color:var(--text)}
+
+.contact-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;display:flex;gap:12px;cursor:pointer;transition:border-color 0.15s}
+.contact-item:hover{border-color:var(--blue)}
+.contact-av{width:38px;height:38px;border-radius:8px;background:var(--blue-light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.svc-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color 0.15s;cursor:pointer}
+.svc-card:hover{border-color:var(--blue)}
+.svc-img{height:70px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:28px}
+.svc-body{padding:12px}
+.svc-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.3}
+.svc-slug{font-size:11px;color:var(--text3);margin-bottom:8px}
+.svc-actions{display:flex;gap:6px;align-items:center}
+
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.proj-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color 0.15s;cursor:pointer}
+.proj-card:hover{border-color:var(--blue)}
+.proj-img{height:64px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:26px;position:relative}
+.proj-badge{position:absolute;top:6px;right:6px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:4px}
+.proj-body{padding:12px}
+.proj-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.3}
+.proj-meta{font-size:11px;color:var(--text3)}
+.proj-tags{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0 9px}
+
+.test-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+.test-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.test-av{width:38px;height:38px;border-radius:8px;background:var(--orange-light);color:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.test-review{font-size:13px;color:var(--text2);line-height:1.6;font-style:italic;padding:10px;background:var(--bg3);border-radius:7px;border-left:3px solid var(--blue);margin-bottom:10px}
+.test-footer{display:flex;align-items:center;gap:8px}
+
+.overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding-top:60px}
+.modal{background:var(--white);border-radius:12px;width:min(560px,94vw);max-height:80vh;overflow-y:auto;border:1px solid var(--border)}
+.modal-hd{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.modal-title{font-size:15px;font-weight:600;flex:1}
+.modal-body{padding:20px}
+.modal-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+
+.overlay-back{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:199}
+.sb-overlay{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:var(--white);z-index:300;border-right:1px solid var(--border);transform:translateX(-100%);transition:transform 0.25s;display:flex;flex-direction:column}
+.sb-overlay.open{transform:translateX(0)}
+.mob-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:299;display:none}
+.mob-backdrop.show{display:block}
+
+.inline-loading{display:flex;align-items:center;gap:8px;padding:20px;color:var(--text3);font-size:13px}
+.spin{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err-box{padding:14px 16px;background:var(--danger-bg);border:1px solid #fecaca;border-radius:8px;color:var(--danger);font-size:13px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.success-box{padding:14px 16px;background:var(--success-bg);border:1px solid #bbf7d0;border-radius:8px;color:var(--success);font-size:13px;margin-bottom:12px}
+.empty-state{padding:40px 20px;text-align:center;color:var(--text3)}
+.empty-state i{font-size:32px;margin-bottom:8px;display:block}
+
+.pager{display:flex;align-items:center;gap:6px;padding:10px 14px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
+
+@media(max-width:640px){
+  .sidebar{display:none}
+  .tb-search{display:none}
+  .grid2{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .proj-grid{grid-template-columns:1fr}
+  .toolbar{gap:6px}
+  .toolbar select{display:none}
+  td:nth-child(n+4){display:none}
+  th:nth-child(n+4){display:none}
+}
+</style>
+
+<h2 class="sr-only">ZAS CHEM INDIA — Admin Dashboard</h2>
+
+<div class="shell" id="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <div class="sb-logo">ZCI</div>
+      <div>
+        <div class="sb-name">ZAS CHEM INDIA</div>
+        <div class="sb-sub">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="sb-nav" id="sbNav"></nav>
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="sb-avatar" id="sbAvatar">SA</div>
+        <div style="flex:1;min-width:0">
+          <div class="sb-uname" id="sbName">Super Admin</div>
+          <div class="sb-uemail" id="sbEmail">admin@zaschemindia.com</div>
+        </div>
+        <button class="tb-btn" title="Logout" aria-label="Logout" onclick="handleLogout()"><i class="ti ti-logout" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="sb-overlay" id="mobSidebar" role="dialog" aria-label="Navigation menu">
+    <div class="sb-brand">
+      <div class="sb-logo">ZCI</div>
+      <div>
+        <div class="sb-name">ZAS CHEM INDIA</div>
+        <div class="sb-sub">Admin Panel</div>
+      </div>
+      <button class="tb-btn" style="margin-left:auto" onclick="closeMobSidebar()" aria-label="Close menu"><i class="ti ti-x" aria-hidden="true"></i></button>
+    </div>
+    <nav class="sb-nav" id="mobSbNav"></nav>
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="sb-avatar">SA</div>
+        <div style="flex:1;min-width:0">
+          <div class="sb-uname">Super Admin</div>
+          <div class="sb-uemail">admin@zaschemindia.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mob-backdrop" id="mobBackdrop" onclick="closeMobSidebar()"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="tb-menu" id="menuBtn" onclick="toggleMobSidebar()" aria-label="Toggle menu"><i class="ti ti-menu-2" aria-hidden="true"></i></button>
+      <div class="tb-title" id="topTitle">Dashboard</div>
+      <input class="tb-search" type="search" placeholder="Search..." aria-label="Search" id="globalSearch">
+      <button class="tb-btn" id="refreshBtn" title="Refresh" aria-label="Refresh data"><i class="ti ti-refresh" aria-hidden="true"></i></button>
+      <button class="tb-btn" aria-label="Profile" onclick="navigate('profile')"><i class="ti ti-user-circle" aria-hidden="true"></i></button>
+    </header>
+    <div class="content" id="pageContent">
+      <div class="inline-loading"><div class="spin"></div> Loading...</div>
+    </div>
+  </div>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toastRoot" style="position:fixed;bottom:16px;right:16px;z-index:999;display:flex;flex-direction:column;gap:6px"></div>
+
+<script>
+const API = 'http://localhost:5000/api';
+let authToken = localStorage.getItem('zci_token') || null;
+let authAdmin = JSON.parse(localStorage.getItem('zci_admin') || 'null');
+let currentPage = 'dashboard';
+let pageCache = {};
+
+const navItems = [
+  {id:'dashboard',label:'Dashboard',icon:'ti-layout-dashboard',group:'MAIN'},
+  {id:'contacts',label:'Contacts & Leads',icon:'ti-mail',group:'MAIN',badge:'new',badgeColor:'orange'},
+  {id:'services',label:'Services',icon:'ti-flask',group:'CONTENT'},
+  {id:'projects',label:'Projects',icon:'ti-briefcase',group:'CONTENT'},
+  {id:'testimonials',label:'Testimonials',icon:'ti-star',group:'CONTENT'},
+  {id:'settings',label:'Website Settings',icon:'ti-settings',group:'SYSTEM'},
+  {id:'upload',label:'Media Upload',icon:'ti-photo',group:'SYSTEM'},
+  {id:'profile',label:'Admin Profile',icon:'ti-user',group:'SYSTEM'},
+];
+
+function buildNav(containerId) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  let lastGroup = '';
+  let html = '';
+  navItems.forEach(item => {
+    if (item.group !== lastGroup) {
+      html += `<div class="sb-group">${item.group}</div>`;
+      lastGroup = item.group;
+    }
+    const badge = item.badge ? `<span class="sb-badge ${item.badgeColor||''}" id="badge_${item.id}"></span>` : '';
+    html += `<div class="sb-item${currentPage===item.id?' active':''}" data-page="${item.id}" onclick="navigate('${item.id}');closeMobSidebar()">
+      <i class="ti ${item.icon}" aria-hidden="true"></i>
+      <span class="sb-label">${item.label}</span>${badge}
+    </div>`;
+  });
+  c.innerHTML = html;
+}
+
+function toggleMobSidebar() {
+  document.getElementById('mobSidebar').classList.toggle('open');
+  document.getElementById('mobBackdrop').classList.toggle('show');
+}
+function closeMobSidebar() {
+  document.getElementById('mobSidebar').classList.remove('open');
+  document.getElementById('mobBackdrop').classList.remove('show');
+}
+
+function toast(msg, type='info') {
+  const t = document.getElementById('toastRoot');
+  const el = document.createElement('div');
+  const bg = type==='success'?'var(--success-bg)':type==='error'?'var(--danger-bg)':'var(--blue-light)';
+  const col = type==='success'?'var(--success)':type==='error'?'var(--danger)':'var(--blue)';
+  el.style.cssText = `background:${bg};color:${col};border:1px solid;border-radius:8px;padding:10px 14px;font-size:13px;max-width:280px;box-shadow:0 2px 8px rgba(0,0,0,0.1)`;
+  el.textContent = msg;
+  t.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+async function api(method, path, body) {
+  const opts = {
+    method,
+    headers: {'Content-Type':'application/json'},
+  };
+  if (authToken) opts.headers['Authorization'] = `Bearer ${authToken}`;
+  if (body) opts.body = JSON.stringify(body);
+  try {
+    const r = await fetch(`${API}${path}`, opts);
+    if (r.status === 401) { handleLogout(); return null; }
+    return await r.json();
+  } catch(e) {
+    return {success:false, message:'Network error — check if backend is running'};
+  }
+}
+
+function navigate(page) {
+  currentPage = page;
+  document.getElementById('topTitle').textContent = navItems.find(n=>n.id===page)?.label || 'Dashboard';
+  buildNav('sbNav');
+  buildNav('mobSbNav');
+  const pages = {
+    dashboard: renderDashboard,
+    contacts: renderContacts,
+    services: renderServices,
+    projects: renderProjects,
+    testimonials: renderTestimonials,
+    settings: renderSettings,
+    upload: renderUpload,
+    profile: renderProfile,
+  };
+  const fn = pages[page];
+  if (fn) fn();
+  else renderDashboard();
+}
+
+function handleLogout() {
+  localStorage.removeItem('zci_token');
+  localStorage.removeItem('zci_admin');
+  authToken = null; authAdmin = null;
+  renderLogin();
+}
+
+function setContent(html) {
+  document.getElementById('pageContent').innerHTML = html;
+}
+function setLoading() {
+  setContent(`<div class="inline-loading"><div class="spin"></div> Loading data...</div>`);
+}
+
+async function renderDashboard() {
+  setLoading();
+  const [svcRes, projRes, testRes, contactRes] = await Promise.all([
+    api('GET','/services'),
+    api('GET','/projects'),
+    api('GET','/testimonials/admin/all?limit=100'),
+    api('GET','/contacts'),
+  ]);
+  
+  const services = svcRes?.data || [];
+  const projects = projRes?.data || [];
+  const testimonials = testRes?.data || [];
+  const contacts = contactRes?.data || [];
+
+  const now = new Date();
+  const thisMonth = contacts.filter(c => {
+    const d = new Date(c.createdAt);
+    return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
+  });
+
+  const monthlyMap = {};
+  for(let i=5;i>=0;i--) {
+    const d = new Date(now.getFullYear(), now.getMonth()-i, 1);
+    const key = d.toLocaleString('default',{month:'short'});
+    monthlyMap[key] = 0;
+  }
+  contacts.forEach(c => {
+    const d = new Date(c.createdAt);
+    const key = d.toLocaleString('default',{month:'short'});
+    if(key in monthlyMap) monthlyMap[key]++;
+  });
+  const monthLabels = Object.keys(monthlyMap);
+  const monthVals = Object.values(monthlyMap);
+  const maxV = Math.max(...monthVals, 1);
+
+  const svcMap = {};
+  contacts.forEach(c => {
+    const s = c.serviceInterested || 'Not Specified';
+    svcMap[s] = (svcMap[s]||0)+1;
+  });
+  const svcEntries = Object.entries(svcMap).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const maxSvc = Math.max(...svcEntries.map(e=>e[1]),1);
+
+  const recent = [...contacts].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0,5);
+  const approvedTest = testimonials.filter(t=>t.isApproved);
+  const pendingTest = testimonials.filter(t=>!t.isApproved);
+
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Dashboard Overview</div>
+    <div class="ph-sub">ZAS CHEM INDIA — real data from your backend</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-icon blue"><i class="ti ti-flask" aria-hidden="true"></i></div>
+      <div class="kpi-val">${services.length}</div>
+      <div class="kpi-lbl">Total Services</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-icon orange"><i class="ti ti-briefcase" aria-hidden="true"></i></div>
+      <div class="kpi-val">${projects.length}</div>
+      <div class="kpi-lbl">Total Projects</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon blue"><i class="ti ti-mail" aria-hidden="true"></i></div>
+      <div class="kpi-val">${contacts.length}</div>
+      <div class="kpi-lbl">Total Inquiries</div>
+    </div>
+    <div class="kpi orange">
+      <div class="kpi-icon orange"><i class="ti ti-calendar" aria-hidden="true"></i></div>
+      <div class="kpi-val">${thisMonth.length}</div>
+      <div class="kpi-lbl">This Month's Queries</div>
+    </div>
+    <div class="kpi black">
+      <div class="kpi-icon black"><i class="ti ti-star" aria-hidden="true"></i></div>
+      <div class="kpi-val">${approvedTest.length}</div>
+      <div class="kpi-lbl">Active Testimonials</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon blue"><i class="ti ti-clock" aria-hidden="true"></i></div>
+      <div class="kpi-val">${pendingTest.length}</div>
+      <div class="kpi-lbl">Pending Approvals</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-hd">
+        <i class="ti ti-chart-bar" style="color:var(--blue)" aria-hidden="true"></i>
+        <div class="card-title">Monthly Inquiries (last 6 months)</div>
+      </div>
+      <div class="card-body">
+        ${contacts.length===0?`<div class="empty-state" style="padding:20px"><i class="ti ti-chart-bar"></i>No inquiry data yet</div>`:`
+        <div class="bar-wrap">
+          ${monthLabels.map((l,i)=>`
+          <div class="bar-col">
+            <div style="font-size:11px;color:var(--blue);font-weight:600;margin-bottom:3px">${monthVals[i]}</div>
+            <div class="bar-fill" style="height:${Math.round((monthVals[i]/maxV)*90)+8}px"></div>
+            <div class="bar-lbl">${l}</div>
+          </div>`).join('')}
+        </div>`}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">
+        <i class="ti ti-flask" style="color:var(--orange)" aria-hidden="true"></i>
+        <div class="card-title">Queries by Service Interested</div>
+      </div>
+      <div class="card-body">
+        ${svcEntries.length===0?`<div class="empty-state" style="padding:20px"><i class="ti ti-flask"></i>No data yet</div>`:
+        svcEntries.map(([name,val])=>`
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <div style="font-size:12px;color:var(--text2);width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">${name}</div>
+          <div style="flex:1;background:var(--bg3);height:8px;border-radius:4px;overflow:hidden">
+            <div style="height:100%;width:${Math.round((val/maxSvc)*100)}%;background:var(--orange);border-radius:4px"></div>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);min-width:24px;text-align:right">${val}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <i class="ti ti-mail" style="color:var(--blue)" aria-hidden="true"></i>
+      <div class="card-title">Recent Inquiries</div>
+      <button class="btn btn-outline btn-sm" onclick="navigate('contacts')">View all</button>
+    </div>
+    ${recent.length===0?`<div class="empty-state"><i class="ti ti-inbox"></i>No inquiries yet</div>`:`
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Name</th><th>Service Interested</th><th>Phone</th><th>Date</th><th>Action</th>
+        </tr></thead>
+        <tbody>
+          ${recent.map(c=>`<tr>
+            <td>
+              <div style="font-weight:500">${c.name}</div>
+              <div style="font-size:11px;color:var(--text3)">${c.email}</div>
+            </td>
+            <td>${c.serviceInterested?`<span class="badge badge-blue">${c.serviceInterested}</span>`:`<span style="color:var(--text3);font-size:12px">—</span>`}</td>
+            <td style="color:var(--text2)">${c.phone}</td>
+            <td style="color:var(--text3);font-size:12px">${new Date(c.createdAt).toLocaleDateString('en-IN')}</td>
+            <td><button class="btn btn-outline btn-sm btn-icon" onclick="openContactDetail('${c._id}')" aria-label="View inquiry"><i class="ti ti-eye" aria-hidden="true"></i></button></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`}
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-hd">
+        <i class="ti ti-flask" style="color:var(--blue)" aria-hidden="true"></i>
+        <div class="card-title">Services</div>
+        <button class="btn btn-outline btn-sm" onclick="navigate('services')">Manage</button>
+      </div>
+      <div class="card-body" style="padding:0">
+        ${services.length===0?`<div class="empty-state"><i class="ti ti-flask"></i>No services added yet</div>`:
+        services.slice(0,5).map(s=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border)">
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.title}</div>
+            <div style="font-size:11px;color:var(--text3)">/${s.slug}</div>
+          </div>
+          <span class="badge badge-${s.status==='active'?'active':s.status==='draft'?'draft':'inactive'}">${s.status}</span>
+        </div>`).join('')}
+        ${services.length>5?`<div style="padding:10px 14px;font-size:12px;color:var(--text3)">+${services.length-5} more services</div>`:''}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">
+        <i class="ti ti-star" style="color:var(--orange)" aria-hidden="true"></i>
+        <div class="card-title">Recent Testimonials</div>
+        <button class="btn btn-outline btn-sm" onclick="navigate('testimonials')">Manage</button>
+      </div>
+      <div class="card-body" style="padding:0">
+        ${testimonials.length===0?`<div class="empty-state"><i class="ti ti-star"></i>No testimonials yet</div>`:
+        testimonials.slice(0,4).map(t=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border)">
+          <div class="test-av" style="width:32px;height:32px;font-size:12px;flex-shrink:0">${(t.clientName||'?')[0]}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13px;font-weight:500;color:var(--text)">${t.clientName}</div>
+            <div style="font-size:11px;color:var(--text3)">${t.company}</div>
+          </div>
+          <div>
+            <div class="stars">${'★'.repeat(t.rating||0)}</div>
+            <span class="badge ${t.isApproved?'badge-active':'badge-pending'}" style="font-size:10px">${t.isApproved?'Approved':'Pending'}</span>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>
+  `);
+  document.getElementById('refreshBtn').onclick = renderDashboard;
+}
+
+async function renderContacts() {
+  setLoading();
+  const res = await api('GET','/contacts');
+  const contacts = res?.data || [];
+  if(!res?.success && contacts.length===0) {
+    setContent(`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed to load contacts'}</div>`);
+    return;
+  }
+  const badge = document.getElementById('badge_contacts');
+  const newCount = contacts.filter(c=>{
+    const d = new Date(c.createdAt);
+    const now = new Date();
+    return (now-d)<86400000*7;
+  }).length;
+  if(badge) badge.textContent = newCount || '';
+
+  let searchQ = '';
+  function render(list) {
+    const filtered = list.filter(c =>
+      !searchQ || c.name.toLowerCase().includes(searchQ.toLowerCase()) ||
+      c.email.toLowerCase().includes(searchQ.toLowerCase()) ||
+      (c.serviceInterested||'').toLowerCase().includes(searchQ.toLowerCase())
+    );
+    document.getElementById('contactList').innerHTML = filtered.length===0
+      ? `<div class="empty-state"><i class="ti ti-inbox" aria-hidden="true"></i>No contacts found</div>`
+      : filtered.map(c=>`
+      <div class="contact-item" onclick="openContactDetail('${c._id}')">
+        <div class="contact-av">${(c.name||'?')[0].toUpperCase()}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <div style="font-size:14px;font-weight:600;color:var(--text)">${c.name}</div>
+            ${c.company?`<span class="badge badge-gray" style="font-size:10px">${c.company}</span>`:''}
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-top:1px">${c.email} · ${c.phone}</div>
+          ${c.serviceInterested?`<div style="margin-top:5px"><span class="badge badge-blue">${c.serviceInterested}</span></div>`:''}
+          <div style="font-size:12px;color:var(--text3);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:400px">${c.message}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:11px;color:var(--text3)">${new Date(c.createdAt).toLocaleDateString('en-IN')}</div>
+          <button class="btn btn-danger btn-sm btn-icon" style="margin-top:6px" onclick="event.stopPropagation();deleteContact('${c._id}')" aria-label="Delete contact"><i class="ti ti-trash" aria-hidden="true"></i></button>
+        </div>
+      </div>`).join('');
+  }
+
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Contacts & Leads</div>
+    <div class="ph-sub">${contacts.length} total inquiries received</div>
+  </div>
+  <div class="toolbar">
+    <input class="srch" type="search" placeholder="Search by name, email, service..." aria-label="Search contacts" id="contactSearch" value="${searchQ}">
+    <span style="font-size:12px;color:var(--text3);margin-left:auto">${contacts.length} inquiries</span>
+    <button class="btn btn-outline btn-sm" onclick="exportContactsCSV()" aria-label="Export CSV"><i class="ti ti-download" aria-hidden="true"></i> Export CSV</button>
+  </div>
+  <div id="contactList"></div>
+  `);
+  render(contacts);
+  document.getElementById('contactSearch').addEventListener('input', e => { searchQ = e.target.value; render(contacts); });
+  window._contacts = contacts;
+}
+
+window.exportContactsCSV = function() {
+  const data = window._contacts || [];
+  if (!data.length) { toast('No data to export','error'); return; }
+  const headers = ['Name','Email','Phone','Company','Service Interested','Message','Date'];
+  const rows = data.map(c => [
+    c.name, c.email, c.phone, c.company||'', c.serviceInterested||'', `"${(c.message||'').replace(/"/g,'""')}"`,
+    new Date(c.createdAt).toLocaleDateString('en-IN')
+  ]);
+  const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = `contacts_${Date.now()}.csv`;
+  a.click();
+  toast('CSV exported successfully','success');
+};
+
+window.openContactDetail = async function(id) {
+  const res = await api('GET',`/contacts/${id}`);
+  const c = res?.data;
+  if (!c) { toast('Could not load contact','error'); return; }
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Inquiry Detail</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+      <div><div class="form-label">Name</div><div style="font-weight:600">${c.name}</div></div>
+      <div><div class="form-label">Email</div><div style="color:var(--blue)">${c.email}</div></div>
+      <div><div class="form-label">Phone</div><div>${c.phone}</div></div>
+      <div><div class="form-label">Company</div><div>${c.company||'—'}</div></div>
+      <div><div class="form-label">Service Interested</div><div>${c.serviceInterested?`<span class="badge badge-blue">${c.serviceInterested}</span>`:'—'}</div></div>
+      <div><div class="form-label">Date</div><div>${new Date(c.createdAt).toLocaleString('en-IN')}</div></div>
+    </div>
+    ${c.address?`<div class="form-group"><div class="form-label">Address</div><div style="color:var(--text2)">${c.address}</div></div>`:''}
+    <div class="form-group"><div class="form-label">Message</div><div style="background:var(--bg3);padding:12px;border-radius:8px;font-size:13px;color:var(--text2);line-height:1.6">${c.message}</div></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger btn-sm" onclick="deleteContact('${c._id}');closeModal()"><i class="ti ti-trash" aria-hidden="true"></i> Delete</button>
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Close</button>
+  </div>
+  `);
+};
+
+window.deleteContact = async function(id) {
+  if (!confirm('Delete this inquiry?')) return;
+  const res = await api('DELETE',`/contacts/${id}`);
+  if (res?.success) { toast('Inquiry deleted','success'); renderContacts(); }
+  else toast(res?.message||'Delete failed','error');
+};
+
+async function renderServices() {
+  setLoading();
+  const res = await api('GET','/services');
+  const services = res?.data || [];
+
+  let searchQ = '';
+  let statusFlt = '';
+  function render() {
+    const filtered = services.filter(s =>
+      (!searchQ || s.title.toLowerCase().includes(searchQ.toLowerCase()) || s.slug.includes(searchQ.toLowerCase())) &&
+      (!statusFlt || s.status === statusFlt)
+    );
+    document.getElementById('svcList').innerHTML = filtered.length===0
+      ? `<div class="empty-state"><i class="ti ti-flask" aria-hidden="true"></i>No services found</div>`
+      : `<div class="svc-grid">${filtered.map(s=>`
+        <div class="svc-card">
+          <div class="svc-img"><i class="ti ti-flask" style="font-size:28px;color:var(--blue-mid)" aria-hidden="true"></i></div>
+          <div class="svc-body">
+            ${s.featured?`<span class="badge badge-orange" style="margin-bottom:5px;display:inline-flex">Featured</span>`:''}
+            <div class="svc-title">${s.title}</div>
+            <div class="svc-slug">/${s.slug}</div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:8px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">${s.shortDesc||''}</div>
+            <div class="svc-actions">
+              <span class="badge badge-${s.status==='active'?'active':s.status==='draft'?'draft':'inactive'}">${s.status}</span>
+              <div style="margin-left:auto;display:flex;gap:5px">
+                <button class="btn btn-outline btn-sm btn-icon" onclick="openEditService('${s._id}')" aria-label="Edit service"><i class="ti ti-edit" aria-hidden="true"></i></button>
+                <button class="btn btn-danger btn-sm btn-icon" onclick="deleteService('${s._id}')" aria-label="Delete service"><i class="ti ti-trash" aria-hidden="true"></i></button>
+                <button class="toggle ${s.status==='active'?'on':''}" title="Toggle status" aria-label="Toggle status" onclick="toggleSvcStatus('${s._id}',this)"></button>
+              </div>
+            </div>
+          </div>
+        </div>`).join('')}</div>`;
+  }
+
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Services Management</div>
+    <div class="ph-sub">Manage your chemical services portfolio</div>
+  </div>
+  <div class="toolbar">
+    <input class="srch" type="search" placeholder="Search services..." aria-label="Search services" id="svcSearch">
+    <select class="flt" id="svcStatus" aria-label="Filter by status">
+      <option value="">All Status</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+      <option value="draft">Draft</option>
+    </select>
+    <button class="btn btn-blue" style="margin-left:auto" onclick="openAddService()"><i class="ti ti-plus" aria-hidden="true"></i> Add Service</button>
+  </div>
+  <div id="svcList"></div>
+  `);
+  render();
+  document.getElementById('svcSearch').addEventListener('input', e => { searchQ=e.target.value; render(); });
+  document.getElementById('svcStatus').addEventListener('change', e => { statusFlt=e.target.value; render(); });
+  window._services = services;
+}
+
+window.toggleSvcStatus = async function(id, btn) {
+  const res = await api('PATCH',`/services/${id}/toggle-status`);
+  if (res?.success) {
+    const isActive = res.data.status === 'active';
+    btn.classList.toggle('on', isActive);
+    toast(`Service ${isActive?'activated':'deactivated'}`,'success');
+  } else toast(res?.message||'Failed','error');
+};
+
+function serviceForm(data={}) {
+  return `
+  <div class="form-group">
+    <label class="form-label">Title *</label>
+    <input class="form-input" id="sf_title" type="text" value="${data.title||''}" placeholder="Service title" required>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Slug *</label>
+    <input class="form-input" id="sf_slug" type="text" value="${data.slug||''}" placeholder="service-slug">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Short Description *</label>
+    <textarea class="form-input ta" id="sf_shortDesc" placeholder="Brief description (max 300 chars)">${data.shortDesc||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Full Description *</label>
+    <textarea class="form-input" id="sf_desc" style="height:100px;resize:vertical" placeholder="Detailed description">${data.description||''}</textarea>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Status</label>
+      <select class="form-input" id="sf_status">
+        <option value="active" ${data.status==='active'?'selected':''}>Active</option>
+        <option value="inactive" ${data.status==='inactive'?'selected':''}>Inactive</option>
+        <option value="draft" ${data.status==='draft'?'selected':''}>Draft</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Icon Name</label>
+      <input class="form-input" id="sf_icon" type="text" value="${data.icon||''}" placeholder="e.g. water-treatment">
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Meta Title (SEO)</label>
+      <input class="form-input" id="sf_metaTitle" type="text" value="${data.metaTitle||''}" maxlength="60">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Order</label>
+      <input class="form-input" id="sf_order" type="number" value="${data.order||0}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Meta Description (SEO)</label>
+    <textarea class="form-input ta" id="sf_metaDesc" maxlength="160" placeholder="Max 160 characters">${data.metaDesc||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Features (one per line, min 3)</label>
+    <textarea class="form-input" id="sf_features" style="height:80px;resize:vertical" placeholder="Feature 1&#10;Feature 2&#10;Feature 3">${(data.features||[]).join('\n')}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Applications (one per line, min 3)</label>
+    <textarea class="form-input" id="sf_apps" style="height:80px;resize:vertical" placeholder="Application 1&#10;Application 2&#10;Application 3">${(data.applications||[]).join('\n')}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Keywords (comma separated, min 3)</label>
+    <input class="form-input" id="sf_keywords" type="text" value="${(data.keywords||[]).join(', ')}" placeholder="keyword1, keyword2, keyword3">
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+    <button class="toggle ${data.featured?'on':''}" id="sf_featured" title="Featured" aria-label="Featured toggle"></button>
+    <label style="font-size:13px;color:var(--text2)">Featured service</label>
+  </div>
+  <div id="sf_imgSection">
+    <div class="form-label" style="margin-bottom:6px">Service Image</div>
+    ${data.image?.url?`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><img src="${data.image.url}" style="width:60px;height:40px;object-fit:cover;border-radius:6px;border:1px solid var(--border)"><span style="font-size:12px;color:var(--text3)">Current image</span></div>`:''}
+    <div id="sf_imgUploadArea">
+      <div class="upload-box" onclick="document.getElementById('sf_imgFile').click()">
+        <div class="upload-icon"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+        <div class="upload-txt">Click to upload image</div>
+        <div class="upload-sub">JPG, PNG, WebP</div>
+      </div>
+      <input type="file" id="sf_imgFile" accept="image/*" style="display:none" onchange="handleSvcImagePreview(this)">
+      <div id="sf_imgPreview"></div>
+    </div>
+  </div>`;
+}
+
+window.handleSvcImagePreview = function(inp) {
+  if (!inp.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('sf_imgPreview').innerHTML = `<img src="${e.target.result}" style="width:80px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--border);margin-top:8px">`;
+  };
+  reader.readAsDataURL(inp.files[0]);
+};
+
+window.openAddService = function() {
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Add New Service</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">${serviceForm()}<div id="sf_err"></div></div>
+  <div class="modal-footer">
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-blue btn-sm" onclick="submitService(null)"><i class="ti ti-check" aria-hidden="true"></i> Create Service</button>
+  </div>`);
+  document.getElementById('sf_title').addEventListener('input', e => {
+    const slug = e.target.value.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+    document.getElementById('sf_slug').value = slug;
+  });
+};
+
+window.openEditService = async function(id) {
+  const res = await api('GET',`/services/${id}`);
+  const s = res?.data;
+  if (!s) { toast('Could not load service','error'); return; }
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Edit Service</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">${serviceForm(s)}<div id="sf_err"></div></div>
+  <div class="modal-footer">
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-blue btn-sm" onclick="submitService('${s._id}')"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save Changes</button>
+  </div>`);
+};
+
+window.submitService = async function(id) {
+  const errEl = document.getElementById('sf_err');
+  errEl.innerHTML = '';
+  const fileInput = document.getElementById('sf_imgFile');
+  let imageData = null;
+
+  if (fileInput?.files?.[0]) {
+    const fd = new FormData();
+    fd.append('image', fileInput.files[0]);
+    try {
+      const uploadRes = await fetch(`${API}/upload/single`, {
+        method:'POST',
+        headers:{'Authorization':`Bearer ${authToken}`},
+        body: fd
+      });
+      const uploadJson = await uploadRes.json();
+      if (uploadJson?.success) {
+        imageData = { url: uploadJson.data.url, publicId: uploadJson.data.publicId, alt: document.getElementById('sf_title').value };
+      } else {
+        errEl.innerHTML = `<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${uploadJson.message||'Image upload failed'}</div>`;
+        return;
+      }
+    } catch(e) {
+      errEl.innerHTML = `<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Image upload failed</div>`;
+      return;
+    }
+  }
+
+  const features = document.getElementById('sf_features').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const applications = document.getElementById('sf_apps').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const keywords = document.getElementById('sf_keywords').value.split(',').map(s=>s.trim()).filter(Boolean);
+
+  const payload = {
+    title: document.getElementById('sf_title').value.trim(),
+    slug: document.getElementById('sf_slug').value.trim(),
+    shortDesc: document.getElementById('sf_shortDesc').value.trim(),
+    description: document.getElementById('sf_desc').value.trim(),
+    status: document.getElementById('sf_status').value,
+    icon: document.getElementById('sf_icon').value.trim(),
+    metaTitle: document.getElementById('sf_metaTitle').value.trim(),
+    metaDesc: document.getElementById('sf_metaDesc').value.trim(),
+    features, applications, keywords,
+    featured: document.getElementById('sf_featured').classList.contains('on'),
+    order: parseInt(document.getElementById('sf_order').value)||0,
+  };
+  if (imageData) payload.image = imageData;
+
+  const res = await api(id?'PUT':'POST', id?`/services/${id}`:'/services', payload);
+  if (res?.success) {
+    toast(id?'Service updated':'Service created','success');
+    closeModal(); renderServices();
+  } else {
+    errEl.innerHTML = `<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+  }
+};
+
+window.deleteService = async function(id) {
+  if (!confirm('Delete this service?')) return;
+  const res = await api('DELETE',`/services/${id}`);
+  if (res?.success) { toast('Service deleted','success'); renderServices(); }
+  else toast(res?.message||'Delete failed','error');
+};
+
+async function renderProjects() {
+  setLoading();
+  const res = await api('GET','/projects');
+  const projects = res?.data || [];
+  let searchQ='', filterFeat='';
+
+  function render() {
+    const filtered = projects.filter(p =>
+      (!searchQ || p.title.toLowerCase().includes(searchQ.toLowerCase()) || p.client.toLowerCase().includes(searchQ.toLowerCase()) || p.location.toLowerCase().includes(searchQ.toLowerCase())) &&
+      (filterFeat===''||(filterFeat==='true'?p.featured:!p.featured))
+    );
+    document.getElementById('projList').innerHTML = filtered.length===0
+      ? `<div class="empty-state"><i class="ti ti-briefcase" aria-hidden="true"></i>No projects found</div>`
+      : `<div class="proj-grid">${filtered.map(p=>`
+        <div class="proj-card">
+          <div class="proj-img">
+            ${p.image?.url?`<img src="${p.image.url}" style="width:100%;height:100%;object-fit:cover" alt="${p.title}">`:`<i class="ti ti-briefcase" style="font-size:28px;color:var(--text3)" aria-hidden="true"></i>`}
+            ${p.featured?`<span class="proj-badge">Featured</span>`:''}
+          </div>
+          <div class="proj-body">
+            <div class="proj-title">${p.title}</div>
+            <div class="proj-meta">${p.client} · ${p.location} · ${p.year}</div>
+            <div class="proj-tags">
+              <span class="badge badge-blue" style="font-size:10px">${p.category}</span>
+              <span class="badge badge-${p.status==='active'?'active':'inactive'}" style="font-size:10px">${p.status}</span>
+              ${(p.tags||[]).slice(0,2).map(t=>`<span class="badge badge-gray" style="font-size:10px">${t}</span>`).join('')}
+            </div>
+            <div style="display:flex;gap:5px">
+              <button class="btn btn-outline btn-sm" style="flex:1;justify-content:center" onclick="openEditProject('${p._id}')"><i class="ti ti-edit" aria-hidden="true"></i> Edit</button>
+              <button class="btn btn-outline btn-sm btn-icon" onclick="toggleProjectFeatured('${p._id}',this)" title="Toggle featured" aria-label="Toggle featured"><i class="ti ti-star" style="color:${p.featured?'var(--orange)':'var(--text3)'}" aria-hidden="true"></i></button>
+              <button class="btn btn-danger btn-sm btn-icon" onclick="deleteProject('${p._id}')" aria-label="Delete project"><i class="ti ti-trash" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>`).join('')}</div>`;
+  }
+
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Projects Management</div>
+    <div class="ph-sub">${projects.length} total projects</div>
+  </div>
+  <div class="toolbar">
+    <input class="srch" type="search" placeholder="Search by title, client, location..." aria-label="Search projects" id="projSearch">
+    <select class="flt" id="projFeat" aria-label="Filter by featured">
+      <option value="">All Projects</option>
+      <option value="true">Featured Only</option>
+      <option value="false">Non-Featured</option>
+    </select>
+    <button class="btn btn-blue" style="margin-left:auto" onclick="openAddProject()"><i class="ti ti-plus" aria-hidden="true"></i> Add Project</button>
+  </div>
+  <div id="projList"></div>
+  `);
+  render();
+  document.getElementById('projSearch').addEventListener('input', e => { searchQ=e.target.value; render(); });
+  document.getElementById('projFeat').addEventListener('change', e => { filterFeat=e.target.value; render(); });
+}
+
+window.toggleProjectFeatured = async function(id, btn) {
+  const res = await api('PATCH',`/projects/${id}/toggle-featured`);
+  if (res?.success) {
+    const isFeat = res.data.featured;
+    btn.querySelector('i').style.color = isFeat?'var(--orange)':'var(--text3)';
+    toast(`Project ${isFeat?'marked featured':'unfeatured'}`,'success');
+  } else toast(res?.message||'Failed','error');
+};
+
+function projectForm(data={}) {
+  return `
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Title *</label>
+      <input class="form-input" id="pf_title" type="text" value="${data.title||''}" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Slug *</label>
+      <input class="form-input" id="pf_slug" type="text" value="${data.slug||''}">
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Client *</label>
+      <input class="form-input" id="pf_client" type="text" value="${data.client||''}" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Location *</label>
+      <input class="form-input" id="pf_location" type="text" value="${data.location||''}" required>
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Year *</label>
+      <input class="form-input" id="pf_year" type="text" value="${data.year||new Date().getFullYear()}" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Category *</label>
+      <input class="form-input" id="pf_category" type="text" value="${data.category||''}" placeholder="e.g. Water Treatment" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Problem *</label>
+    <textarea class="form-input ta" id="pf_problem" required>${data.problem||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Solution *</label>
+    <textarea class="form-input ta" id="pf_solution" required>${data.solution||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Outcome *</label>
+    <textarea class="form-input ta" id="pf_outcome" required>${data.outcome||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Tags (comma separated)</label>
+    <input class="form-input" id="pf_tags" type="text" value="${(data.tags||[]).join(', ')}">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Testimonial (optional)</label>
+    <textarea class="form-input ta" id="pf_testimonial">${data.testimonial||''}</textarea>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Rating (1–5)</label>
+      <input class="form-input" id="pf_rating" type="number" min="1" max="5" value="${data.rating||''}">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Status</label>
+      <select class="form-input" id="pf_status">
+        <option value="active" ${data.status==='active'?'selected':''}>Active</option>
+        <option value="inactive" ${data.status==='inactive'?'selected':''}>Inactive</option>
+      </select>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+    <button class="toggle ${data.featured?'on':''}" id="pf_featured" aria-label="Featured toggle"></button>
+    <label style="font-size:13px;color:var(--text2)">Featured project</label>
+  </div>
+  <div class="form-label" style="margin-bottom:6px">Project Image *</div>
+  ${data.image?.url?`<img src="${data.image.url}" style="width:80px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--border);margin-bottom:8px">`:''}
+  <div class="upload-box" onclick="document.getElementById('pf_imgFile').click()">
+    <div class="upload-icon"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+    <div class="upload-txt">Upload project image</div>
+    <div class="upload-sub">JPG, PNG — used as cover</div>
+  </div>
+  <input type="file" id="pf_imgFile" accept="image/*" style="display:none" onchange="this.nextElementSibling.innerHTML='<img src=\\''+URL.createObjectURL(this.files[0])+'\\'  style=\\'width:80px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--border);margin-top:8px\\'>'">
+  <div id="pf_imgPrev"></div>`;
+}
+
+window.openAddProject = function() {
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Add New Project</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">${projectForm()}<div id="pf_err"></div></div>
+  <div class="modal-footer">
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-blue btn-sm" onclick="submitProject(null)"><i class="ti ti-check" aria-hidden="true"></i> Create Project</button>
+  </div>`);
+  document.getElementById('pf_title').addEventListener('input', e => {
+    document.getElementById('pf_slug').value = e.target.value.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  });
+};
+
+window.openEditProject = async function(id) {
+  const res = await api('GET',`/projects/${id}`);
+  const p = res?.data;
+  if (!p) { toast('Could not load project','error'); return; }
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Edit Project</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">${projectForm(p)}<div id="pf_err"></div></div>
+  <div class="modal-footer">
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-blue btn-sm" onclick="submitProject('${p._id}')"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save Changes</button>
+  </div>`);
+};
+
+window.submitProject = async function(id) {
+  const errEl = document.getElementById('pf_err');
+  errEl.innerHTML = '';
+  const fileInput = document.getElementById('pf_imgFile');
+  let imageData = null;
+
+  if (fileInput?.files?.[0]) {
+    const fd = new FormData();
+    fd.append('image', fileInput.files[0]);
+    try {
+      const r = await fetch(`${API}/upload/single`,{method:'POST',headers:{'Authorization':`Bearer ${authToken}`},body:fd});
+      const j = await r.json();
+      if (j?.success) imageData = { url: j.data.url, publicId: j.data.publicId };
+      else { errEl.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${j.message||'Upload failed'}</div>`; return; }
+    } catch { errEl.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Upload failed</div>`; return; }
+  }
+
+  const payload = {
+    title: document.getElementById('pf_title').value.trim(),
+    slug: document.getElementById('pf_slug').value.trim(),
+    client: document.getElementById('pf_client').value.trim(),
+    location: document.getElementById('pf_location').value.trim(),
+    year: document.getElementById('pf_year').value.trim(),
+    category: document.getElementById('pf_category').value.trim(),
+    problem: document.getElementById('pf_problem').value.trim(),
+    solution: document.getElementById('pf_solution').value.trim(),
+    outcome: document.getElementById('pf_outcome').value.trim(),
+    tags: document.getElementById('pf_tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+    testimonial: document.getElementById('pf_testimonial').value.trim()||null,
+    rating: parseInt(document.getElementById('pf_rating').value)||null,
+    status: document.getElementById('pf_status').value,
+    featured: document.getElementById('pf_featured').classList.contains('on'),
+  };
+  if (imageData) payload.image = imageData;
+
+  const res = await api(id?'PUT':'POST', id?`/projects/${id}`:'/projects', payload);
+  if (res?.success) { toast(id?'Project updated':'Project created','success'); closeModal(); renderProjects(); }
+  else errEl.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+window.deleteProject = async function(id) {
+  if (!confirm('Delete this project?')) return;
+  const res = await api('DELETE',`/projects/${id}`);
+  if (res?.success) { toast('Project deleted','success'); renderProjects(); }
+  else toast(res?.message||'Delete failed','error');
+};
+
+async function renderTestimonials() {
+  setLoading();
+  const res = await api('GET','/testimonials/admin/all?limit=100');
+  const testimonials = res?.data || [];
+  let statusFlt = '';
+
+  function render() {
+    const filtered = testimonials.filter(t => !statusFlt || (statusFlt==='approved'?t.isApproved:!t.isApproved));
+    document.getElementById('testList').innerHTML = filtered.length===0
+      ? `<div class="empty-state"><i class="ti ti-star" aria-hidden="true"></i>No testimonials found</div>`
+      : filtered.map(t=>`
+      <div class="test-card">
+        <div class="test-header">
+          <div class="test-av">${(t.clientName||'?')[0]}</div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:600;color:var(--text)">${t.clientName}</div>
+            <div style="font-size:12px;color:var(--text3)">${t.designation}, ${t.company}</div>
+            <div class="stars">${'★'.repeat(t.rating||0)}${'☆'.repeat(5-(t.rating||0))}</div>
+          </div>
+          <div style="text-align:right">
+            <span class="badge ${t.isApproved?'badge-active':'badge-pending'}">${t.isApproved?'Approved':'Pending'}</span>
+          </div>
+        </div>
+        <div class="test-review">"${t.review}"</div>
+        <div class="test-footer">
+          ${!t.isApproved?`<button class="btn btn-blue btn-sm" onclick="approveTestimonial('${t._id}')"><i class="ti ti-check" aria-hidden="true"></i> Approve</button>`:''}
+          <button class="btn btn-outline btn-sm" onclick="openEditTestimonial('${t._id}')"><i class="ti ti-edit" aria-hidden="true"></i> Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTestimonial('${t._id}')"><i class="ti ti-trash" aria-hidden="true"></i> Delete</button>
+          <span style="margin-left:auto;font-size:11px;color:var(--text3)">${new Date(t.createdAt).toLocaleDateString('en-IN')}</span>
+        </div>
+      </div>`).join('');
+  }
+
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Testimonials</div>
+    <div class="ph-sub">${testimonials.length} total · ${testimonials.filter(t=>!t.isApproved).length} pending approval</div>
+  </div>
+  <div class="toolbar">
+    <select class="flt" id="testFlt" aria-label="Filter by status">
+      <option value="">All</option>
+      <option value="approved">Approved</option>
+      <option value="pending">Pending</option>
+    </select>
+    <button class="btn btn-blue" style="margin-left:auto" onclick="openAddTestimonial()"><i class="ti ti-plus" aria-hidden="true"></i> Add Testimonial</button>
+  </div>
+  <div id="testList"></div>
+  `);
+  render();
+  document.getElementById('testFlt').addEventListener('change', e => { statusFlt=e.target.value; render(); });
+}
+
+window.approveTestimonial = async function(id) {
+  const res = await api('PATCH',`/testimonials/${id}/approve`);
+  if (res?.success) { toast('Testimonial approved','success'); renderTestimonials(); }
+  else toast(res?.message||'Failed','error');
+};
+
+function testimonialForm(data={}) {
+  return `
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Client Name *</label>
+      <input class="form-input" id="tf_name" type="text" value="${data.clientName||''}" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Designation *</label>
+      <input class="form-input" id="tf_desig" type="text" value="${data.designation||''}" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Company *</label>
+    <input class="form-input" id="tf_company" type="text" value="${data.company||''}" required>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Review *</label>
+    <textarea class="form-input ta" id="tf_review" required>${data.review||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Problem</label>
+    <textarea class="form-input ta" id="tf_problem">${data.problem||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Solution</label>
+    <textarea class="form-input ta" id="tf_solution">${data.solution||''}</textarea>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Description</label>
+    <textarea class="form-input ta" id="tf_desc">${data.decription||''}</textarea>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="form-label">Rating (1–5) *</label>
+      <select class="form-input" id="tf_rating">
+        ${[1,2,3,4,5].map(n=>`<option value="${n}" ${(data.rating||5)===n?'selected':''}>${n} Star${n>1?'s':''}</option>`).join('')}
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Order</label>
+      <input class="form-input" id="tf_order" type="number" value="${data.order||0}">
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+    <button class="toggle ${data.isApproved?'on':''}" id="tf_approved" aria-label="Approved toggle"></button>
+    <label style="font-size:13px;color:var(--text2)">Approved / Visible on website</label>
+  </div>`;
+}
+
+window.openAddTestimonial = function() {
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Add Testimonial</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">${testimonialForm()}<div id="tf_err"></div></div>
+  <div class="modal-footer">
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-blue btn-sm" onclick="submitTestimonial(null)">Create</button>
+  </div>`);
+};
+
+window.openEditTestimonial = async function(id) {
+  const res = await api('GET',`/testimonials/${id}`);
+  const t = res?.data;
+  if (!t) { toast('Could not load','error'); return; }
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Edit Testimonial</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">${testimonialForm(t)}<div id="tf_err"></div></div>
+  <div class="modal-footer">
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-blue btn-sm" onclick="submitTestimonial('${t._id}')">Save Changes</button>
+  </div>`);
+};
+
+window.submitTestimonial = async function(id) {
+  const errEl = document.getElementById('tf_err');
+  errEl.innerHTML = '';
+  const payload = {
+    clientName: document.getElementById('tf_name').value.trim(),
+    designation: document.getElementById('tf_desig').value.trim(),
+    company: document.getElementById('tf_company').value.trim(),
+    review: document.getElementById('tf_review').value.trim(),
+    problem: document.getElementById('tf_problem').value.trim(),
+    solution: document.getElementById('tf_solution').value.trim(),
+    decription: document.getElementById('tf_desc').value.trim(),
+    rating: parseInt(document.getElementById('tf_rating').value),
+    order: parseInt(document.getElementById('tf_order').value)||0,
+    isApproved: document.getElementById('tf_approved').classList.contains('on'),
+  };
+  const res = await api(id?'PUT':'POST', id?`/testimonials/${id}`:'/testimonials', payload);
+  if (res?.success) { toast(id?'Updated':'Created','success'); closeModal(); renderTestimonials(); }
+  else errEl.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+window.deleteTestimonial = async function(id) {
+  if (!confirm('Delete this testimonial?')) return;
+  const res = await api('DELETE',`/testimonials/${id}`);
+  if (res?.success) { toast('Deleted','success'); renderTestimonials(); }
+  else toast(res?.message||'Failed','error');
+};
+
+async function renderSettings() {
+  setLoading();
+  const res = await api('GET','/settings');
+  const s = res?.data || {};
+
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Website Settings</div>
+    <div class="ph-sub">Manage brand, contact info, social links and SEO</div>
+  </div>
+  <div class="settings-tab-bar" id="stabs">
+    ${['Brand','Contact','Social Links','SEO','Hero Slides'].map((t,i)=>`<div class="stab ${i===0?'active':''}" data-tab="${i}" onclick="switchSettingsTab(${i})">${t}</div>`).join('')}
+  </div>
+  <div id="settingsBody"></div>
+  `);
+
+  window._settingsData = s;
+  renderSettingsTab(0, s);
+}
+
+window.switchSettingsTab = function(idx) {
+  document.querySelectorAll('.stab').forEach(t => t.classList.toggle('active', t.dataset.tab==idx));
+  renderSettingsTab(idx, window._settingsData);
+};
+
+window.renderSettingsTab = function(idx, s) {
+  const body = document.getElementById('settingsBody');
+  if (idx===0) {
+    body.innerHTML = `
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Brand Identity</div></div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Brand Name *</label><input class="form-input" id="set_brand" type="text" value="${s.brandName||''}"></div>
+          <div class="form-group"><label class="form-label">Tagline</label><input class="form-input" id="set_tagline" type="text" value="${s.tagline||''}"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Company Description *</label><textarea class="form-input ta" id="set_desc">${s.companyDescription||''}</textarea></div>
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Contact Form Email</label><input class="form-input" id="set_cfemail" type="email" value="${s.contactFormEmail||''}"></div>
+          <div class="form-group"><label class="form-label">Google Analytics ID</label><input class="form-input" id="set_ga" type="text" value="${s.googleAnalyticsId||''}"></div>
+        </div>
+        <button class="btn btn-blue" onclick="saveBrandSettings()"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save Brand</button>
+        <div id="brand_msg" style="margin-top:8px"></div>
+      </div>
+    </div>`;
+  } else if (idx===1) {
+    body.innerHTML = `
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Contact Information</div></div>
+      <div class="card-body">
+        <div class="form-group"><label class="form-label">Emails (one per line)</label><textarea class="form-input ta" id="set_emails">${(s.emails||[]).join('\n')}</textarea></div>
+        <div class="form-group"><label class="form-label">Phones (one per line)</label><textarea class="form-input ta" id="set_phones">${(s.phones||[]).join('\n')}</textarea></div>
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Street</label><input class="form-input" id="set_street" type="text" value="${s.address?.street||''}"></div>
+          <div class="form-group"><label class="form-label">City</label><input class="form-input" id="set_city" type="text" value="${s.address?.city||''}"></div>
+          <div class="form-group"><label class="form-label">State</label><input class="form-input" id="set_state" type="text" value="${s.address?.state||''}"></div>
+          <div class="form-group"><label class="form-label">ZIP Code</label><input class="form-input" id="set_zip" type="text" value="${s.address?.zipCode||''}"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Full Address</label><textarea class="form-input ta" id="set_fulladdr">${s.address?.fullAddress||''}</textarea></div>
+        <button class="btn btn-blue" onclick="saveContactSettings()"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save Contact</button>
+        <div id="contact_msg" style="margin-top:8px"></div>
+      </div>
+    </div>`;
+  } else if (idx===2) {
+    const platforms = ['facebook','twitter','linkedin','instagram','youtube','whatsapp'];
+    const linksMap = {};
+    (s.socialLinks||[]).forEach(l => linksMap[l.platform] = l.url);
+    body.innerHTML = `
+    <div class="card">
+      <div class="card-hd"><div class="card-title">Social Media Links</div></div>
+      <div class="card-body">
+        ${platforms.map(p=>`
+        <div class="form-group">
+          <label class="form-label">${p.charAt(0).toUpperCase()+p.slice(1)}</label>
+          <input class="form-input" id="social_${p}" type="text" value="${linksMap[p]||''}" placeholder="https://...">
+        </div>`).join('')}
+        <button class="btn btn-blue" onclick="saveSocialSettings()"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save Social Links</button>
+        <div id="social_msg" style="margin-top:8px"></div>
+      </div>
+    </div>`;
+  } else if (idx===3) {
+    const seo = s.seoData || {};
+    body.innerHTML = `
+    <div class="card">
+      <div class="card-hd"><div class="card-title">SEO Settings</div></div>
+      <div class="card-body">
+        <div class="form-group"><label class="form-label">Meta Title (max 60 chars)</label><input class="form-input" id="seo_title" type="text" value="${seo.metaTitle||''}" maxlength="60"></div>
+        <div class="form-group"><label class="form-label">Meta Description (max 160 chars)</label><textarea class="form-input ta" id="seo_desc" maxlength="160">${seo.metaDescription||''}</textarea></div>
+        <div class="form-group"><label class="form-label">Keywords (comma separated)</label><input class="form-input" id="seo_kw" type="text" value="${(seo.keywords||[]).join(', ')}"></div>
+        <div class="form-group"><label class="form-label">Canonical URL</label><input class="form-input" id="seo_canon" type="text" value="${seo.canonicalUrl||''}"></div>
+        <div class="form-group"><label class="form-label">OG Image URL</label><input class="form-input" id="seo_og" type="text" value="${seo.ogImage||''}"></div>
+        <div class="seo-preview" id="seoPreviewBox">
+          <div class="seo-url">${seo.canonicalUrl||'zaschemindia.com'}</div>
+          <div class="seo-ptitle" id="seoPreviewTitle">${seo.metaTitle||'ZAS CHEM INDIA — Chemical Solutions'}</div>
+          <div class="seo-pdesc" id="seoPreviewDesc">${seo.metaDescription||'No description set'}</div>
+        </div>
+        <button class="btn btn-blue" style="margin-top:12px" onclick="saveSeoSettings()"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save SEO</button>
+        <div id="seo_msg" style="margin-top:8px"></div>
+      </div>
+    </div>`;
+    document.getElementById('seo_title').addEventListener('input',e=>{ document.getElementById('seoPreviewTitle').textContent=e.target.value||'—'; });
+    document.getElementById('seo_desc').addEventListener('input',e=>{ document.getElementById('seoPreviewDesc').textContent=e.target.value||'—'; });
+  } else if (idx===4) {
+    const slides = s.heroSlides||[];
+    body.innerHTML = `
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-title">Hero Slides (${slides.length})</div>
+        <button class="btn btn-blue btn-sm" onclick="openAddSlide()"><i class="ti ti-plus" aria-hidden="true"></i> Add Slide</button>
+      </div>
+      <div class="card-body" id="slidesList">
+        ${slides.length===0?`<div class="empty-state"><i class="ti ti-layout-board" aria-hidden="true"></i>No slides yet</div>`:
+        slides.map((slide,i)=>`
+        <div style="border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;display:flex;gap:12px;align-items:center">
+          ${slide.image?`<img src="${slide.image}" style="width:60px;height:40px;object-fit:cover;border-radius:6px;border:1px solid var(--border);flex-shrink:0">`:`<div style="width:60px;height:40px;background:var(--bg3);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-photo" style="color:var(--text3)" aria-hidden="true"></i></div>`}
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:600">${slide.title||'Untitled'}</div>
+            <div style="font-size:12px;color:var(--text3)">${slide.subtitle||''}</div>
+          </div>
+          <span class="badge ${slide.isActive?'badge-active':'badge-inactive'}">${slide.isActive?'Active':'Inactive'}</span>
+          <span style="font-size:12px;color:var(--text3)">Order: ${slide.order||i}</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
+};
+
+window.saveBrandSettings = async function() {
+  const payload = {
+    brandName: document.getElementById('set_brand').value.trim(),
+    tagline: document.getElementById('set_tagline').value.trim(),
+    companyDescription: document.getElementById('set_desc').value.trim(),
+    contactFormEmail: document.getElementById('set_cfemail').value.trim(),
+    googleAnalyticsId: document.getElementById('set_ga').value.trim(),
+  };
+  const res = await api('PUT','/settings', payload);
+  const el = document.getElementById('brand_msg');
+  if (res?.success) { el.innerHTML=`<div class="success-box">Settings saved!</div>`; window._settingsData = res.data; }
+  else el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+window.saveContactSettings = async function() {
+  const payload = {
+    emails: document.getElementById('set_emails').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    phones: document.getElementById('set_phones').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    address: {
+      street: document.getElementById('set_street').value.trim(),
+      city: document.getElementById('set_city').value.trim(),
+      state: document.getElementById('set_state').value.trim(),
+      zipCode: document.getElementById('set_zip').value.trim(),
+      fullAddress: document.getElementById('set_fulladdr').value.trim(),
+    }
+  };
+  const res = await api('PUT','/settings', payload);
+  const el = document.getElementById('contact_msg');
+  if (res?.success) el.innerHTML=`<div class="success-box">Contact info saved!</div>`;
+  else el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+window.saveSocialSettings = async function() {
+  const platforms = ['facebook','twitter','linkedin','instagram','youtube','whatsapp'];
+  const socialLinks = platforms.map(p=>({platform:p,url:document.getElementById(`social_${p}`).value.trim()})).filter(l=>l.url);
+  const res = await api('PUT','/settings/social-links', {socialLinks});
+  const el = document.getElementById('social_msg');
+  if (res?.success) el.innerHTML=`<div class="success-box">Social links saved!</div>`;
+  else el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+window.saveSeoSettings = async function() {
+  const seoData = {
+    metaTitle: document.getElementById('seo_title').value.trim(),
+    metaDescription: document.getElementById('seo_desc').value.trim(),
+    keywords: document.getElementById('seo_kw').value.split(',').map(s=>s.trim()).filter(Boolean),
+    canonicalUrl: document.getElementById('seo_canon').value.trim(),
+    ogImage: document.getElementById('seo_og').value.trim(),
+  };
+  const res = await api('PUT','/settings/seo', {seoData});
+  const el = document.getElementById('seo_msg');
+  if (res?.success) el.innerHTML=`<div class="success-box">SEO settings saved!</div>`;
+  else el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+window.openAddSlide = function() {
+  showModal(`
+  <div class="modal-hd">
+    <div class="modal-title">Add Hero Slide</div>
+    <button class="btn btn-outline btn-sm btn-icon" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="sl_title" type="text"></div>
+    <div class="form-group"><label class="form-label">Subtitle</label><input class="form-input" id="sl_subtitle" type="text"></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-input ta" id="sl_desc"></textarea></div>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">Button Text</label><input class="form-input" id="sl_btntext" type="text"></div>
+      <div class="form-group"><label class="form-label">Button Link</label><input class="form-input" id="sl_btnlink" type="text"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Order</label><input class="form-input" id="sl_order" type="number" value="0"></div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <button class="toggle on" id="sl_active" aria-label="Active toggle"></button>
+      <label style="font-size:13px;color:var(--text2)">Active</label>
+    </div>
+    <div class="form-label" style="margin-bottom:6px">Slide Image</div>
+    <div class="upload-box" onclick="document.getElementById('sl_imgFile').click()">
+      <div class="upload-icon"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+      <div class="upload-txt">Upload slide image</div>
+    </div>
+    <input type="file" id="sl_imgFile" accept="image/*" style="display:none">
+    <div id="sl_err" style="margin-top:8px"></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-blue btn-sm" onclick="saveSlide()">Add Slide</button>
+  </div>`);
+};
+
+window.saveSlide = async function() {
+  const errEl = document.getElementById('sl_err');
+  let imageUrl = '';
+  const fileInput = document.getElementById('sl_imgFile');
+  if (fileInput?.files?.[0]) {
+    const fd = new FormData();
+    fd.append('image', fileInput.files[0]);
+    try {
+      const r = await fetch(`${API}/upload/single`,{method:'POST',headers:{'Authorization':`Bearer ${authToken}`},body:fd});
+      const j = await r.json();
+      if (j?.success) imageUrl = j.data.url;
+      else { errEl.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${j.message||'Upload failed'}</div>`; return; }
+    } catch { errEl.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Upload failed</div>`; return; }
+  }
+  const existing = window._settingsData?.heroSlides || [];
+  const newSlide = {
+    title: document.getElementById('sl_title').value.trim(),
+    subtitle: document.getElementById('sl_subtitle').value.trim(),
+    description: document.getElementById('sl_desc').value.trim(),
+    buttonText: document.getElementById('sl_btntext').value.trim(),
+    buttonLink: document.getElementById('sl_btnlink').value.trim(),
+    order: parseInt(document.getElementById('sl_order').value)||0,
+    isActive: document.getElementById('sl_active').classList.contains('on'),
+    image: imageUrl,
+  };
+  const res = await api('PUT','/settings/hero-slides', {heroSlides:[...existing, newSlide]});
+  if (res?.success) {
+    window._settingsData.heroSlides = res.data;
+    toast('Slide added','success'); closeModal();
+    renderSettingsTab(4, window._settingsData);
+  } else errEl.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+async function renderUpload() {
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Media Upload</div>
+    <div class="ph-sub">Upload images to Cloudinary for use across the website</div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-title">Upload Single Image</div></div>
+    <div class="card-body">
+      <div class="upload-box" onclick="document.getElementById('upSingle').click()" id="uploadDropSingle">
+        <div class="upload-icon"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+        <div class="upload-txt">Click or drag to upload</div>
+        <div class="upload-sub">JPG, PNG, WebP, SVG — max 10MB</div>
+      </div>
+      <input type="file" id="upSingle" accept="image/*" style="display:none" onchange="handleSingleUpload(this)">
+      <div id="upSingleResult" style="margin-top:12px"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-title">Upload Multiple Images</div></div>
+    <div class="card-body">
+      <div class="upload-box" onclick="document.getElementById('upMulti').click()">
+        <div class="upload-icon"><i class="ti ti-files" aria-hidden="true"></i></div>
+        <div class="upload-txt">Click to select multiple images</div>
+        <div class="upload-sub">Up to 10 files at once</div>
+      </div>
+      <input type="file" id="upMulti" accept="image/*" multiple style="display:none" onchange="handleMultiUpload(this)">
+      <div id="upMultiResult" style="margin-top:12px"></div>
+    </div>
+  </div>
+  `);
+}
+
+window.handleSingleUpload = async function(inp) {
+  if (!inp.files?.[0]) return;
+  const el = document.getElementById('upSingleResult');
+  el.innerHTML = `<div class="inline-loading"><div class="spin"></div> Uploading...</div>`;
+  const fd = new FormData();
+  fd.append('image', inp.files[0]);
+  try {
+    const r = await fetch(`${API}/upload/single`,{method:'POST',headers:{'Authorization':`Bearer ${authToken}`},body:fd});
+    const j = await r.json();
+    if (j?.success) {
+      el.innerHTML = `<div class="success-box">Uploaded successfully!</div>
+      <div style="display:flex;gap:12px;align-items:center;margin-top:8px">
+        <img src="${j.data.url}" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border)">
+        <div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px;word-break:break-all">${j.data.url}</div>
+          <button class="btn btn-outline btn-sm" onclick="navigator.clipboard.writeText('${j.data.url}').then(()=>toast('URL copied!','success'))"><i class="ti ti-copy" aria-hidden="true"></i> Copy URL</button>
+        </div>
+      </div>`;
+    } else el.innerHTML = `<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${j.message||'Upload failed'}</div>`;
+  } catch { el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Network error</div>`; }
+  inp.value = '';
+};
+
+window.handleMultiUpload = async function(inp) {
+  if (!inp.files?.length) return;
+  const el = document.getElementById('upMultiResult');
+  el.innerHTML = `<div class="inline-loading"><div class="spin"></div> Uploading ${inp.files.length} files...</div>`;
+  const fd = new FormData();
+  Array.from(inp.files).forEach(f => fd.append('images', f));
+  try {
+    const r = await fetch(`${API}/upload/multiple`,{method:'POST',headers:{'Authorization':`Bearer ${authToken}`},body:fd});
+    const j = await r.json();
+    if (j?.success) {
+      el.innerHTML = `<div class="success-box">${j.data.length} images uploaded!</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:10px">
+        ${j.data.map(img=>`
+        <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+          <img src="${img.url}" style="width:100%;height:80px;object-fit:cover">
+          <div style="padding:5px;display:flex;justify-content:center">
+            <button class="btn btn-outline btn-sm" style="font-size:10px;padding:3px 7px" onclick="navigator.clipboard.writeText('${img.url}').then(()=>toast('Copied','success'))"><i class="ti ti-copy" aria-hidden="true"></i></button>
+          </div>
+        </div>`).join('')}
+      </div>`;
+    } else el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${j.message||'Upload failed'}</div>`;
+  } catch { el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Network error</div>`; }
+  inp.value = '';
+};
+
+async function renderProfile() {
+  setLoading();
+  const res = await api('GET','/auth/me');
+  const admin = res?.data || authAdmin || {};
+  if (admin.name) {
+    document.getElementById('sbName').textContent = admin.name;
+    document.getElementById('sbEmail').textContent = admin.email;
+    document.getElementById('sbAvatar').textContent = (admin.name||'A')[0].toUpperCase();
+  }
+  setContent(`
+  <div class="ph">
+    <div class="ph-title">Admin Profile</div>
+    <div class="ph-sub">Manage your account settings</div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-hd"><i class="ti ti-user" style="color:var(--blue)" aria-hidden="true"></i><div class="card-title">Personal Info</div></div>
+      <div class="card-body">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+          <div style="width:56px;height:56px;border-radius:12px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;flex-shrink:0">${(admin.name||'A')[0].toUpperCase()}</div>
+          <div>
+            <div style="font-size:15px;font-weight:600">${admin.name||''}</div>
+            <div style="font-size:13px;color:var(--text3)">${admin.role||''}</div>
+            ${admin.lastLogin?`<div style="font-size:11px;color:var(--text3)">Last login: ${new Date(admin.lastLogin).toLocaleString('en-IN')}</div>`:''}
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="prof_name" type="text" value="${admin.name||''}"></div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" value="${admin.email||''}" readonly style="opacity:0.7;cursor:not-allowed"></div>
+        <div class="form-group"><label class="form-label">Role</label><input class="form-input" type="text" value="${admin.role||''}" readonly style="opacity:0.7;cursor:not-allowed"></div>
+        <div id="prof_msg" style="margin-bottom:8px"></div>
+        <button class="btn btn-blue" onclick="saveProfile('${admin.id||admin._id||''}')"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save Changes</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><i class="ti ti-lock" style="color:var(--orange)" aria-hidden="true"></i><div class="card-title">Change Password</div></div>
+      <div class="card-body">
+        <div class="form-group"><label class="form-label">Current Password</label><input class="form-input" id="pw_current" type="password" placeholder="Enter current password"></div>
+        <div class="form-group"><label class="form-label">New Password (min 6 chars)</label><input class="form-input" id="pw_new" type="password" placeholder="New password"></div>
+        <div class="form-group"><label class="form-label">Confirm New Password</label><input class="form-input" id="pw_confirm" type="password" placeholder="Confirm password"></div>
+        <div id="pw_msg" style="margin-bottom:8px"></div>
+        <button class="btn btn-orange" onclick="changePassword()"><i class="ti ti-lock" aria-hidden="true"></i> Update Password</button>
+      </div>
+    </div>
+  </div>
+  `);
+}
+
+window.saveProfile = async function(id) {
+  const name = document.getElementById('prof_name').value.trim();
+  const el = document.getElementById('prof_msg');
+  if (!name) { el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Name is required</div>`; return; }
+  toast('Profile update via API not yet exposed — update via DB directly', 'info');
+};
+
+window.changePassword = async function() {
+  const cur = document.getElementById('pw_current').value;
+  const nw = document.getElementById('pw_new').value;
+  const conf = document.getElementById('pw_confirm').value;
+  const el = document.getElementById('pw_msg');
+  if (!cur||!nw||!conf) { el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>All fields required</div>`; return; }
+  if (nw!==conf) { el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Passwords don't match</div>`; return; }
+  if (nw.length<6) { el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Min 6 characters</div>`; return; }
+  const res = await api('PUT','/auth/change-password',{currentPassword:cur,newPassword:nw});
+  if (res?.success) { el.innerHTML=`<div class="success-box">Password changed successfully!</div>`; document.getElementById('pw_current').value=''; document.getElementById('pw_new').value=''; document.getElementById('pw_confirm').value=''; }
+  else el.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Failed'}</div>`;
+};
+
+function showModal(html) {
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `<div class="overlay"><div class="modal">${html}</div></div>`;
+  root.querySelector('.overlay').addEventListener('click', e => { if(e.target===root.querySelector('.overlay')) closeModal(); });
+  root.querySelectorAll('.toggle').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
+}
+window.closeModal = function() { document.getElementById('modalRoot').innerHTML = ''; };
+
+function renderLogin() {
+  document.getElementById('shell').style.display = 'none';
+  document.getElementById('modalRoot').innerHTML = `
+  <div style="min-height:100vh;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:16px">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:32px;width:min(380px,100%);border-top:4px solid var(--blue)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div class="sb-logo" style="width:40px;height:40px;font-size:14px">ZCI</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text)">ZAS CHEM INDIA</div>
+          <div style="font-size:12px;color:var(--orange);font-weight:600">Admin Panel</div>
+        </div>
+      </div>
+      <div style="margin-bottom:24px">
+        <div style="font-size:20px;font-weight:700;color:var(--text)">Sign In</div>
+        <div style="font-size:13px;color:var(--text3)">Enter your admin credentials to continue</div>
+      </div>
+      <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" id="login_email" type="email" placeholder="admin@zaschemindia.com" value="admin@zaschemindia.com"></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="login_pw" type="password" placeholder="Password" value="Admin@123456"></div>
+      <div id="login_err" style="margin-bottom:10px"></div>
+      <button class="btn btn-blue" style="width:100%;justify-content:center;padding:10px" onclick="doLogin()"><i class="ti ti-login" aria-hidden="true"></i> Sign In to Dashboard</button>
+      <div style="margin-top:12px;font-size:12px;color:var(--text3);text-align:center">Secure admin access — ZAS CHEM INDIA PVT. LTD.</div>
+    </div>
+  </div>`;
+}
+
+window.doLogin = async function() {
+  const email = document.getElementById('login_email').value.trim();
+  const pw = document.getElementById('login_pw').value;
+  const err = document.getElementById('login_err');
+  err.innerHTML = '';
+  if (!email||!pw) { err.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>Email and password required</div>`; return; }
+  const res = await api('POST','/auth/login',{email,password:pw});
+  if (res?.success) {
+    authToken = res.data.token;
+    authAdmin = res.data.admin;
+    localStorage.setItem('zci_token', authToken);
+    localStorage.setItem('zci_admin', JSON.stringify(authAdmin));
+    document.getElementById('shell').style.display = 'flex';
+    document.getElementById('modalRoot').innerHTML = '';
+    if (authAdmin) {
+      document.getElementById('sbName').textContent = authAdmin.name;
+      document.getElementById('sbEmail').textContent = authAdmin.email;
+      document.getElementById('sbAvatar').textContent = (authAdmin.name||'A')[0].toUpperCase();
+    }
+    buildNav('sbNav'); buildNav('mobSbNav');
+    navigate('dashboard');
+  } else {
+    err.innerHTML=`<div class="err-box"><i class="ti ti-alert-circle" aria-hidden="true"></i>${res?.message||'Login failed'}</div>`;
+  }
+};
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Enter' && document.getElementById('login_email')) doLogin();
+  if (e.key==='Escape') closeModal();
+});
+
+buildNav('sbNav');
+buildNav('mobSbNav');
+
+if (!authToken) {
+  renderLogin();
+} else {
+  navigate('dashboard');
+}
+</script>

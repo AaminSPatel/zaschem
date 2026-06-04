@@ -5,7 +5,7 @@ import { THEMES } from '../components/theme/useTheme';
 //import Navbar from '';
 import Footer from '../components/layout/Footer';
 import Navbar from '../components/layout/Navbar';
-
+//import '@/styles/admin.css'; 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
   weight: ['400', '600', '700', '800', '900'],
