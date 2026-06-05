@@ -1,104 +1,138 @@
+import Link from 'next/link';
+import { Shield, Target, Award, CheckCircle2 } from 'lucide-react';
 import CTABanner from '@/components/sections/CTABanner';
 import StatsSection from '@/components/sections/StatsSection';
 
 export const metadata = {
   title: 'About ZasChem India | Industrial Infrastructure Protection Specialists',
-  description: 'ZasChem India is a specialized contractor for industrial waterproofing, structural rehabilitation, and protective coating. 12+ years experience, ISO certified.',
+  description: 'ZasChem India is India\'s premier specialized contractor executing turnkey industrial waterproofing, structural strengthening solutions, carbon fiber wrapping, and heavy chemical-resistant lining.',
   alternates: { canonical: 'https://www.zaschem.in/about' },
 };
 
 const milestones = [
-  { year: '2012', event: 'ZasChem India founded with focus on industrial waterproofing' },
-  { year: '2015', event: 'First major power plant contract — NTPC cooling tower rehabilitation' },
-  { year: '2017', event: 'ISO 9001:2015 certification achieved' },
-  { year: '2019', event: 'Expanded to tunnel and dam rehabilitation' },
-  { year: '2021', event: 'Pan-India presence across 15+ states' },
-  { year: '2023', event: '100+ projects milestone. 25 power plants served.' },
+  { year: '2012', title: 'Corporate Foundation', event: 'ZasChem India was incorporated with a core focus on heavy industrial waterproofing contractors workflows, optimizing deep basement slabs in the critical infrastructure sector.' },
+  { year: '2015', title: 'Mega Civil Assets Milestone', event: 'Awarded first major public sector cooling tower asset rehabilitation contract for NTPC, implementing advanced elastomeric crystalline matrix engineering formulations.' },
+  { year: '2017', title: 'ISO 9001 Integration', event: 'Achieved complete ISO 9001:2015 engineering compliance for implementing strict high-performance polymer applications and non-destructive moisture structural evaluation testing.' },
+  { year: '2019', title: 'Sub-Surface Expansion', event: 'Expanded engineering capabilities to comprehensive sub-surface civil assets, deploying complex waterproofing systems inside underground tunnels, hydro dams, and deep structural sumps.' },
+  { year: '2021', title: 'National Network Expansion', event: 'Established fully robust mobile operational task forces expanding corporate presence across 15+ highly active industrial corridors and manufacturing zones across India.' },
+  { year: '2023', title: '100+ Turnkey Projects Deliverance', event: 'Crossed the benchmark milestone of executing 100+ complex industrial scale infrastructural structural strengthening solutions, serving 25+ major thermal and chemical power units.' },
 ];
 
 const team = [
   {
     name: 'Er. Rajesh Ranjan',
     role: 'Chief Technical Officer',
-    desc: '15+ years of experience in structural engineering and advanced polyurea applications.',
+    desc: 'B.Tech in Civil Engineering with 15+ years of master-level authority overseeing micro-concrete structural jackets, dynamic carbon fiber wrapping configurations, and premium polyurea waterproofing matrix designs.',
   },
   {
     name: 'Amit Kumar Mishra',
     role: 'VP - Operations',
-    desc: 'Manages multi-state project execution, vendor logistics, and site engineering teams across India.',
+    desc: 'Manages pan-India cross-functional supply logistics, high-volume polymer sourcing channels, and localized on-site asset engineering divisions spanning major manufacturing plants.',
   },
   {
     name: 'Sanjay Thapa',
     role: 'Head of Quality Assurance',
-    desc: 'NACE certified coating inspector managing zero-compromise compliance and safety standards.',
+    desc: 'NACE Certified protective coating inspector implementing zero-tolerance structural compliance metrics, electronic matrix pinhole checks, and non-destructive destructive concrete profiling audits.',
   },
 ];
 
 export default function AboutPage() {
-  // Rich Custom Dark Blue Hex codes to guarantee it looks precise
-  const bgDarkBlue = '#010e1f'; 
-  const bgCardBlue = '#031a38';
-  const borderLight = 'rgba(255,255,255,0.1)';
-
   return (
-    <div style={{ backgroundColor: bgDarkBlue }} className="min-h-screen text-brand-light">
+    <div style={{ backgroundColor: '#002147' }} className="min-h-screen text-gray-200 font-sans overflow-x-hidden">
       
-      {/* Hero Section */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&q=80" alt="About ZasChem India" className="w-full h-full object-cover opacity-15" />
-          {/* Soft gradient fading into our rich dark blue background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#010e1f]/80 to-[#010e1f]" />
-          <div className="absolute inset-0 grid-lines opacity-20" />
+      {/* Premium Royal Blue Hero Block */}
+      <section style={{ backgroundColor: '#001a38' }} className="relative py-28 lg:py-36 border-b border-blue-950">
+        <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
+          <div 
+            style={{ background: 'radial-gradient(circle at 80% 40%, rgba(100,223,223,0.15) 0%, transparent 70%)' }} 
+            className="absolute inset-0" 
+          />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="section-label mb-5 text-brand-blue">ABOUT US</div>
-          <h1 className="font-display font-black text-5xl md:text-7xl text-white tracking-tight leading-none mb-6">
-            BUILDING INDIA&apos;S<br /><span className="text-brand-blue">INFRASTRUCTURE</span><br />SINCE 2012
+        
+        <div className="relative max-w-7xl mx-auto px-6 z-10">
+          <div 
+            style={{ backgroundColor: 'rgba(100,223,223,0.08)', borderColor: 'rgba(100,223,223,0.2)', color: '#64dfdf' }} 
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] uppercase px-3 py-1.5 border rounded-sm mb-6"
+          >
+            <Shield size={12} style={{ color: '#64dfdf' }} /> OVER A DECADE OF TRUST
+          </div>
+          <h1 
+            style={{ color: '#ffffff' }} 
+            className="font-display font-black text-4xl md:text-6xl tracking-tight leading-none mb-6"
+          >
+            SAFEGUARDING INDIA&apos;S<br />
+            <span style={{ color: '#f77f00' }}>INDUSTRIAL BACKBONE</span><br />
+            SINCE 2012
           </h1>
-          <p className="text-brand-muted text-lg max-w-2xl leading-relaxed">
-            ZasChem India Pvt. Ltd. is one of India&apos;s leading specialized contractors in industrial waterproofing, structural rehabilitation, protective coating, and infrastructure protection. With over a decade of proven expertise, we serve power plants, tunnels, dams, and industrial facilities nationwide.
+          <p className="text-gray-300 text-base md:text-lg max-w-3xl leading-relaxed">
+            ZasChem India Private Limited stands at the apex of specialized engineering, serving as dominant <strong>industrial waterproofing contractors</strong> and heavy asset protection architects across India. We deliver custom formulation systems designed to withstand critical thermal, dynamic, and severe chemical stresses.
           </p>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-20">
+      {/* Corporate History with Neon Custom Gradients */}
+      <section className="py-24 relative">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="section-label mb-4 text-brand-orange">OUR STORY</div>
-            <h2 className="font-display font-black text-4xl text-white mb-6">ENGINEERING TRUST SINCE 2012</h2>
-            <div className="space-y-4 text-brand-muted leading-relaxed">
-              <p>ZasChem India was founded in 2012 with a singular mission: to bring international-standard waterproofing and infrastructure protection to India&apos;s rapidly growing industrial sector. Our founders recognized the massive gap between available solutions and what critical infrastructure truly needed.</p>
-              <p>Starting with industrial waterproofing for power plants in the Jharkhand region, we expanded rapidly to structural rehabilitation, acid resistant lining, polyurea coating, and specialized flooring systems. Each project deepened our understanding of India&apos;s diverse industrial environments.</p>
-              <p>Today, ZasChem India operates across 15+ states with 100+ successfully completed projects. Our team of 50+ certified engineers and applicators remains committed to our founding principle: deliver solutions that outlast expectations.</p>
+          <div className="space-y-6">
+            <div style={{ color: '#64dfdf' }} className="font-mono text-xs font-bold tracking-widest uppercase">ENGINEERING DOMAIN AUTHORITY</div>
+            <h2 style={{ color: '#ffffff' }} className="font-display font-black text-3xl md:text-4xl tracking-tight">
+              ADVANCED COATING TECHNOLOGY & STRUCTURAL REHABILITATION
+            </h2>
+            <div className="space-y-4 text-gray-300 text-sm md:text-base leading-relaxed">
+              <p>
+                Founded with a strong technical blueprint to introduce world-class protection systems, ZasChem India has evolved from an infrastructure troubleshooting squad into one of the country&apos;s most reliable <strong>premium polyurea coating providers India</strong>. We address core structural failures resulting from aggressive substrate water ingress, chemical dynamic spalling, and foundational concrete settling.
+              </p>
+              <p>
+                Our structural methodology shifts away from standard patch applications. By utilizing non-destructive digital core profiling, moisture radar testing, and advanced depth measurements, our engineers formulate custom solutions utilizing carbon fiber composites and high-build epoxy structural lining layouts.
+              </p>
+              <p>
+                From complex corporate basements to industrial warehouses and chemical storage tanks, we customize every deployment matrix. This approach ensures your long-term civil defense remains active under severe high-pressure conditions.
+              </p>
             </div>
           </div>
-          <div className="relative">
-            <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&q=80" alt="ZasChem India projects" className="w-full h-96 object-cover" />
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-brand-blue" />
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-brand-orange" />
+          <div className="relative group">
+            <div 
+              style={{ background: 'linear-gradient(135deg, #64dfdf 0%, #f77f00 100%)' }} 
+              className="absolute -inset-1.5 opacity-30 rounded-sm blur-lg group-hover:opacity-50 transition duration-500" 
+            />
+            <div style={{ backgroundColor: '#001a38', borderColor: 'rgba(255,255,255,0.05)' }} className="relative border p-2 rounded-sm shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&q=80" 
+                alt="ZasChem India structural strengthening solutions installation site" 
+                className="w-full h-96 object-cover grayscale contrast-125 opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-500" 
+              />
+              <div style={{ borderTopColor: '#64dfdf', borderLeftColor: '#64dfdf' }} className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2" />
+              <div style={{ borderBottomColor: '#f77f00', borderRightColor: '#f77f00' }} className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2" />
+            </div>
           </div>
         </div>
       </section>
 
       <StatsSection />
 
-      {/* Timeline Section */}
-      <section className="py-20">
+      {/* Blue Deep Matrix Timeline Section */}
+      <section style={{ backgroundColor: '#001a38' }} className="py-24 border-y border-blue-950 relative">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="section-label justify-center mb-4 text-brand-blue">OUR JOURNEY</div>
-            <h2 className="font-display font-black text-4xl text-white">KEY MILESTONES</h2>
+          <div className="text-center mb-16">
+            <div style={{ color: '#f77f00' }} className="font-mono text-xs font-bold tracking-widest uppercase mb-3">HISTORICAL TRACE</div>
+            <h2 style={{ color: '#ffffff' }} className="font-display font-black text-3xl md:text-4xl tracking-tight">DEVELOPMENT JOURNEY & MILESTONES</h2>
           </div>
-          <div className="space-y-6 relative">
-            <div className="absolute left-16 top-0 bottom-0 w-px" style={{ backgroundColor: borderLight }} />
+          
+          <div className="space-y-8 relative">
+            <div style={{ backgroundColor: 'rgba(255,255,255,0.05)' }} className="absolute left-[23px] sm:left-24 top-2 bottom-2 w-0.5" />
+            
             {milestones.map((m) => (
-              <div key={m.year} className="flex gap-8 items-start">
-                <div className="w-14 font-mono text-brand-blue font-bold text-sm flex-shrink-0 text-right pt-1">{m.year}</div>
-                <div className="w-3 h-3 bg-brand-blue border-2 border-[#010e1f] rounded-full flex-shrink-0 mt-1.5" />
-                <div style={{ backgroundColor: bgCardBlue, borderColor: borderLight }} className="border p-4 flex-1 rounded-sm">
-                  <p className="text-white font-display font-semibold">{m.event}</p>
+              <div key={m.year} className="flex flex-col sm:flex-row gap-4 sm:gap-12 items-start relative group">
+                <div style={{ color: '#fcbf49' }} className="w-24 text-left sm:text-right font-mono font-black text-xl tracking-wider sm:pt-4 pl-12 sm:pl-0">
+                  {m.year}
+                </div>
+                
+                <div style={{ borderColor: '#64dfdf', backgroundColor: '#002147' }} className="absolute left-[18px] sm:left-[91px] w-3 h-3 border-2 rounded-full z-10" />
+                
+                <div style={{ backgroundColor: '#002147', borderColor: 'rgba(255,255,255,0.05)' }} className="border p-6 flex-1 rounded-sm shadow-md hover:border-blue-900 transition-colors pl-12 sm:pl-6">
+                  <h4 style={{ color: '#ffffff' }} className="font-display font-bold text-base mb-1 tracking-wide uppercase">{m.title}</h4>
+                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed">{m.event}</p>
                 </div>
               </div>
             ))}
@@ -106,99 +140,89 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership & Founder Section */}
-      <section className="py-24 border-t" style={{ borderColor: borderLight }}>
+      {/* Leadership Profile Blocks */}
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="section-label justify-center mb-4 text-brand-blue">LEADERSHIP</div>
-            <h2 className="font-display font-black text-4xl text-white md:text-5xl tracking-tight">
-              THE MINDS BEHIND <span className="text-brand-orange">ZASCHEM</span>
+            <div style={{ color: '#64dfdf' }} className="font-mono text-xs font-bold tracking-widest uppercase mb-3">EXECUTIVE COMMAND</div>
+            <h2 style={{ color: '#ffffff' }} className="font-display font-black text-4xl tracking-tight">
+              THE ENGINEERS BEHIND <span style={{ color: '#f77f00' }}>ZASCHEM INDIA</span>
             </h2>
           </div>
 
-          {/* Premium Founder Spotlight Card */}
+          {/* Founder Executive Card Block */}
           <div 
-            style={{ borderColor: 'rgba(0,130,251,0.3)', background: `linear-gradient(135deg, rgba(0,130,251,0.1) 0%, rgba(3,26,56,0.6) 100%)` }}
-            className="relative max-w-5xl mx-auto mb-20 border rounded-lg p-8 md:p-12 shadow-2xl overflow-hidden backdrop-blur-sm group hover:border-brand-blue/60 transition-all duration-500"
+            style={{ borderColor: 'rgba(255,255,255,0.05)', backgroundColor: '#001a38' }} 
+            className="relative max-w-5xl mx-auto mb-24 border rounded-sm p-8 md:p-12 shadow-2xl group transition-all duration-500"
           >
-            {/* Ambient glows behind the card content */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-            <div className="absolute -bottom-10 -left-10 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl -z-10 pointer-events-none" />
-            <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
-            
-            {/* Structural corner accents */}
-            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-brand-blue" />
-            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-brand-orange" />
+            <div style={{ borderTopColor: '#64dfdf', borderLeftColor: '#64dfdf' }} className="absolute top-0 left-0 w-10 h-10 border-t border-l" />
+            <div style={{ borderBottomColor: '#f77f00', borderRightColor: '#f77f00' }} className="absolute bottom-0 right-0 w-10 h-10 border-b border-r" />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Founder Image Holder */}
-              <div className="lg:col-span-4 relative group">
-                <div style={{ backgroundColor: bgDarkBlue, borderColor: borderLight }} className="relative w-full aspect-square md:max-w-[280px] mx-auto lg:max-w-none border overflow-hidden">
+              <div className="lg:col-span-4 relative">
+                <div style={{ borderColor: 'rgba(255,255,255,0.1)' }} className="relative w-full aspect-square md:max-w-[260px] mx-auto lg:max-w-none border overflow-hidden bg-[#002147]">
                   <img 
                     src="/founder_of_zaschem.png" 
-                    alt="Mohammad Miraj Siddiquee" 
-                    className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-in-out" 
+                    alt="Mohammad Miraj Siddiquee - Managing Director of ZasChem India" 
+                    className="w-full h-full object-cover contrast-110 filter grayscale opacity-90 hover:opacity-100 hover:grayscale-0 transition-all duration-500" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#010e1f] via-transparent to-transparent opacity-60" />
                 </div>
-                <div className="absolute -inset-2 border border-brand-orange/20 -z-10 group-hover:inset-1 transition-all duration-500" />
               </div>
 
-              {/* Founder Details Content */}
-              <div className="lg:col-span-8 space-y-5 text-center lg:text-left">
+              <div className="lg:col-span-8 space-y-4 text-center lg:text-left">
                 <div>
-                  <span className="inline-block font-mono text-xs font-bold tracking-widest text-brand-orange uppercase bg-brand-orange/10 px-3 py-1 mb-3 border border-brand-orange/20">
-                    Founder & Managing Director
+                  <span 
+                    style={{ color: '#fcbf49', backgroundColor: 'rgba(252,191,73,0.05)', borderColor: 'rgba(252,191,73,0.2)' }} 
+                    className="inline-block font-mono text-[10px] tracking-widest font-bold uppercase px-3 py-1 border rounded-sm mb-2"
+                  >
+                    FOUNDER & MANAGING DIRECTOR
                   </span>
-                  <h3 className="font-display font-black text-3xl md:text-5xl text-white uppercase tracking-tight leading-none mb-2">
-                    Mohammad Miraj <br className="hidden md:inline"/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-white">Siddiquee</span>
+                  <h3 style={{ color: '#ffffff' }} className="font-display font-black text-3xl md:text-4xl uppercase tracking-tight">
+                    Mohammad Miraj <span style={{ color: '#f77f00' }}>Siddiquee</span>
                   </h3>
-                  <div className="h-1 w-20 bg-brand-blue mx-auto lg:mx-0 mt-3" />
                 </div>
                 
-                <p className="text-white text-lg md:text-xl font-medium leading-relaxed italic max-w-3xl">
-                  &quot;We don&apos;t just coat structures; we engineer the generational safety of India&apos;s industrial backbone. Our standard is execution that never requires a second attempt.&quot;
+                <p className="text-gray-200 text-base md:text-lg leading-relaxed italic font-medium">
+                  &quot;We don&apos;t simply coat concrete surfaces; we engineer structural defense matrices to shield India&apos;s asset lifelines. Our benchmark is execution that never tolerates a secondary attempt.&quot;
                 </p>
 
-                <p className="text-brand-muted text-sm md:text-base leading-relaxed">
-                  Visionary entrepreneur and industrial specialist with over a decade of hands-on leadership. Mohammad Miraj Siddiquee founded ZasChem India with a raw commitment to introduce absolute precision and ultra-durable protection systems across high-risk infrastructural setups nationwide. Under his direct command, the organization scaled from regional troubleshooting to handling heavy-duty projects for mega entities like NTPC.
+                <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
+                  As an industrial asset protection expert with over a decade of operational command, Mohammad Miraj Siddiquee established ZasChem India to target structural degradation in high-risk zones. Under his leadership, the enterprise transitioned from regional deep core repairs to managing massive infrastructure scopes for corporate conglomerates like NTPC.
                 </p>
 
-                {/* Badges/Highlights of Founder */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4" style={{ borderTop: `1px solid ${borderLight}` }}>
-                  <div className="text-center lg:text-left">
-                    <div className="text-brand-blue font-mono font-black text-xl">12+ Yrs</div>
-                    <div className="text-brand-muted text-xs uppercase tracking-wider">Industrial Domain Authority</div>
+                <div style={{ borderTopColor: 'rgba(255,255,255,0.05)' }} className="grid grid-cols-3 gap-4 pt-4 border-t text-left">
+                  <div>
+                    <div style={{ color: '#64dfdf' }} className="font-mono font-black text-lg md:text-xl">12+ Yrs</div>
+                    <div className="text-gray-500 text-[9px] font-mono uppercase tracking-wider">Domain Authority</div>
                   </div>
-                  <div className="text-center lg:text-left">
-                    <div className="text-brand-orange font-mono font-black text-xl">100+ Proj</div>
-                    <div className="text-brand-muted text-xs uppercase tracking-wider">Executed Under Guidance</div>
+                  <div>
+                    <div style={{ color: '#f77f00' }} className="font-mono font-black text-lg md:text-xl">100+ Proj</div>
+                    <div className="text-gray-500 text-[9px] font-mono uppercase tracking-wider">Active Executions</div>
                   </div>
-                  <div className="col-span-2 sm:col-span-1 text-center lg:text-left">
-                    <div className="text-white font-mono font-black text-xl">Pan-India</div>
-                    <div className="text-brand-muted text-xs uppercase tracking-wider">Strategic Operations</div>
+                  <div>
+                    <div style={{ color: '#fcbf49' }} className="font-mono font-black text-lg md:text-xl">Pan-India</div>
+                    <div className="text-gray-500 text-[9px] font-mono uppercase tracking-wider">Task Forces</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Core Team Members Grid */}
-          <div className="mt-16">
-            <h4 className="font-display font-bold text-xl text-center text-brand-muted uppercase tracking-widest mb-10">
-              Core Execution Team
+          {/* Core Specialists Grid Layout */}
+          <div>
+            <h4 style={{ color: '#ffffff' }} className="font-mono text-xs font-bold text-center uppercase tracking-widest mb-10">
+              CORE CIVIL EXECUTION COMMANDERS
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {team.map((member) => (
                 <div 
                   key={member.name} 
-                  style={{ backgroundColor: bgCardBlue, borderColor: borderLight }}
-                  className="p-6 border-t-2 border-t-brand-blue/40 border-x border-b rounded-sm hover:border-brand-blue/80 transition-all duration-300"
+                  style={{ borderTopColor: '#64dfdf', backgroundColor: '#001a38', borderColor: 'rgba(255,255,255,0.05)' }}
+                  className="p-6 border border-t-2 rounded-sm hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="text-brand-blue font-mono text-xs font-bold tracking-wider uppercase mb-1">{member.role}</div>
-                  <h5 className="font-display font-black text-lg text-white mb-3">{member.name}</h5>
-                  <p className="text-brand-muted text-sm leading-relaxed">{member.desc}</p>
+                  <div style={{ color: '#f77f00' }} className="font-mono text-[10px] font-bold tracking-wider uppercase mb-1">{member.role}</div>
+                  <h5 style={{ color: '#ffffff' }} className="font-display font-black text-lg mb-3">{member.name}</h5>
+                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed">{member.desc}</p>
                 </div>
               ))}
             </div>
@@ -206,22 +230,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20 border-y" style={{ backgroundColor: bgCardBlue, borderColor: borderLight }}>
+      {/* Operational Core Tenets */}
+      <section style={{ backgroundColor: '#001a38' }} className="py-24 border-t border-blue-950">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="section-label justify-center mb-4 text-brand-blue">OUR VALUES</div>
-            <h2 className="font-display font-black text-4xl text-white">WHAT DRIVES US</h2>
+          <div className="text-center mb-16">
+            <div style={{ color: '#64dfdf' }} className="font-mono text-xs font-bold tracking-widest uppercase mb-3">OPERATIONAL TENETS</div>
+            <h2 style={{ color: '#ffffff' }} className="font-display font-black text-3xl md:text-4xl tracking-tight">ENGINEERING CORE VALUES</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'Technical Excellence', desc: 'Continuous investment in training, certification, and technology ensures best-in-class results on every project.', accent: '#0F5EFF' },
-              { title: 'Integrity First', desc: 'We recommend only what your structure truly needs. Honest assessment, transparent execution, no shortcuts.', accent: '#F97316' },
-              { title: 'Long-term Partnership', desc: 'Our relationship extends beyond handover. Maintenance support and decade-long warranties are standard.', accent: '#0F5EFF' },
+              { title: 'Technical Material Excellence', desc: 'Continuous systemic investment in chemical science research, specialist applicator training, and advanced non-destructive moisture analytics instruments guarantees high-tier outcomes.', accent: '#64dfdf' },
+              { title: 'Absolute Diagnostic Integrity', desc: 'We isolate and recommend only what your asset profile demands. Transparent assessment logs, exact chemical dosing formulations, and zero shortcut protocols define our work.', accent: '#f77f00' },
+              { title: 'Asset Lifecyle Extensions', desc: 'Our customer relationship extends far beyond site handover. Post-application inspections, thermal scans, and decade-long warranty parameters remain standard on all operations.', accent: '#fcbf49' },
             ].map((v) => (
-<div key={v.title} style={{ backgroundColor: bgDarkBlue, borderColor: borderLight, borderTop: `2px solid ${v.accent}` }} className="border p-8 rounded-sm">
-                <h3 className="font-display font-black text-xl text-white mb-3">{v.title}</h3>
-                <p className="text-brand-muted leading-relaxed">{v.desc}</p>
+              <div key={v.title} style={{ borderTopColor: v.accent, backgroundColor: '#002147', borderColor: 'rgba(255,255,255,0.05)' }} className="border border-t-2 p-8 rounded-sm shadow-md hover:shadow-xl transition-shadow">
+                <h3 style={{ color: '#ffffff' }} className="font-display font-black text-lg md:text-xl mb-3 tracking-wide">{v.title}</h3>
+                <p className="text-gray-400 text-xs md:text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>

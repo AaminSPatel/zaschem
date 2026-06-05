@@ -5,13 +5,13 @@ import { Phone, Mail, MapPin, ArrowRight, Shield, Award, CheckCircle } from 'luc
 
 // ─── THEME ────────────────────────────────────────────────────────────────────
 const C = {
-  bgDeep:  '#010e1f',
-  bgCard:  '#031a38',
-  blue:    '#0082FB',
-  orange:  '#FF6600',
-  white:   '#FFFFFF',
-  muted:   'rgba(255,255,255,0.65)',
-  border:  'rgba(255,255,255,0.1)',
+  bgDeep:  'var(--zas-bg-deep, #010e1f)',
+  bgCard:  'var(--zas-card, #031a38)',
+  blue:    'var(--zas-blue, #0082FB)',
+  orange:  'var(--zas-orange, #FF8800)',
+  white:   'var(--zas-text, #FFFFFF)',
+  muted:   'var(--zas-muted, rgba(255,255,255,0.65))',
+  border:  'var(--zas-border, rgba(255,255,255,0.15))',
 };
 
 const siteConfig = {

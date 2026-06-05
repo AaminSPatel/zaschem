@@ -7,41 +7,50 @@ const iconMap = { Users, Zap, Award, CheckCircle, MapPin, ThumbsUp };
 
 export default function StatsSection() {
   return (
-    <section className="relative py-20 bg-brand-card border-y border-brand-border overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute inset-0 grid-lines opacity-20 pointer-events-none" />
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-brand-blue to-transparent" />
-      <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-brand-orange to-transparent" />
+    <section className="relative py-24 bg-gradient-to-b from-[#002147] to-[#003366]   border-y-2 border-[#002147]/10 overflow-hidden">
+      <div className="absolute inset-0 grid-lines opacity-5 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <div className="section-label justify-center mb-3">OUR TRACK RECORD</div>
-          <h2 className="font-display font-black text-3xl md:text-4xl text-on-bg tracking-tight">
+          <div className="inline-flex text-xs font-mono font-bold tracking-widest text-[#f77f00] bg-[#f77f00]/10 px-3 py-1 mb-3 rounded-sm">
+            OUR TRACK RECORD
+          </div>
+          <h2 className="font-display font-black text-3xl md:text-4xl text-[#ffffff] tracking-tight">
             NUMBERS THAT SPEAK FOR THEMSELVES
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-brand-border">
+        {/* Clean Grid Layout with Blue Base & Vibrant Orange Accents */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-[#002147]/10 border border-[#002147]/15 rounded-sm overflow-hidden shadow-xl">
           {stats.map((stat, i) => {
             const Icon = iconMap[stat.icon] || Award;
             return (
               <motion.div
                 key={stat.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-brand-card p-6 lg:p-8 text-center group hover:bg-brand-dark transition-colors relative overflow-hidden"
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="bg-white p-6 lg:p-8 text-center group hover:bg-[#002147] transition-all duration-300 relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-brand-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <Icon size={26} className="mx-auto mb-3 font-extrabold text-brand-orange group-hover:scale-110 transition-transform" />
-                <div className="stat-number mb-2 font-semibold">{stat.value}</div>
-                <p className="text-brand-muted text-xs font-mono font-medium tracking-wide leading-snug uppercase">{stat.label}</p>
+                {/* Clean hover dynamic state */}
+                <div className="w-12 h-12 rounded-full bg-[#f77f00]/10 text-[#f77f00] group-hover:bg-[#f77f00] group-hover:text-white flex items-center justify-center mx-auto mb-4 transition-all duration-300 shadow-sm">
+                  <Icon size={20} className="stroke-[2.5]" />
+                </div>
+                
+                {/* Numeric values */}
+                <div className="text-3xl font-display font-black text-[#002147] group-hover:text-white mb-1 transition-colors tracking-tight">
+                  {stat.value}
+                </div>
+                
+                <p className="text-gray-500 group-hover:text-gray-300 text-[10px] font-mono font-bold tracking-wider uppercase leading-snug">
+                  {stat.label}
+                </p>
               </motion.div>
             );
           })}

@@ -6,55 +6,68 @@ import { siteConfig } from '../../app/data/siteData';
 
 export default function CTABanner() {
   return (
-    <section className="relative py-20 overflow-hidden ">
-      {/* Background */}
+    <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#002147] to-[#004080]">
+      {/* Background with Real Blue Depth overlay */}
       <div className="absolute inset-0">
         <img
           src="industry.avif"
           alt="Industrial infrastructure"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-30 mix-blend-overlay"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/97 via-brand-darker/90 to-brand-blue/20" />
-        <div className="absolute inset-0 grid-lines opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#003366]/90 to-[#00509d]/40" />
+        <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
       </div>
 
-      {/* Accent lines */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-blue" />
-      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-brand-blue via-brand-blue/50 to-transparent" />
+      {/* Top Highlight Stripe */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f77f00] via-[#fcbf49] to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-label mb-5">
-              <Zap size={12} className="text-brand-orange" />
+            {/* Ribbon Label */}
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.15em] text-[#fcbf49] bg-white/10 px-3 py-1.5 rounded-sm mb-6 border border-white/10 backdrop-blur-sm">
+              <Zap size={13} className="text-[#f77f00] fill-[#f77f00]" />
               READY TO START YOUR PROJECT?
             </div>
-            <h2 className="font-display font-black text-4xl md:text-6xl text-on-bg tracking-tight leading-none mb-6">
+            
+            <h2 className="font-display font-black text-4xl md:text-6xl text-white tracking-tight leading-none mb-6">
               PROTECT YOUR<br />
-              <span className="text-brand-blue">INFRASTRUCTURE</span><br />
+              <span className="text-[#f77f00] drop-shadow-sm">INFRASTRUCTURE</span><br />
               TODAY.
             </h2>
-            <p className="text-brand-muted text-lg leading-relaxed mb-8 max-w-xl">
+            
+            <p className="text-gray-200 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
               Get a free technical consultation from our engineering team. We assess your problem, propose the right solution, and deliver results that last decades.
             </p>
+            
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="btn-primary flex items-center gap-2 justify-center text-base py-4 px-8">
-                GET FREE CONSULTATION <ArrowRight size={18} />
+              <Link 
+                href="/contact" 
+                className="group inline-flex items-center gap-2 justify-center bg-[#f77f00] hover:bg-white text-white hover:text-[#002147] font-bold text-base py-4 px-8 shadow-xl transition-all duration-300 rounded-sm"
+              >
+                GET FREE CONSULTATION 
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a href={`tel:${siteConfig.phone}`} className="btn-secondary flex items-center gap-2 justify-center text-base py-4 px-8">
-                <Phone size={16} /> CALL NOW
+              
+              <a 
+                href={`tel:${siteConfig.phone}`} 
+                className="group inline-flex items-center gap-2 justify-center bg-white/10 hover:bg-white text-white hover:text-[#002147] border border-white/20 font-bold text-base py-4 px-8 transition-all duration-300 rounded-sm backdrop-blur-sm"
+              >
+                <Phone size={16} className="text-[#fcbf49] group-hover:text-[#002147]" /> 
+                CALL NOW
               </a>
             </div>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-6 mt-10 pt-8 border-t border-brand-border">
+            {/* Badges with bright orange bullet tags */}
+            <div className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-white/10">
               {['24hr Response', 'Free Site Survey', 'Pan-India Service', '10yr Warranty'].map((badge) => (
-                <div key={badge} className="flex items-center gap-2 text-sm text-brand-muted">
-                  <span className="w-1.5 h-1.5 bg-brand-orange rounded-full" />
+                <div key={badge} className="flex items-center gap-2 text-sm font-semibold text-gray-100">
+                  <span className="w-2 h-2 bg-[#f77f00] rounded-full shadow-[0_0_6px_#f77f00]" />
                   {badge}
                 </div>
               ))}

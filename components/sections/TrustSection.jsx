@@ -1,47 +1,41 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Award, Users, CheckCircle, Clock, Shield, MapPin } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import { whyChooseUs, clients } from '@/data/siteData';
-import 'swiper/css';
-
-const iconMap = { Award, Users, CheckCircle, Clock, Shield, MapPin };
+import { clients } from '@/data/siteData';
 
 const ClientLogo = ({ name, logo }) => (
-  <div className="flex items-center justify-center h-16 px-2 min-w-[180px]  border border-brand-border group hover:border-brand-blue/40 transition-all duration-300">
-    <div className="text-center">
-      {/* <div className="w-6 h-0 bg-brand-blue/40 mx-auto group-hover:bg-brand-blue transition-colors" />
-       */}<img 
-        src={logo} 
-        alt={`${name} - Client of Zaschem India Pvt Ltd`} 
-        className='h-16 object-contain'
-      />
-    </div>
+  <div className="flex items-center justify-center h-20 px-6 min-w-[190px] bg-white border border-[#002147]/10 rounded-sm group hover:border-[#f77f00] transition-all duration-300 shadow-sm hover:shadow-md">
+    <img 
+      src={logo} 
+      alt={`${name} - Client of Zaschem India Pvt Ltd`} 
+      className="h-10 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+    />
   </div>
 );
 
 export default function ClientsSection() {
-  // Array ko double kar rahe hain taaki infinite loop smooth dikhe
   const duplicatedClients = [...clients, ...clients];
 
   return (
-    <section className="py-16 bg-brand-card border-y border-brand-border overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
-        <div className="section-label justify-center mb-3">TRUSTED BY INDIA'S BEST</div>
-        <h2 className="font-display font-black text-2xl md:text-3xl text-on-bg tracking-tight">
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50 border-y border-[#002147]/10 overflow-hidden relative">
+      <div className="absolute inset-0 grid-lines opacity-5 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+        <div className="inline-flex text-xs font-mono font-bold tracking-widest text-[#f77f00] bg-[#f77f00]/10 px-3 py-1 mb-3 rounded-sm">
+          TRUSTED BY INDIA'S BEST
+        </div>
+        <h2 className="font-display font-black text-2xl md:text-3xl text-[#002147] tracking-tight">
           SERVING CRITICAL INFRASTRUCTURE SINCE 2012
         </h2>
       </div>
 
-      {/* Top row marquee (Left to Right / Normal) */}
-      <div className="relative overflow-hidden mb-6 w-full">
+      {/* Slide Marquee Top row */}
+      <div className="relative overflow-hidden mb-4 w-full flex">
         <motion.div 
-          className="flex gap-3 w-max"
+          className="flex gap-4 w-max"
           animate={{ x: [0, '-50%'] }}
           transition={{
             ease: "linear",
-            duration: 45,
+            duration: 35,
             repeat: Infinity,
           }}
         >
@@ -51,14 +45,14 @@ export default function ClientsSection() {
         </motion.div>
       </div>
 
-      {/* Bottom row reverse marquee (Right to Left) */}
-      <div className="relative overflow-hidden w-full">
+      {/* Slide Marquee Bottom Reverse row */}
+      <div className="relative overflow-hidden w-full flex">
         <motion.div 
-          className="flex gap-3 w-max"
-          animate={{ x: ['-50%', 0] }} // Isko ulta kar diya taaki reverse chale
+          className="flex gap-4 w-max"
+          animate={{ x: ['-50%', 0] }}
           transition={{
             ease: "linear",
-            duration: 45,
+            duration: 35,
             repeat: Infinity,
           }}
         >

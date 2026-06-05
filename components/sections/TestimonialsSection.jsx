@@ -11,9 +11,9 @@ import 'swiper/css/navigation';
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-24 bg-brand-darker relative overflow-hidden">
+    <section className="py-24 bg-[#002147] relative overflow-hidden text-white">
       <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-blue/4 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
@@ -26,13 +26,13 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative"
+          className="relative mt-12"
         >
-          {/* Custom nav buttons */}
-          <div className="testimonial-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 hidden lg:flex w-10 h-10 bg-brand-card border border-brand-border items-center justify-center cursor-pointer hover:border-brand-blue hover:text-brand-blue transition-all text-brand-muted">
+          {/* Custom Navigation Controllers */}
+          <div className="testimonial-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 hidden xl:flex w-10 h-10 bg-[#003366] border border-white/10 text-white items-center justify-center cursor-pointer hover:bg-[#f77f00] hover:border-[#f77f00] transition-all rounded-sm">
             <ChevronLeft size={18} />
           </div>
-          <div className="testimonial-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 hidden lg:flex w-10 h-10 bg-brand-card border border-brand-border items-center justify-center cursor-pointer hover:border-brand-blue hover:text-brand-blue transition-all text-brand-muted">
+          <div className="testimonial-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 hidden xl:flex w-10 h-10 bg-[#003366] border border-white/10 text-white items-center justify-center cursor-pointer hover:bg-[#f77f00] hover:border-[#f77f00] transition-all rounded-sm">
             <ChevronRight size={18} />
           </div>
 
@@ -52,44 +52,51 @@ export default function TestimonialsSection() {
           >
             {testimonials.map((t) => (
               <SwiperSlide key={t.id}>
-                <div className="card-industrial p-7 h-full flex flex-col hover:border-brand-blue/40 transition-all duration-300 relative overflow-hidden group">
-                  {/* Top accent */}
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-blue to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                  {/* Background quote watermark */}
-                  <div className="absolute top-4 right-4 opacity-5 pointer-events-none">
-                    <Quote size={80} className="text-brand-blue" />
+                <div className="bg-[#003366]/60 border border-white/10 p-6 md:p-8 rounded-sm h-full flex flex-col hover:border-[#f77f00] transition-all duration-300 relative overflow-hidden group shadow-lg">
+                  
+                  {/* Decorative Big Back Quote watermark */}
+                  <div className="absolute top-4 right-4 opacity-10 pointer-events-none">
+                    <Quote size={60} className="text-[#fcbf49]" />
                   </div>
 
-                  {/* Stars */}
+                  {/* Bright Orange Rating Stars */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} size={13} className="text-brand-orange fill-brand-orange" />
+                      <Star key={i} size={13} className="text-[#f77f00] fill-[#f77f00]" />
                     ))}
                   </div>
 
-                  {/* Quote */}
-                  <p className="text-brand-light text-sm leading-relaxed italic flex-1 mb-6 relative z-10">
+                  {/* Quote Body text */}
+                  <p className="text-gray-100 text-sm md:text-base leading-relaxed italic flex-1 mb-6 relative z-10">
                     &ldquo;{t.quote}&rdquo;
                   </p>
 
-                  {/* Author */}
-                  <div className="flex items-center gap-3 pt-5 border-t border-brand-border">
-                    <img src={t.image} alt={t.name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-brand-border group-hover:border-brand-blue transition-colors" />
+                  {/* Author Meta Info */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                    <img 
+                      src={t.image} 
+                      alt={t.name}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-white/20 group-hover:border-[#f77f00] transition-colors" 
+                    />
                     <div>
-                      <p className="font-display font-bold text-sm text-on-bg tracking-wide">{t.name}</p>
-                      <p className="text-xs text-brand-muted">{t.designation}</p>
-                      <p className="text-xs text-brand-orange font-mono mt-0.5">{t.company}</p>
+                      <p className="font-display font-bold text-sm text-white tracking-wide">{t.name}</p>
+                      <p className="text-xs text-gray-300">{t.designation}</p>
+                      <p className="text-xs text-[#fcbf49] font-mono font-bold uppercase mt-0.5">{t.company}</p>
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+          
           <div className="testimonial-dots flex justify-center gap-2 mt-8" />
         </motion.div>
       </div>
+
+      <style jsx global>{`
+        .testimonial-dots .swiper-pagination-bullet { background: #ffffff !important; opacity: 0.3; }
+        .testimonial-dots .swiper-pagination-bullet-active { background: #f77f00 !important; opacity: 1 !important; }
+      `}</style>
     </section>
   );
 }

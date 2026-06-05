@@ -1,45 +1,45 @@
 @import "tailwindcss";
 
+/*
+=============================
+THEME COLORS (saved from previous theme system)
+=============================
+Zaschem Classic Blue palette:
+- brand-blue / accentBlue:   #FF8800
+- brand-orange / accentOrange: #FF8800
+- brand-dark / bgDark:      #005FcA
+- brand-darker / bgDarker: #004fc8
+- brand-card:              #0071DC
+- brand-light:            #ffffff
+- brand-muted:            rgba(255, 255, 255, 0.85)
+- brand-border:          rgba(255, 255, 255, 0.15)
+- brand-contrast-on-bg:  #ffffff
+- btn-primary-bg:        #FF8800
+- btn-primary-bg-hover: #FF8800
+- btn-primary-border:    rgba(255, 255, 255, 0.2)
+*/
+
 :root {
-  /* Default fallbacks for theme state */
-  --background: #005FcA;
-  --foreground: #ffffff;
-  
-  /* Strictly forcing browser engines to respect our light/dark dynamic styling */
-  forced-color-adjust: none !important;
-  color-scheme: dark light;
+  /* Brand System (keep blue background; orange = accent only) */
+  --zas-bg: #005FcA;
+  --zas-bg-deep: #010e1f;
+  --zas-card: #031a38;
+  --zas-border: rgba(255, 255, 255, 0.15);
+  --zas-text: #ffffff;
+  --zas-muted: rgba(255, 255, 255, 0.65);
+  --zas-blue: #0082FB;
+  --zas-orange: #FF8800;
 }
 
-/* Tailwind v4 CSS Theme Configurations */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  
-  /* Next.js Font Mapping Rules - Explicitly attaching family tokens */
-  --font-sans: var(--font-body), sans-serif;
- /*  --font-display: var(--font-display), sans-serif;
-   */
- --font-body: var(--font-body), sans-serif;
-  --font-mono: var(--font-mono), monospace;
-
-  /* Mapping layout tokens directly into Tailwind engine */
-  --color-brand-dark: var(--brand-dark, #005FcA);
-  --color-brand-darker: var(--brand-darker, #005496);
-  --color-brand-card: var(--brand-card, #0071DC);
-  --color-brand-light: var(--brand-light, #ffffff);
-  --color-brand-muted: var(--brand-muted, rgba(255, 255, 255, 0.85));
-  --color-brand-blue: var(--brand-blue, #0F5EFF);
-  --color-brand-orange: var(--brand-orange, #FF8800);
-  --color-brand-border: var(--brand-border, rgba(255, 255, 255, 0.16));
-}
-/* Base Body Engine Fixes for Mobile Scaling */
 html, body {
   forced-color-adjust: none !important;
   color-scheme: dark light;
-  background-color: var(--brand-dark, #005FcA) !important;
-  color: var(--brand-light, #ffffff) !important;
+  background-color: var(--zas-bg) !important;
+  color: var(--zas-text) !important;
 }
+
+
 
 body {
   font-family: var(--font-body), Arial, Helvetica, sans-serif !important;
@@ -87,67 +87,6 @@ h3 {
 
 h1, h2, h3, h4, h5, h6, p, span, div, section {
   forced-color-adjust: none !important;
-}
-
-/* Custom Utilities Layer */
-@layer utilities {
-  .bg-brand-dark { background-color: var(--brand-dark, #005FcA); }
-  .bg-brand-darker { background-color: var(--brand-darker, #004395); }
-  .bg-brand-card { background-color: var(--brand-card, #0071DC); }
-
-  .text-brand-light { color: var(--brand-light, #ffffff) !important; }
-  .text-brand-muted { color: var(--brand-muted, rgba(255, 255, 255, 0.85)) !important; }
-
-  .text-brand-blue { color: var(--brand-blue, #0F5EFF); }
-  .text-brand-orange { color: var(--brand-orange, #FF8800); }
-
-  .bg-brand-blue { background-color: var(--brand-blue, #0F5EFF); }
-  .bg-brand-orange { background-color: var(--brand-orange, #FF8800); }
-
-  .border-brand-border { border-color: var(--brand-border, rgba(255, 255, 255, 0.16)); }
-
-  /* Generic text color that flips safely on background structures */
-  .text-on-bg { color: var(--brand-contrast-on-bg, #ffffff) !important; }
-  .text-contrast { color: var(--brand-contrast-on-bg, #ffffff) !important; }
-
-  /* Industrial Primary Button Styles */
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem; /* Increased button padding */
-    border-radius: 0.05rem;
-    background-color: var(--btn-primary-bg, #FF8800);
-    color: #ffffff !important;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    border: 1px solid var(--btn-primary-border, rgba(255, 255, 255, 0.15));
-    transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    background-color: var(--btn-primary-bg-hover, #005FcA);
-    border-color: rgba(255, 255, 255, 0.25);
-  }
-
-  /* Responsive theme toggler UI layouts */
-  .theme-btn {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    border: 1px solid var(--brand-border, rgba(255, 255, 255, 0.16));
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
-  }
-
-  .theme-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-  }
 }
 
 /* Smooth Scrolling Marquee Animations */

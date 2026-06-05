@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade, Navigation } from 'swiper/modules';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronDown, Phone } from 'lucide-react';
+import { ArrowRight, ChevronDown, Phone, Shield } from 'lucide-react';
 import { heroSlides } from '@/data/siteData';
 import { useState } from 'react';
 import 'swiper/css';
@@ -16,7 +16,7 @@ export default function HeroSection() {
   const slide = heroSlides[activeIdx];
 
   return (
-    <section className="relative min-h-[600px] h-[100svh] overflow-hidden">
+    <section className="relative min-h-[600px] h-[100svh] overflow-hidden bg-gradient-to-br from-[#003049] via-[#005f73] to-[#0a9396]">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade, Navigation]}
         effect="fade"
@@ -30,98 +30,113 @@ export default function HeroSection() {
         {heroSlides.map((s) => (
           <SwiperSlide key={s.id}>
             <div className="absolute inset-0 z-0">
-<img src={s.image} alt={s.title} className="w-full h-full object-cover" fetchPriority={s.id === 1 ? 'high' : 'auto'} />
-              {/* Strong dark gradient — bottom 70% very dark for text legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060810] via-[#060810]/30 to-[#060810]/10" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#060810]/60 via-[#060810]/30 to-transparent" />
-              {/* Additional top dark for logo area */}
-              <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#060810]/10 to-transparent" />
-              <div className="absolute inset-0 grid-lines opacity-15" />
+              <img 
+                src={s.image} 
+                alt={s.title} 
+                className="w-full h-full object-cover opacity-60 blend-multiply" 
+                fetchPriority={s.id === 1 ? 'high' : 'auto'} 
+              />
+              {/* Premium Bright Royal Blue Gradients */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#002147]/90 via-[#003366]/60 to-[#004080]/30" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#003366]/40 to-transparent" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(247,127,0,0.15),transparent_45%)]" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* CONTENT — fixed overlay on top of swiper */}
-      {/* Mobile text scaling fix: increase readability on small screens */}
-      <div className="absolute inset-0 z-20 flex items-end md:items-center pointer-events-none">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 w-full pb-16 md:pb-0">
+      {/* CONTENT Overlay */}
+      <div className="absolute inset-0 z-20 flex items-center md:items-center pointer-events-none">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pb-20 md:pb-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIdx}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.6 }}
-              className="w-full max-w-2xl md:ml-12"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="w-full max-w-3xl pt-14"
             >
-              <div className="text-[22px] sm:text-[26px]" />
-              {/* Label */}
-              <div className="section-label mb-4 md:mb-5">
+              {/* Section Tag */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#fcbf49] text-[#003049] font-mono text-xs font-black tracking-widest uppercase mb-6 rounded-sm shadow-md">
+                <Shield size={12} className="fill-[#003049]" />
                 ZasChem INDIA PVT. LTD.
               </div>
 
-              {/* Title */}
-              <h1 className="font-display text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-none mb-2 md:mb-3">
+              {/* Title with Balanced Blue, White, and Vivid Orange */}
+              <h1 className="font-display text-3xl font-black sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4 drop-shadow-md">
                 {slide.title.split(' ').map((word, i) => (
-                  <span key={i} className={i % 3 === 1 ? 'text-brand-blue' : 'text-white'}>
+                  <span
+                    key={i}
+                    className={
+                      i % 3 === 1
+                        ? 'text-[#f77f00] drop-shadow-[0_2px_8px_rgba(247,127,0,0.4)]'
+                        : i % 3 === 2
+                          ? 'text-[#64dfdf]'
+                          : 'text-white'
+                    }
+                  >
                     {word}{' '}
                   </span>
                 ))}
               </h1>
 
-
               {/* Subtitle */}
-              <p className="font-display font-semibold text-[15px] sm:text-lg md:text-xl text-brand-orange tracking-wide mb-3 md:mb-4">
+              <p className="font-display font-bold text-lg sm:text-xl text-white tracking-wide mb-4 opacity-95">
                 {slide.subtitle}
               </p>
 
-              {/* Description — hidden on very small screens */}
-              <p className="hidden sm:block text-white text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-xl opacity-90">
+              {/* Description */}
+              <p className="hidden sm:block text-gray-100 text-sm md:text-base leading-relaxed mb-8 max-w-xl opacity-90">
                 {slide.description}
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3 pointer-events-auto">
-                <Link href={slide.cta.href} className="btn-primary flex items-center gap-2 justify-center text-sm sm:text-base py-3 sm:py-4 px-6 sm:px-8">
-                  {slide.cta.label} <ArrowRight size={16} />
+              <div className="flex flex-col sm:flex-row gap-4 pointer-events-auto">
+                <Link 
+                  href={slide.cta.href} 
+                  className="group inline-flex items-center gap-2 justify-center bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#003049] font-bold text-sm sm:text-base py-3.5 px-8 transition-all duration-300 rounded-sm shadow-lg shadow-orange-600/30"
+                >
+                  {slide.cta.label} 
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a href="tel:+91-7004298988" className="btn-secondary flex items-center gap-2 justify-center text-sm sm:text-base py-3 sm:py-4 px-6 sm:px-8">
-                  <Phone size={15} /> CALL NOW
+                
+                <a 
+                  href="tel:+91-7004298988" 
+                  className="group inline-flex items-center gap-2 justify-center bg-white hover:bg-[#f77f00] text-[#003049] hover:text-white font-bold text-sm sm:text-base py-3.5 px-8 transition-all duration-300 rounded-sm shadow-md border border-white/20"
+                >
+                  <Phone size={15} className="text-[#f77f00] group-hover:text-white transition-colors" /> 
+                  CALL NOW
                 </a>
               </div>
-
-              {/* Mobile swipe hint */}
-              <p className="sm:hidden mt-4 font-mono text-[11px] tracking-wider opacity-70">SWIPE TO EXPLORE →</p>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Slide dots — repositioned above nav */}
       <style jsx global>{`
-        .swiper-pagination { bottom: 80px !important;color:white  !important; left: 24px !important; text-align: left !important; }
-        @media(min-width:640px){ .swiper-pagination { bottom: 48px !important;color:white !important; left: 32px !important; } }
+        .swiper-pagination-bullet { background: #ffffff !important; opacity: 0.5; }
+        .swiper-pagination-bullet-active { background: #f77f00 !important; opacity: 1 !important; width: 20px !important; border-radius: 4px !important; }
+        .swiper-pagination { bottom: 40px !important; left: 24px !important; text-align: left !important; }
         .swiper-button-next, .swiper-button-prev { display: none !important; }
-        @media(min-width:1024px){ .swiper-button-next, .swiper-button-prev { display: flex !important; } }
       `}</style>
 
-      {/* Slide counter vertical — desktop */}
-      <div className="absolute right-6 bottom-24 z-30 hidden lg:flex flex-col items-center gap-1">
-        <span className="font-mono text-xs text-white  tracking-widest" style={{ writingMode: 'vertical-rl' }}>SCROLL DOWN</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.8 }}>
-          <ChevronDown size={16} className="text-white " />
+      {/* Scroll Down Vertical Trigger */}
+      <div className="absolute right-8 bottom-12 z-30 hidden lg:flex flex-col items-center gap-2">
+        <span className="font-mono text-xs text-white/80 tracking-widest" style={{ writingMode: 'vertical-rl' }}>SCROLL DOWN</span>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+          <ChevronDown size={16} className="text-[#f77f00]" />
         </motion.div>
       </div>
 
-      {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-border z-30">
+      {/* Bottom active status bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
         <motion.div
           key={activeIdx}
           initial={{ width: '0%' }}
           animate={{ width: '100%' }}
           transition={{ duration: 5.5, ease: 'linear' }}
-          className="h-full bg-brand-blue"
+          className="h-full bg-gradient-to-r from-[#f77f00] to-[#fcbf49]"
         />
       </div>
     </section>

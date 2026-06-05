@@ -44,8 +44,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${barlow.variable} ${shareTechMono.variable}`}>
-      <body className="bg-brand-dark text-brand-light font-body antialiased">
-        <div id="theme-root" aria-hidden="true" />
+      <body className="bg-[#005FcA] text-white font-body antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />

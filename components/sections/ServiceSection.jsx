@@ -3,25 +3,17 @@
 import Link from 'next/link';
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Droplets, Package } from 'lucide-react';
-
+import { ArrowRight, Package, CheckCircle2 } from 'lucide-react';
 import { services } from '@/data/siteData';
 import SectionHeader from '../layout/Header';
 
 function Service3DCard({ service, index }) {
   const ref = React.useRef(null);
-
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), {
-    stiffness: 300,
-    damping: 30,
-  });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), {
-    stiffness: 300,
-    damping: 30,
-  });
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { stiffness: 300, damping: 30 });
 
   const glowX = useTransform(x, [-0.5, 0.5], [0, 100]);
   const glowY = useTransform(y, [-0.5, 0.5], [0, 100]);
@@ -29,19 +21,15 @@ function Service3DCard({ service, index }) {
   const handleMouse = (e) => {
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
-
     x.set((e.clientX - rect.left) / rect.width - 0.5);
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
-  const reset = () => {
-    x.set(0);
-    y.set(0);
-  };
+  const reset = () => { x.set(0); y.set(0); };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -53,86 +41,63 @@ function Service3DCard({ service, index }) {
           onMouseMove={handleMouse}
           onMouseLeave={reset}
           style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-          className="relative card-industrial overflow-hidden cursor-pointer hover:border-brand-orange/60 transition-colors duration-300 group"
+          className="relative bg-white text-[#002147] rounded-sm overflow-hidden border-2 border-transparent hover:border-[#f77f00] shadow-xl transition-all duration-300 group"
         >
-          {/* Dynamic glow spotlight */}
+          {/* Subtle Orange Glow effect */}
           <motion.div
             style={{
               background: useTransform(
                 [glowX, glowY],
-                ([gx, gy]) =>
-                  `radial-gradient(circle at ${gx}% ${gy}%, rgba(249,115,22,0.15), transparent 70%)`
+                ([gx, gy]) => `radial-gradient(circle at ${gx}% ${gy}%, rgba(247,127,0,0.1), transparent 60%)`
               ),
             }}
             className="absolute inset-0 z-10 pointer-events-none"
           />
 
-          {/* Image */}
-          <div className="relative h-52 overflow-hidden">
+          {/* Media Head */}
+          <div className="relative h-48 overflow-hidden bg-[#002147]">
             <img
               src={service.image}
               alt={service.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+            
             <div className="absolute top-3 left-3 z-20">
-              <span className="px-2 py-1 bg-brand-orange text-on-bg text-xs font-mono tracking-wider">
+              <span className="px-2.5 py-1 bg-[#002147] text-white text-[10px] font-mono font-bold tracking-widest uppercase rounded-sm shadow-md">
                 {service.category ?? 'SERVICE'}
               </span>
             </div>
 
-            {/* Badge */}
-            <motion.div
-              style={{ transform: 'translateZ(20px)' }}
-              className="absolute top-3 right-3 z-20 w-10 h-10 bg-brand-blue/90 border border-brand-blue flex items-center justify-center"
-            >
-              <Package size={16} className="text-on-bg" />
-            </motion.div>
+            <div className="absolute top-3 right-3 z-20 w-8 h-8 bg-[#f77f00] text-white flex items-center justify-center rounded-sm shadow-md">
+              <Package size={14} />
+            </div>
           </div>
 
-          {/* Content */}
-          <div className="p-5 relative z-20" style={{ transform: 'translateZ(10px)' }}>
-            <p className="font-mono uppercase text-brand-orange text-sm tracking-[0.1em] mb-1.5">
-              {service.title}
-            </p>
-            <h3 className="font-display font-black text-lg text-on-bg mb-2 leading-tight group-hover:text-brand-orange transition-colors">
+          {/* Card Body */}
+          <div className="p-6 relative z-20">
+            <h3 className="font-display h-16 font-black text-lg text-[#002147] mb-2 leading-tight group-hover:text-[#f77f00] transition-colors">
               {service.title}
             </h3>
-            <p className="text-brand-muted text-xs leading-relaxed mb-4 line-clamp-2">
+            <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-2">
               {service.shortDesc}
             </p>
 
-            {/* Mini specs */}
-            <div className="grid grid-cols-2 gap-1.5 mb-4">
+            {/* Core specs list updates */}
+            <div className="space-y-1.5 mb-5">
               {(service.features ?? []).slice(0, 2).map((f) => (
-                <div key={f} className="bg-brand-darker border border-brand-border px-2 py-1.5">
-                  <p className="font-mono text-xs text-brand-muted uppercase tracking-wider">
-                    FEATURE
-                  </p>
-                  <p className="text-on-bg text-xs font-bold mt-0.5 leading-tight">{f}</p>
+                <div key={f} className="flex items-center gap-2 bg-[#002147]/5 px-2.5 py-1.5 rounded-sm border border-[#002147]/5">
+                  <CheckCircle2 size={13} className="text-[#f77f00] shrink-0" />
+                  <p className="text-[#002147] text-xs font-bold truncate">{f}</p>
                 </div>
               ))}
             </div>
 
-            {/* Features dots */}
-            <div className="flex flex-wrap gap-1 mb-4">
-              {(service.features ?? []).slice(0, 3).map((f) => (
-                <span
-                  key={f}
-                  className="px-1.5 py-0.5 border border-brand-border text-xs text-brand-muted font-mono"
-                >
-                  {f}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-1.5 text-brand-orange text-sm font-display font-bold group-hover:gap-3 transition-all">
-              LEARN MORE <ArrowRight size={13} />
+            {/* Trigger line */}
+            <div className="inline-flex items-center gap-2 text-[#f77f00] text-xs font-mono font-bold tracking-wider uppercase group-hover:text-[#002147] transition-colors">
+              LEARN MORE <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
-
-          {/* Bottom shine line */}
-          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-orange to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
         </motion.div>
       </Link>
     </motion.div>
@@ -143,7 +108,7 @@ export default function ServicesSection({ limit = 8 }) {
   const displayed = services.slice(0, limit);
 
   return (
-    <section className="py-24 bg-brand-dark relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-[#003366] via-[#004080] to-[#00509d] relative overflow-hidden">
       <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
@@ -153,24 +118,22 @@ export default function ServicesSection({ limit = 8 }) {
           subtitle="Comprehensive waterproofing, rehabilitation, and coating solutions engineered for India's most demanding industrial environments."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {displayed.map((service, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {displayed.slice(0,9).map((service, i) => (
             <Service3DCard key={service.id} service={service} index={i} />
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-10"
-        >
-          <Link href="/services" className="btn-secondary inline-flex items-center gap-2">
-            VIEW ALL SERVICES <ArrowRight size={16} />
+        <div className="text-center mt-12">
+          <Link 
+            href="/services" 
+            className="group inline-flex items-center gap-2 bg-white text-[#002147] hover:bg-[#f77f00] hover:text-white font-bold py-3.5 px-8 rounded-sm transition-all duration-300 shadow-md"
+          >
+            VIEW ALL SERVICES 
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
-
