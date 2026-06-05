@@ -92,7 +92,7 @@ function Service3DCard({ service, index }) {
 
           {/* Content */}
           <div className="p-5 relative z-20" style={{ transform: 'translateZ(10px)' }}>
-            <p className="font-mono text-brand-orange text-xs tracking-[0.2em] mb-1.5">
+            <p className="font-mono uppercase text-brand-orange text-sm tracking-[0.1em] mb-1.5">
               {service.title}
             </p>
             <h3 className="font-display font-black text-lg text-on-bg mb-2 leading-tight group-hover:text-brand-orange transition-colors">

@@ -1,39 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html, body {
+  /* Default fallbacks for theme state */
+  --background: #005FcA;
+  --foreground: #ffffff;
+  
+  /* Strictly forcing browser engines to respect our light/dark dynamic styling */
   forced-color-adjust: none !important;
   color-scheme: dark light;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: subpixel-antialiased !important;
-  text-rendering: optimizeLegibility;
+/* Tailwind v4 CSS Theme Configurations */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* Next.js Font Mapping Rules - Explicitly attaching family tokens */
+  --font-sans: var(--font-body), sans-serif;
+ /*  --font-display: var(--font-display), sans-serif;
+   */
+ --font-body: var(--font-body), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  /* Mapping layout tokens directly into Tailwind engine */
+  --color-brand-dark: var(--brand-dark, #005FcA);
+  --color-brand-darker: var(--brand-darker, #005496);
+  --color-brand-card: var(--brand-card, #0071DC);
+  --color-brand-light: var(--brand-light, #ffffff);
+  --color-brand-muted: var(--brand-muted, rgba(255, 255, 255, 0.85));
+  --color-brand-blue: var(--brand-blue, #0F5EFF);
+  --color-brand-orange: var(--brand-orange, #FF8800);
+  --color-brand-border: var(--brand-border, rgba(255, 255, 255, 0.16));
+}
+/* Base Body Engine Fixes for Mobile Scaling */
+html, body {
+  forced-color-adjust: none !important;
+  color-scheme: dark light;
+  background-color: var(--brand-dark, #005FcA) !important;
+  color: var(--brand-light, #ffffff) !important;
 }
 
+body {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif !important;
+  font-size: 18px !important; /* Forces normal global readable size */
+  line-height: 1.3 !important; /* Increases gap between vertical lines */
+  letter-spacing: 0.01em !important; /* Moves letters apart nicely */
+  word-spacing: 0.06em !important; /* Moves words apart so they don't stick */
+  
+  /* Anti-thin rendering engine directives for mobile Safari/Chrome */
+  -webkit-font-smoothing: subpixel-antialiased !important;
+  -moz-osx-font-smoothing: auto !important;
+  text-rendering: optimizeLegibility !important;
+}
 
-/* Improved marquee — two speeds */
+/* Explicit scaling up for headings so they look big and professional */
+h1 {
+  font-size: 3rem !important; 
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 800 !important;
+}
+
+h2 {
+  font-size: 2rem !important; 
+  line-height: 1.3 !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+h3 {
+  font-size: 1.4rem !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+}
+
+/* Numbers like 150+ track records spacing adjustment */
+.stat-number {
+  font-size: 2.25rem !important; /* Makes numbers distinct and big */
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.1 !important;
+  color: var(--brand-orange, #FF8800) !important; /* Protects original color */
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, section {
+  forced-color-adjust: none !important;
+}
+
+/* Custom Utilities Layer */
+@layer utilities {
+  .bg-brand-dark { background-color: var(--brand-dark, #005FcA); }
+  .bg-brand-darker { background-color: var(--brand-darker, #004395); }
+  .bg-brand-card { background-color: var(--brand-card, #0071DC); }
+
+  .text-brand-light { color: var(--brand-light, #ffffff) !important; }
+  .text-brand-muted { color: var(--brand-muted, rgba(255, 255, 255, 0.85)) !important; }
+
+  .text-brand-blue { color: var(--brand-blue, #0F5EFF); }
+  .text-brand-orange { color: var(--brand-orange, #FF8800); }
+
+  .bg-brand-blue { background-color: var(--brand-blue, #0F5EFF); }
+  .bg-brand-orange { background-color: var(--brand-orange, #FF8800); }
+
+  .border-brand-border { border-color: var(--brand-border, rgba(255, 255, 255, 0.16)); }
+
+  /* Generic text color that flips safely on background structures */
+  .text-on-bg { color: var(--brand-contrast-on-bg, #ffffff) !important; }
+  .text-contrast { color: var(--brand-contrast-on-bg, #ffffff) !important; }
+
+  /* Industrial Primary Button Styles */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem; /* Increased button padding */
+    border-radius: 0.05rem;
+    background-color: var(--btn-primary-bg, #FF8800);
+    color: #ffffff !important;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    border: 1px solid var(--btn-primary-border, rgba(255, 255, 255, 0.15));
+    transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    background-color: var(--btn-primary-bg-hover, #005FcA);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Responsive theme toggler UI layouts */
+  .theme-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--brand-border, rgba(255, 255, 255, 0.16));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+  }
+
+  .theme-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+}
+
+/* Smooth Scrolling Marquee Animations */
 .animate-marquee {
   animation: marquee 35s linear infinite;
 }
@@ -45,7 +162,7 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Swiper pagination custom */
+/* Swiper Pagination Custom Core Overrides */
 .testimonial-dots .swiper-pagination-bullet {
   width: 8px !important;
   height: 8px !important;
@@ -60,27 +177,27 @@ body {
   border-radius: 4px !important;
 }
 
-/* Details summary arrow */
+/* Details Summary Toggle Layout Elements */
 details summary::-webkit-details-marker { display: none; }
 details[open] summary span:last-child { content: '−'; }
 
-/* Form inputs */
+/* General Typography Context Setup */
 input, select, textarea {
-  font-family: var(--font-body);
+  font-family: var(--font-body), sans-serif;
 }
 input::placeholder, textarea::placeholder { color: rgba(136,146,164,0.5); }
 
-/* Image brightness helper */
+/* Asset Brightness Overlays */
 .img-overlay-dark img { filter: brightness(0.75); }
 
-/* Mobile menu panel scrollbar */
+/* Scrolling Customization inside Nav Layers */
 .mobile-menu-panel::-webkit-scrollbar { width: 3px; }
 .mobile-menu-panel::-webkit-scrollbar-thumb { background: #1A2240; }
 
-/* Perspective for 3D cards */
+/* 3D Transform Environments */
 .perspective-1000 { perspective: 1000px; }
 
-/* GLOBAL FIX - Force input text color */
+/* Global Input / Control Standardization rules */
 input, 
 textarea, 
 select,
@@ -93,19 +210,17 @@ select,
 [type="search"],
 textarea.form-input,
 select.form-input {
-  color: #111827 !important;  /* gray-900 */
+  color: #111827 !important; 
   background-color: #ffffff !important;
   -webkit-text-fill-color: #111827 !important;
 }
 
-/* Fix placeholder color */
 input::placeholder,
 textarea::placeholder {
   color: #9ca3af !important;
   -webkit-text-fill-color: #9ca3af !important;
 }
 
-/* Fix focus states */
 input:focus,
 textarea:focus,
 select:focus {
@@ -114,7 +229,7 @@ select:focus {
   outline: none;
 }
 
-/* CRITICAL: Fix browser autofill white text */
+/* Autofill Layer Control Frameworks */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

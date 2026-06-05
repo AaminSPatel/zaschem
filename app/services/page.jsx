@@ -24,7 +24,6 @@ import { useEffect, useMemo, useState } from 'react';
   },
 };
  */
-const iconMap = { Droplets, Building2, Wrench, FlaskConical, Layers, Waves, Sun, Shield };
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -104,7 +103,7 @@ export default function ServicesPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/30 to-transparent" />
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-brand-orange text-on-bg text-xs font-mono tracking-wider">
+                      <span className="px-3 py-1 bg-brand-orange text-on-bg text-xs font-mono tracking-wideer">
                         {service.title}
                       </span>
                     </div>

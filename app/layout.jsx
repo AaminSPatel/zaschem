@@ -1,7 +1,6 @@
 import { Barlow_Condensed, Barlow, Share_Tech_Mono } from 'next/font/google';
 import './globals.css';
-import './tailwind-colors.css';
-import { THEMES } from '../components/theme/useTheme';
+//import { THEMES } from '../components/theme/useTheme';
 //import Navbar from '';
 import Footer from '../components/layout/Footer';
 import Navbar from '../components/layout/Navbar';

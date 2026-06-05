@@ -32,7 +32,7 @@ export const THEMES = [
     accentBlue: '#FF8800', 
     accentOrange: '#FF8800', 
     bgDark: '#005FcA',     // Mid-tone corporate blue background
-    bgDarker: '#004395',   // Deeper blue
+    bgDarker: '#004fc8',   // Deeper blue
     card: '#0071DC'        // Bright logo-blue card
   }/* ,
   { 
