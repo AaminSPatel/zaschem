@@ -26,7 +26,7 @@ export default function Sidebar({ onClose }) {
           ZCI
         </div>
         <div className="min-w-0">
-          <div className="text-sm font-bold text-gray-900 leading-tight">ZAS CHEM INDIA</div>
+          <div className="text-sm font-bold text-gray-900 leading-tight">ZASCHEM INDIA</div>
           <div className="text-xs font-semibold text-orange-500 tracking-wide">Admin Panel</div>
         </div>
         {onClose && (

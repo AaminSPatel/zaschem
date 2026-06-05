@@ -53,7 +53,7 @@ export default function DashboardPage() {
       <div className="mb-5">
         <h1 className="text-xl font-bold text-gray-900">Dashboard Overview</h1>
         <p className="text-sm text-gray-500 mt-0.5">
-          ZAS CHEM INDIA — live data from your backend ·{' '}
+          ZASCHEM INDIA — live data from your backend ·{' '}
           {new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
       </div>

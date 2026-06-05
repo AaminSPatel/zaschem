@@ -52,7 +52,7 @@ export default function LoginPage() {
               ZCI
             </div>
             <div>
-              <div className="text-sm font-bold text-gray-900">ZAS CHEM INDIA</div>
+              <div className="text-sm font-bold text-gray-900">ZASCHEM INDIA</div>
               <div className="text-xs font-semibold text-orange-500 tracking-wide">Admin Panel</div>
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function LoginPage() {
           </form>
 
           <p className="text-center text-xs text-gray-400 mt-5">
-            Secure admin access · ZAS CHEM INDIA PVT. LTD.
+            Secure admin access · ZASCHEM INDIA PVT. LTD.
           </p>
         </div>
       </div>

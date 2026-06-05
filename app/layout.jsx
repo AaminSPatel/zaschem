@@ -10,12 +10,15 @@ const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
   weight: ['400', '600', '700', '800', '900'],
   variable: '--font-display',
+  display: 'swap',
 });
 const barlow = Barlow({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-body',
+  display: 'swap',
 });
+
 const shareTechMono = Share_Tech_Mono({
   subsets: ['latin'],
   weight: ['400'],

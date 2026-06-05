@@ -71,9 +71,9 @@ export default function ContactsPage() {
           aria-label="Search contacts"
         />
         <span className="text-xs text-gray-400 hidden sm:block">{filtered.length} results</span>
-        <Btn variant="outline" size="sm" onClick={() => exportCSV(contacts)}>
+       {/*  <Btn variant="outline" size="sm" onClick={() => exportCSV(contacts)}>
           ↓ Export CSV
-        </Btn>
+        </Btn> */}
       </div>
 
       {/* List */}
