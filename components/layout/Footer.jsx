@@ -41,7 +41,7 @@ const quickLinks = [
   { label:'Contact Us',           href:'/contact' },
   { label:'Terms & Conditions',   href:'/terms-conditions' },
   { label:'Privacy Policy',       href:'/privacy-policy' },
-  { label:'Sitemap',              href:'/admin' },
+  { label:'Sitemap',              href:'/admin/login' },
 ];
 
 const sectors = [

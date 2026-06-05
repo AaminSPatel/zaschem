@@ -5,18 +5,12 @@ import { authApi } from '@/lib/adminApi';
 
 const AdminContext = createContext(null);
 
-function getCookie(name) {
-  if (typeof document === 'undefined') return null;
-  const match = document.cookie.match(new RegExp('(^| )' + name.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&') + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : null;
-}
-
 function hasValidToken() {
   if (typeof window === 'undefined') return false;
   const tokenFromLS = localStorage.getItem('zci_token');
-  const tokenFromCookie = getCookie('zci_token');
-  return Boolean(tokenFromLS || tokenFromCookie);
+  return Boolean(tokenFromLS);
 }
+
 
 export function AdminProvider({ children }) {
   const router = useRouter();
@@ -50,21 +44,21 @@ export function AdminProvider({ children }) {
       localStorage.setItem('zci_refresh', refreshToken);
       localStorage.setItem('zci_admin', JSON.stringify(adminData));
       // also set cookie for middleware
-      document.cookie = `zci_token=${token}; path=/; max-age=${60 * 60 * 24 * 7}`;
       setAdmin(adminData);
       return { success: true };
     }
     return { success: false, message: res?.message || 'Login failed' };
   }, []);
 
+
   const logout = useCallback(() => {
     localStorage.removeItem('zci_token');
     localStorage.removeItem('zci_refresh');
     localStorage.removeItem('zci_admin');
-    document.cookie = 'zci_token=; path=/; max-age=0';
     setAdmin(null);
     router.push('/admin/login');
   }, [router]);
+
 
   const refreshAdmin = useCallback(async () => {
     const res = await authApi.me();
@@ -97,10 +91,10 @@ export function AdminProvider({ children }) {
         localStorage.removeItem('zci_token');
         localStorage.removeItem('zci_refresh');
         localStorage.removeItem('zci_admin');
-        document.cookie = 'zci_token=; path=/; max-age=0';
         router.push('/admin/login');
         return false;
       }
+
       return true;
     } catch {
       // silent failure -> redirect to login
@@ -116,6 +110,7 @@ export function AdminProvider({ children }) {
 
       {/* Toast container */}
       <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none">
+
         {toasts.map((t) => (
           <div
             key={t.id}
@@ -138,3 +133,5 @@ export function useAdmin() {
   if (!ctx) throw new Error('useAdmin must be used inside AdminProvider');
   return ctx;
 }
+
+
