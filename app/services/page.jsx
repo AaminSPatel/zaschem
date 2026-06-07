@@ -1,10 +1,11 @@
 'use client'
 
 import Link from 'next/link';
-import { ArrowRight, Droplets, Building2, Wrench, Shield, CheckCircle } from 'lucide-react';
+import { ArrowRight, Droplets, Building2, Wrench, Shield, CheckCircle, ChevronRight, Layers } from 'lucide-react';
 import CTABanner from '@/components/sections/CTABanner';
 import { fetchServices } from '@/lib/apiClient';
 import { useEffect, useMemo, useState } from 'react';
+import { GrCatalog } from 'react-icons/gr';
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -42,14 +43,39 @@ export default function ServicesPage() {
     <div style={{ backgroundColor: '#002147' }} className="min-h-screen text-gray-200 font-sans antialiased">
       
       {/* Structural Block Hero Design */}
-      <section className="relative py-28 border-b border-blue-950/80 bg-[#001730]">
-        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
+      <section className="relative  py-28 lg:py-36  border-b border-blue-950/80 bg-[#001730]">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="./industry.avif" 
+            alt="Industrial building infrastructure and concrete structural engineering site" 
+            className="w-full h-full object-cover opacity-85 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#002147]/65 via-[#002255]/80 to-[#002147]" />
+          <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
+        </div>
         
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#64dfdf] z-10" />
+
+         <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
+          <div 
+            style={{ background: 'radial-gradient(circle at 80% 40%, rgba(100,223,223,0.15) 0%, transparent 70%)' }} 
+            className="absolute inset-0" 
+          />
+        </div>
+      {/*   <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
+        */} 
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-8 items-center">
           <div className="lg:col-span-3">
-            <span style={{ color: '#64dfdf' }} className="text-xs font-mono font-bold tracking-widest block mb-3">
-              // CORE SYSTEM CATALOGUE
-            </span>
+            <nav className="flex items-center gap-2 text-xs text-gray-400 mb-6 font-mono">
+            <Link href="/" className="hover:text-[#64dfdf] transition-colors">HOME</Link>
+            <ChevronRight size={12} className="text-gray-600" />
+            <span style={{ color: '#f77f00' }} className="font-bold">SERVICES</span>
+          </nav>
+          
+          <div style={{ backgroundColor: 'rgba(100,223,223,0.08)', borderColor: 'rgba(100,223,223,0.2)', color: '#64dfdf' }} className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] uppercase px-3 py-1.5 border rounded-sm mb-4">
+            <GrCatalog size={12} /> CORE SYSTEM CATALOGUE
+          </div>
             <h1 className="font-display font-black text-4xl md:text-6xl text-white tracking-tight uppercase leading-none mb-6">
               HEAVY INDUSTRIAL <br/>
               <span style={{ color: '#f77f00' }}>SHIELDING</span> PROTOCOLS

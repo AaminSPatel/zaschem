@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Shield, Target, Award, CheckCircle2 } from 'lucide-react';
+import { Shield, Target, Award, CheckCircle2, ChevronRight } from 'lucide-react';
 import CTABanner from '@/components/sections/CTABanner';
 import StatsSection from '@/components/sections/StatsSection';
 
@@ -42,7 +42,19 @@ export default function AboutPage() {
       
       {/* Premium Royal Blue Hero Block */}
       <section style={{ backgroundColor: '#001a38' }} className="relative py-28 lg:py-36 border-b border-blue-950">
-        <div className="absolute inset-0 z-0 opacity-20">
+       <div className="absolute inset-0 z-0">
+          <img 
+            src="./industry.avif" 
+            alt="Industrial building infrastructure and concrete structural engineering site" 
+            className="w-full h-full object-cover opacity-85 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#002147]/65 via-[#002255]/80 to-[#002147]" />
+          <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
+        </div>
+        
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#64dfdf] z-10" />
+
+         <div className="absolute inset-0 z-0 opacity-20">
           <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
           <div 
             style={{ background: 'radial-gradient(circle at 80% 40%, rgba(100,223,223,0.15) 0%, transparent 70%)' }} 
@@ -51,6 +63,13 @@ export default function AboutPage() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-6 z-10">
+           <nav className="flex items-center gap-2 text-xs text-gray-400 mb-6 font-mono">
+            <Link href="/" className="hover:text-[#64dfdf] transition-colors">HOME</Link>
+            <ChevronRight size={12} className="text-gray-600" />
+            <span style={{ color: '#f77f00' }} className="font-bold">ABOUT</span>
+          </nav>
+          
+         
           <div 
             style={{ backgroundColor: 'rgba(100,223,223,0.08)', borderColor: 'rgba(100,223,223,0.2)', color: '#64dfdf' }} 
             className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] uppercase px-3 py-1.5 border rounded-sm mb-6"
@@ -98,7 +117,7 @@ export default function AboutPage() {
             />
             <div style={{ backgroundColor: '#001a38', borderColor: 'rgba(255,255,255,0.05)' }} className="relative border p-2 rounded-sm shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&q=80" 
+                src="./about-zaschem-2.avif" 
                 alt="ZasChem India structural strengthening solutions installation site" 
                 className="w-full h-96 object-cover grayscale contrast-125 opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-500" 
               />

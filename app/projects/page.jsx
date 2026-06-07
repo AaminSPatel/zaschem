@@ -65,9 +65,28 @@ export default function ProjectsPage() {
 
       {/* Premium Royal Blue Hero Block */}
       <section style={{ backgroundColor: '#001a38' }} className="relative py-28 lg:py-36 border-b border-blue-950">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
+  <div className="absolute inset-0 z-0">
+          <img 
+            src="./industry.avif" 
+            alt="Industrial building infrastructure and concrete structural engineering site" 
+            className="w-full h-full object-cover opacity-85 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#002147]/65 via-[#002255]/80 to-[#002147]" />
+          <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
         </div>
+        
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#64dfdf] z-10" />
+
+         <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
+          <div 
+            style={{ background: 'radial-gradient(circle at 80% 40%, rgba(100,223,223,0.15) 0%, transparent 70%)' }} 
+            className="absolute inset-0" 
+          />
+        </div>
+
+
+
         <div className="relative max-w-7xl mx-auto px-6 z-10">
           <nav className="flex items-center gap-2 text-xs text-gray-400 mb-6 font-mono">
             <Link href="/" className="hover:text-[#64dfdf] transition-colors">HOME</Link>

@@ -9,12 +9,16 @@ export default function CTABanner() {
     <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#002147] to-[#004080]">
       {/* Background with Real Blue Depth overlay */}
       <div className="absolute inset-0">
-        <img
+         <motion.img
+            initial={{ opacity: 0, y: 5 ,scale:1.5}}
+            whileInView={{ opacity: 0.9, y: 0 ,scale:1}}
+            viewport={{ once: true }}
+            transition={{duration:3}}
           src="industry.avif"
           alt="Industrial infrastructure"
           className="w-full h-full object-cover opacity-30 mix-blend-overlay"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#003366]/90 to-[#00509d]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/75 via-[#003366]/50 to-[#00509d]/20" />
         <div className="absolute inset-0 grid-lines opacity-10 pointer-events-none" />
       </div>
 

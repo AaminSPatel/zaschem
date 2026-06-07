@@ -25,9 +25,6 @@ export default function WhyChooseUsSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,223,223,0.05),transparent_40%)]" />
        */}
        <motion.div 
-       initial={{scale:0.9,opacity:0.2}}
-       whileInView={{scale:1.8,opacity:0.4}}
-       transition={{ duration: 27.7 }}
        className=' scale-130' style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(${C.border} 1px, transparent 1px), linear-gradient(90deg, ${C.border} 1px, transparent 1px)`, backgroundSize:'60px 80px', opacity:0.25, pointerEvents:'none' }} />
 
       <div className="max-w-7xl mx-auto px-6">
@@ -42,7 +39,7 @@ export default function WhyChooseUsSection() {
           >
             <div className="relative overflow-hidden border border-white/10 rounded-sm">
               <img
-                src="/p4.avif"
+                src="/about-zaschem-1.avif"
                 alt="Industrial waterproofing experts"
                 className="w-full h-[500px] object-cover opacity-80"
               />

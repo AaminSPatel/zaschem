@@ -48,8 +48,39 @@ export default function ContactPage() {
     try {
       const res = await createContactInquiry(form);
       console.log('[ContactPage] backend response =', res);
-      if (res?.success) setStatus('success');
-      else setStatus('error');
+
+      if (!res?.success) {
+        setStatus('error');
+        return;
+      }
+
+      // Open WhatsApp chat after backend save completes.
+      // Your number: 7004298988
+      const inquiry = res?.data || {};
+      const phoneTo = '7004298988';
+
+      const messageLines = [
+        'New Contact Inquiry - ZasChem India',
+        '',
+        `Name: ${inquiry?.name || form?.name || ''}`,
+        `Company: ${inquiry?.company || form?.company || ''}`,
+        `Phone: ${inquiry?.phone || form?.phone || ''}`,
+        `Email: ${inquiry?.email || form?.email || ''}`,
+        `Service Interested: ${inquiry?.serviceInterested || form?.service || ''}`,
+        '',
+        'Message:',
+        `${inquiry?.message || form?.message || ''}`,
+      ];
+
+      const text = messageLines.join('\n').trim();
+      const waUrl = `https://wa.me/${phoneTo}?text=${encodeURIComponent(text)}`;
+
+      setStatus('success');
+
+      // Small wait so user sees success UI briefly (and request fully completes).
+      setTimeout(() => {
+        window.location.href = waUrl;
+      }, 900);
     } catch (err) {
       console.error('[ContactPage] submit error =', err);
       setStatus('error');
@@ -59,7 +90,7 @@ export default function ContactPage() {
   return (
     <div className="bg-brand-dark min-h-screen text-white">
       {/* Hero Section with Premium Unsplash Structural Image Background */}
-      <section className="relative py-28 overflow-hidden border-b border-white/5">
+      <section className="relative py-28 lg:py-36  overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 z-0">
           <img 
             src="./industry.avif" 
@@ -71,7 +102,14 @@ export default function ContactPage() {
         </div>
         
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#64dfdf] z-10" />
-        
+
+         <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
+          <div 
+            style={{ background: 'radial-gradient(circle at 80% 40%, rgba(100,223,223,0.15) 0%, transparent 70%)' }} 
+            className="absolute inset-0" 
+          />
+        </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <nav className="flex items-center gap-2 text-xs text-gray-300 mb-6 font-mono tracking-widest">
             <Link href="/" className="hover:text-[#64dfdf] transition-colors">HOME</Link>
@@ -79,17 +117,31 @@ export default function ContactPage() {
             <span className="text-[#f77f00]">CONTACT</span>
           </nav>
           
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-black tracking-[0.2em] text-[#fcbf49] uppercase mb-4">
-            <Shield size={14} className="text-[#f77f00] fill-[#f77f00]" /> PAN-INDIA SERVICE NETWORKS
+         
+           <div 
+            style={{ backgroundColor: 'rgba(100,223,223,0.08)', borderColor: 'rgba(100,223,223,0.2)', color: '#64dfdf' }} 
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] uppercase px-3 py-1.5 border rounded-sm mb-6"
+          >
+            <Shield size={12} style={{ color: '#64dfdf' }} /> PAN-INDIA SERVICE NETWORKS
           </div>
-          
-          <h1 className="font-display font-black text-5xl md:text-6xl text-white tracking-tight leading-none mb-6">
+           <h1 
+            style={{ color: '#ffffff' }} 
+            className="font-display font-black text-4xl md:text-6xl tracking-tight leading-none mb-6"
+          >
+            LET&apos;S DISCUSS<br />
+            <span style={{ color: '#f77f00' }}>YOUR INDUSTRIAL PROJECT</span><br />
+           
+          </h1>
+          <p className="text-gray-300 text-base md:text-lg max-w-3xl leading-relaxed">
+            Get comprehensive commercial evaluation from expert <strong>industrial waterproofing contractors</strong>. ZasChem India provides technical assistance, seamless field assessment, and robust <strong>structural strengthening solutions</strong> tailored specifically for manufacturing plants, heavy warehouses, corporate infrastructure, and civil assets across India.
+         </p>
+         {/*  <h1 className="font-display font-black text-5xl md:text-6xl text-white tracking-tight leading-none mb-6">
             LET&apos;S DISCUSS<br /><span className="text-[#f77f00] drop-shadow-sm">YOUR INDUSTRIAL PROJECT</span>
           </h1>
           
           <p className="text-gray-300 text-base md:text-lg max-w-3xl leading-relaxed">
             Get comprehensive commercial evaluation from expert <strong>industrial waterproofing contractors</strong>. ZasChem India provides technical assistance, seamless field assessment, and robust <strong>structural strengthening solutions</strong> tailored specifically for manufacturing plants, heavy warehouses, corporate infrastructure, and civil assets across India.
-          </p>
+          </p> */}
         </div>
       </section>
 

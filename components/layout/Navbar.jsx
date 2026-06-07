@@ -73,16 +73,16 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <li 
                 key={link.href} 
-                className="relative h-full flex items-center" 
+                className="relative w-26 h-full flex items-center" 
                 onMouseEnter={() => link.children && setActiveDropdown(link.label)} 
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <Link href={link.href} className="flex items-center gap-1.5 px-4 h-full font-display font-bold text-xs tracking-widest text-white hover:text-[#64dfdf] transition-colors uppercase relative group">
+                <Link href={link.href} className="flex w-full items-center gap-1.5 px-4 h-full font-display font-bold text-xs tracking-widest text-white hover:text-[#64dfdf] transition-colors uppercase relative group">
                   {link.label}
                   {link.children && (
                     <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === link.label ? "rotate-180 text-[#64dfdf]" : ""}`} />
                   )}
-                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#f77f00] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                  <span className="absolute bottom-0  w-26 left-0 h-0.5 bg-[#f77f00] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                 </Link>
 
                 <AnimatePresence>
