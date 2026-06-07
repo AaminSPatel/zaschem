@@ -95,7 +95,7 @@ export default function HeroSection() {
               <div className="flex flex-col sm:flex-row gap-4 pointer-events-auto">
                 <Link 
                   href={slide.cta.href} 
-                  className="group inline-flex items-center gap-2 justify-center bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#003049] font-bold text-sm sm:text-base py-3.5 px-8 transition-all duration-300 rounded-sm shadow-lg shadow-orange-600/30"
+                  className="group inline-flex items-center gap-2 justify-center bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#003049] font-bold text-sm sm:text-base py-3.5 px-8 transition-all duration-300 shadow-lg shadow-orange-600/30"
                 >
                   {slide.cta.label} 
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -103,7 +103,7 @@ export default function HeroSection() {
                 
                 <a 
                   href="tel:+91-7004298988" 
-                  className="group inline-flex items-center gap-2 justify-center bg-white hover:bg-[#f77f00] text-[#003049] hover:text-white font-bold text-sm sm:text-base py-3.5 px-8 transition-all duration-300 rounded-sm shadow-md border border-white/20"
+                  className="group inline-flex items-center gap-2 justify-center bg-white hover:bg-[#f77f00] text-[#003049] hover:text-white font-bold text-sm sm:text-base py-3.5 px-8 transition-all duration-300 shadow-md border border-white/20"
                 >
                   <Phone size={15} className="text-[#f77f00] group-hover:text-white transition-colors" /> 
                   CALL NOW

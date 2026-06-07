@@ -67,7 +67,7 @@ export default function ProjectsPage() {
       <section style={{ backgroundColor: '#001a38' }} className="relative py-28 lg:py-36 border-b border-blue-950">
   <div className="absolute inset-0 z-0">
           <img 
-            src="./industry.avif" 
+            src="./a1.avif" 
             alt="Industrial building infrastructure and concrete structural engineering site" 
             className="w-full h-full object-cover opacity-85 mix-blend-overlay"
           />

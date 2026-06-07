@@ -107,7 +107,7 @@ export default function Navbar() {
 
           {/* Action Area */}
           <div className="flex items-center gap-4">
-            <Link href="/contact" className="hidden lg:inline-block bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#002147] font-mono font-bold text-xs tracking-widest py-3 px-6 transition-all duration-300 rounded-sm shadow-md">
+            <Link href="/contact" className="hidden lg:inline-block bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#002147] font-mono font-bold text-xs tracking-widest py-3 px-6 transition-all duration-300 shadow-md">
               GET QUOTE
             </Link>
             <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden w-11 h-11 flex items-center justify-center text-white bg-[#004080]/40 border border-white/10 z-10 rounded-sm" aria-label="Toggle menu">

@@ -46,7 +46,7 @@ export default function ServicesPage() {
       <section className="relative  py-28 lg:py-36  border-b border-blue-950/80 bg-[#001730]">
         <div className="absolute inset-0 z-0">
           <img 
-            src="./industry.avif" 
+            src="./a7.png" 
             alt="Industrial building infrastructure and concrete structural engineering site" 
             className="w-full h-full object-cover opacity-85 mix-blend-overlay"
           />
