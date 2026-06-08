@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAdmin } from '@/context/AdminContext';
+import AdminIcon from '@/components/admin/AdminIcon';
+
 
 const NAV = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: '⊞', group: 'MAIN' },
@@ -62,8 +64,20 @@ export default function Sidebar({ onClose }) {
                     : 'border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
               >
-                <span className="text-base w-5 text-center">{item.icon}</span>
+                {/* react-icons via AdminIcon */}
+                <span className="text-base w-5 text-center flex items-center justify-center">
+                  {/* map emoji -> fa6 icon name */}
+                  {item.icon === '⊞' && <AdminIcon name="FaCube" size="md" />}
+                  {item.icon === '✉' && <AdminIcon name="FaEnvelope" size="md" />}
+                  {item.icon === '⚗' && <AdminIcon name="FaFlask" size="md" />}
+                  {item.icon === '📁' && <AdminIcon name="FaFolderOpen" size="md" />}
+                  {item.icon === '★' && <AdminIcon name="FaStar" size="md" />}
+                  {item.icon === '⚙' && <AdminIcon name="FaGear" size="md" />}
+                  {item.icon === '👤' && <AdminIcon name="FaUser" size="md" />}
+                  {!['⊞','✉','⚗','📁','★','⚙','👤'].includes(item.icon) && <AdminIcon name="FaQuestion" size="md" />}
+                </span>
                 {item.label}
+
               </Link>
             </div>
           );

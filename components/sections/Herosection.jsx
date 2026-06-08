@@ -16,7 +16,7 @@ export default function HeroSection() {
   const slide = heroSlides[activeIdx];
 
   return (
-    <section className="relative min-h-[600px] h-[100svh] overflow-hidden bg-gradient-to-br from-[#003049] via-[#005f73] to-[#0a9396]">
+    <section className="relative min-h-[500px] h-[60vh] md:h-[100svh] overflow-hidden bg-gradient-to-br from-[#003049] via-[#005f73] to-[#0a9396]">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade, Navigation]}
         effect="fade"
@@ -25,7 +25,7 @@ export default function HeroSection() {
         navigation
         loop
         onSlideChange={(swiper) => setActiveIdx(swiper.realIndex % heroSlides.length)}
-        className="w-full h-full"
+        className="w-full h-full "
       >
         {heroSlides.map((s) => (
           <SwiperSlide key={s.id}>
@@ -34,9 +34,13 @@ export default function HeroSection() {
                 src={s.image} 
                 alt={s.title} 
                 className="w-full h-full object-cover opacity-60 blend-multiply" 
+                loading="lazy"
+                decoding="async"
+              
                 fetchPriority={s.id === 1 ? 'high' : 'auto'} 
               />
               {/* Premium Bright Royal Blue Gradients */}
+             
               <div className="absolute inset-0 bg-gradient-to-t from-[#002147]/90 via-[#003366]/60 to-[#004080]/30" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#003366]/40 to-transparent" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(247,127,0,0.15),transparent_45%)]" />
@@ -47,7 +51,15 @@ export default function HeroSection() {
 
       {/* CONTENT Overlay */}
       <div className="absolute inset-0 z-20 flex items-center md:items-center pointer-events-none">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pb-20 md:pb-0">
+      
+         <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
+          <div 
+            style={{ background: 'radial-gradient(circle at 80% 40%, rgba(100,223,223,0.15) 0%, transparent 70%)' }} 
+            className="absolute inset-0" 
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pb-15 md:pb-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIdx}
@@ -117,7 +129,7 @@ export default function HeroSection() {
       <style jsx global>{`
         .swiper-pagination-bullet { background: #ffffff !important; opacity: 0.5; }
         .swiper-pagination-bullet-active { background: #f77f00 !important; opacity: 1 !important; width: 20px !important; border-radius: 4px !important; }
-        .swiper-pagination { bottom: 40px !important; left: 24px !important; text-align: left !important; }
+        .swiper-pagination { bottom: 35px !important; left: 24px !important; text-align: left !important; }
         .swiper-button-next, .swiper-button-prev { display: none !important; }
       `}</style>
 

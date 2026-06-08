@@ -24,16 +24,9 @@ const siteConfig = {
   },
 };
 
-const serviceLinks = [
-  { label:'Waterproofing Systems',     href:'/services/waterproofing-systems' },
-  { label:'Structural Strengthening', href:'/services/structural-strengthening' },
-  { label:'Repair & Rehabilitation',  href:'/services/repair-rehabilitation' },
-  { label:'Acid Resistant Lining',    href:'/services/acid-resistant-lining' },
-  { label:'Industrial Flooring',      href:'/services/industrial-flooring' },
-  { label:'Polyurea Waterproofing',   href:'/services/polyurea-waterproofing' },
-  { label:'Heat Reflective Coating',  href:'/services/heat-reflective-coating' },
-  { label:'PU Waterproofing',         href:'/services/pu-waterproofing' },
-];
+import ServiceLinksClient from '@/components/common/ServiceLinksClient';
+import { localServiceLinks } from '@/components/common/ServiceLinks';
+
 
 const quickLinks = [
   { label:'About ZasChem India',  href:'/about' },
@@ -122,20 +115,24 @@ export default function Footer() {
             <h3 style={{ color:C.white, fontWeight:800, fontSize:13, letterSpacing:'0.15em', textTransform:'uppercase', marginBottom:20, display:'flex', alignItems:'center', gap:8 }}>
               <span style={{ width:16, height:2, background:C.orange, display:'inline-block' }} /> Our Services
             </h3>
-            <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:8 }}>
-              {serviceLinks.map(l => (
-                <li key={l.href}>
-                  <Link href={l.href}
-                    title={`ZasChem India – ${l.label} services across India`}
-                    style={{ display:'flex', alignItems:'center', gap:8, color:C.muted, fontSize:13, textDecoration:'none', transition:'color 0.2s, padding-left 0.2s', paddingLeft:0 }}
-                    onMouseOver={e => { e.currentTarget.style.color = C.white; e.currentTarget.style.paddingLeft='6px'; }}
-                    onMouseOut={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.paddingLeft='0'; }}>
-                    <ArrowRight size={11} style={{ color:C.blue, opacity:0.7, flexShrink:0 }} />
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <ServiceLinksClient localLinks={localServiceLinks}>
+              {(serviceLinks) => (
+                <ul style={{ listStyle:'none', margin:0, padding:0, display:'flex', flexDirection:'column', gap:8 }}>
+                  {serviceLinks.map(l => (
+                    <li key={l.href}>
+                      <Link href={l.href}
+                        title={`ZasChem India – ${l.label} services across India`}
+                        style={{ display:'flex', alignItems:'center', gap:8, color:C.muted, fontSize:13, textDecoration:'none', transition:'color 0.2s, padding-left 0.2s', paddingLeft:0 }}
+                        onMouseOver={e => { e.currentTarget.style.color = C.white; e.currentTarget.style.paddingLeft='6px'; }}
+                        onMouseOut={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.paddingLeft='0'; }}>
+                        <ArrowRight size={11} style={{ color:C.blue, opacity:0.7, flexShrink:0 }} />
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </ServiceLinksClient>
           </div>
 
           {/* Col 3: Quick links + Sectors */}

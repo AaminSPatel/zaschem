@@ -1,122 +1,83 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Award, Users, CheckCircle, Clock, Shield, MapPin } from 'lucide-react';
-import { whyChooseUs, clients } from '@/data/siteData';
 import SectionHeader from '../layout/Header';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
-
-const iconMap = { Award, Users, CheckCircle, Clock, Shield, MapPin };
-const C = {
-  bgDeep:  'var(--zas-bg-deep, #010e1f)',
-  bgCard:  'var(--zas-card, #031a38)',
-  blue:    'var(--zas-blue, #0082FB)',
-  orange:  'var(--zas-orange, #FF8800)',
-  white:   'var(--zas-text, #FFFFFF)',
-  muted:   'var(--zas-muted, rgba(255,255,255,0.65))',
-  border:  'var(--zas-border, rgba(255,255,255,0.15))',
-};
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="py-24 relative bg-gradient-to-br from-[#002147] via-[#002f6c] to-[#003366] relative overflow-hidden text-white">
-     {/*  <div className="absolute inset-0 grid-lines opacity-90 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,223,223,0.05),transparent_40%)]" />
-       */}
-       <motion.div 
-       className=' scale-130' style={{ position:'absolute', inset:0, backgroundImage:`linear-gradient(${C.border} 1px, transparent 1px), linear-gradient(90deg, ${C.border} 1px, transparent 1px)`, backgroundSize:'60px 80px', opacity:0.25, pointerEvents:'none' }} />
+    <section className="py-16 md:py-20 relative bg-gradient-to-br from-[#002147] via-[#002f6c] to-[#003366] overflow-hidden text-white">
+      
+      {/* Grid pattern - lightweight */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+        backgroundSize: '50px 50px'
+      }} />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column: Image & Experience Badge */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Column: Image */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.5 }}
             className="relative order-2 lg:order-1"
           >
             <div className="relative overflow-hidden border border-white/10 rounded-sm">
               <img
                 src="/about-zaschem-1.avif"
-                alt="Industrial waterproofing experts"
-                className="w-full h-[500px] object-cover opacity-80"
+                alt="Industrial waterproofing experts ZASCHEM India"
+                className="w-full h-[400px] object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/60 to-transparent" />
-              <div className="absolute top-0 left-0 w-10 h-10 border-t-[3px] border-l-[3px] border-[#64dfdf]" />
-              <div className="absolute bottom-0 right-0 w-10 h-10 border-b-[3px] border-r-[3px] border-[#f77f00]" />
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#64dfdf]" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#f77f00]" />
             </div>
-            <div className="absolute -bottom-4 -right-4 bg-[#002147] border border-white/10 p-6 shadow-2xl rounded-sm">
-              <p className="font-display font-black text-4xl text-[#f77f00] drop-shadow-sm">12+</p>
-              <p className="font-mono text-[10px] text-white tracking-widest mt-1">YEARS OF EXCELLENCE</p>
+            <div className="absolute -bottom-3 -right-3 bg-[#002147] border border-white/10 p-4 shadow-xl rounded-sm">
+              <p className="font-display font-black text-3xl text-[#f77f00]">13+</p>
+              <p className="font-mono text-[9px] text-white tracking-widest mt-0.5">YEARS OF EXCELLENCE</p>
             </div>
           </motion.div>
 
-          {/* Right Column: Text & Features Grid */}
+          {/* Right Column: Industry Counts */}
           <div className="order-1 lg:order-2">
             <SectionHeader
               label="WHY CHOOSE US"
-              title="ENGINEERING TRUST. DELIVERING EXCELLENCE."
-              subtitle="Certified engineers, proven materials, and rigorous QC — every project, every time."
+              title="Trusted Across Multiple Industries"
+              subtitle="Increasing life of Industrial Structure – Equal responsibility of manufacturer and applicator. End to End support (Diagnosis → Rectification → Warranty)."
               centered={false}
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-              {whyChooseUs.map((item, i) => {
-                const Icon = iconMap[item.icon] || Award;
-                return (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
-                    className="flex gap-4 p-5 bg-[#004080]/30 border border-white/5 hover:border-[#f77f00] transition-all duration-300 group rounded-sm backdrop-blur-sm"
-                  >
-                    <div className="w-12 h-12 bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-[#f77f00]/20 transition-colors border border-white/5">
-                      <Icon size={20} className="text-[#64dfdf] group-hover:text-[#f77f00] transition-colors" />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-base text-white mb-1 tracking-wide group-hover:text-[#fcbf49] transition-colors">{item.title}</h4>
-                      <p className="text-gray-300 text-xs leading-relaxed">{item.desc}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+              {[
+                { title: '⚡ Power Sector Clients', value: '25+', desc: 'Cooling tower and power plant protection.' },
+                { title: '🏗️ Infrastructure Clients', value: '20+', desc: 'Tunnels, metros, bridges and underground leakage arrest.' },
+                { title: '🏭 Industrial Clients', value: '18+', desc: 'Concrete spalling repair and structural strengthening.' },
+                { title: '🏨 Commercial & Hospitality', value: '15+', desc: 'Terrace waterproofing and acid resistant lining.' },
+                { title: '🏫 Institutional & Government', value: '12+', desc: 'Reliable execution with documented QC.' },
+                { title: '🏠 Residential & Real Estate', value: '30+', desc: 'Roof waterproofing and expansion joint systems.' },
+              ].map((card, idx) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.04, duration: 0.3 }}
+                  className="p-5 bg-[#004080]/30 border border-white/5 hover:border-[#f77f00] transition-all duration-200 rounded-sm"
+                >
+                  <div className="text-[#f77f00] font-display font-black text-3xl mb-1 tracking-tight">{card.value}</div>
+                  <h4 className="font-display font-bold text-sm text-white mb-1">{card.title}</h4>
+                  <p className="text-gray-300 text-[11px] leading-relaxed">{card.desc}</p>
+                </motion.div>
+              ))}
             </div>
+
+            <p className="mt-4 text-gray-300 text-[11px] leading-relaxed">
+              Power plant waterproofing solutions, industrial structure leak repair, cooling tower anticorrosive coating and chimney protective coating delivered with disciplined methodology.
+            </p>
           </div>
         </div>
-
-        {/* Client Logos Carousel */}
-        {clients && clients.length > 0 && (
-          <div className="mt-24 pt-12 border-t border-white/10">
-            <p className="font-mono text-[10px] tracking-[0.3em] text-gray-300 uppercase text-center mb-8">TRUSTED BY LEADING ENTERPRISES</p>
-            <Swiper
-              modules={[Autoplay]}
-              spaceBetween={20}
-              slidesPerView={2}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
-              breakpoints={{
-                640: { slidesPerView: 3 },
-                1024: { slidesPerView: 5 },
-              }}
-              className="w-full"
-            >
-              {clients.map((client, idx) => (
-                <SwiperSlide key={idx}>
-                  <div className="flex items-center justify-center h-20 px-6 bg-[#002147]/80 border border-white/5 group hover:border-[#f77f00] transition-all duration-300 rounded-sm">
-                    <div className="text-center">
-                      <div className="w-6 h-0.5 bg-[#64dfdf]/40 mx-auto mb-2 group-hover:bg-[#f77f00] transition-colors" />
-                      <span className="font-display font-bold text-xs text-gray-300 group-hover:text-white transition-colors tracking-widest uppercase whitespace-nowrap">
-                        {client.name || client}
-                      </span>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        )}
       </div>
     </section>
   );

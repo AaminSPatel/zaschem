@@ -69,12 +69,12 @@ export const heroSlides = [
 ];
 
 export const stats = [
-  { id: 1, value: "150+", label: "Civil Engineers Served", icon: "Users" },
-  { id: 2, value: "25+", label: "Power Plants Protected", icon: "Zap" },
-  { id: 3, value: "14+", label: "Years of Experience", icon: "Award" },
-  { id: 4, value: "100+", label: "Projects Completed", icon: "CheckCircle" },
-  { id: 5, value: "15+", label: "States Covered", icon: "MapPin" },
-  { id: 6, value: "98%", label: "Client Satisfaction", icon: "ThumbsUp" },
+  { id: 1, value: '25+', label: 'Power Plants Served', icon: 'Zap' },
+  { id: 2, value: '150+', label: 'Civil Engineers Trust Us', icon: 'Users' },
+  { id: 3, value: '40+', label: 'In-House Experts', icon: 'Award' },
+  { id: 4, value: '13+', label: 'Years of Excellence', icon: 'CheckCircle' },  // 2013 se 2026 = 13+ years
+  { id: 5, value: '100%', label: 'Execution Audit', icon: 'ThumbsUp' },
+  { id: 6, value: '8+', label: 'International Partners', icon: 'Globe' },  // NEW - Dubai Adhesive, Seal Boss, SIKA, BASF, FOSROC, etc.
 ];
 
 export const services = [
@@ -224,123 +224,7 @@ export const services = [
   },
 ];
 
-export const products = [
-  {
-    id: 1,
-    slug: "pu-waterproofing-membrane",
-    name: "ZAS PU FLEX 500",
-    category: "PU Waterproofing",
-    tagline: "High-Elongation Polyurethane Waterproofing Membrane",
-    shortDesc: "Single-component, moisture-curing polyurethane membrane with >500% elongation for exposed and buried applications.",
-    description: `ZAS PU FLEX 500 is a premium single-component polyurethane waterproofing membrane formulated for demanding exposed applications. Its high elongation (>500%) and excellent recovery make it ideal for surfaces experiencing thermal movement, structural deflection, or vibration.
 
-    The membrane cures by atmospheric moisture to form a tough, flexible, and seamless film that bonds permanently to concrete, masonry, and metal substrates. It requires minimal surface preparation and can be applied by brush, roller, or airless spray.`,
-    features: ["Elongation >500%", "Single Component", "Moisture Cure", "UV Stable Grade Available", "VOC Compliant", "NSF Certified Grade"],
-    specifications: {
-      coverage: "1.0-1.5 kg/m² per coat",
-      thickness: "1.5-2.0mm (2 coats)",
-      curetime: "24-48 hours (full cure 7 days)",
-      temperature: "-20°C to +120°C service",
-      packaging: "5 kg, 20 kg containers",
-    },
-    image: "water_proofing.avif",
-    metaTitle: "ZAS PU FLEX 500 - Polyurethane Waterproofing Membrane",
-    metaDesc: "High-elongation single-component PU waterproofing membrane. >500% elongation for roofs, terraces, and buried structures.",
-    keywords: ["PU waterproofing membrane", "polyurethane membrane India", "single component waterproofing"],
-  },
-  {
-    id: 2,
-    slug: "heat-reflective-coating-coolroof",
-    name: "ZAS COOLROOF HRC-200",
-    category: "Heat Reflective Coating",
-    tagline: "Solar Reflective Elastomeric Cool Roof Coating",
-    shortDesc: "High-performance elastomeric coating reflecting >85% solar radiation, reducing roof temperature by 15-20°C.",
-    description: `ZAS COOLROOF HRC-200 is an advanced heat reflective and waterproofing coating system designed for Indian climatic conditions. It combines >85% solar reflectance with waterproofing properties to protect roofs while dramatically reducing solar heat gain.
-
-    The elastomeric nature of the coating provides crack-bridging over hairline cracks and accommodates thermal expansion, making it suitable for RCC, asbestos, and metal roof applications. It is water-based, low VOC, and environmentally friendly.`,
-    features: ["Solar Reflectance >85%", "Elastomeric Crack Bridge", "Waterproofing", "Low VOC", "UV Resistant (10+ years)", "White & Cool Colors"],
-    specifications: {
-      coverage: "200-250 ml/m² per coat",
-      coats: "2 coats recommended",
-      dryTime: "2-3 hours recoat, 24hr full cure",
-      temperature: "-10°C to +150°C service",
-      packaging: "5L, 20L containers",
-    },
-    image: "heat_reflect.avif",
-    metaTitle: "ZAS COOLROOF HRC-200 Heat Reflective Coating India",
-    metaDesc: "Solar reflective cool roof coating reducing roof temperature by 15-20°C. Waterproofing + heat insulation for industrial and commercial roofs.",
-    keywords: ["heat reflective coating India", "cool roof coating", "solar reflective paint India"],
-  },
-  {
-    id: 3,
-    slug: "roof-insulation-system",
-    name: "ZAS INSOTHERM RIS-300",
-    category: "Roof Insulation",
-    tagline: "Multi-Layer Thermal Insulation System for Industrial Roofs",
-    shortDesc: "Spray or board-applied polyurethane foam insulation system providing R-20+ thermal resistance for industrial and commercial roofs.",
-    description: `ZAS INSOTHERM RIS-300 is a comprehensive roof insulation system combining closed-cell polyurethane foam with a protective top membrane. The system dramatically reduces heat transfer through the roof envelope, cutting HVAC energy consumption by up to 30%.
-
-    Available in spray-applied and rigid board formats, it can be installed on new and existing roofs without major structural modifications. The closed-cell foam provides both thermal insulation and inherent water resistance.`,
-    features: ["R-Value >20/inch", "Closed Cell PU Foam", "Vapor Barrier Integral", "Lightweight System", "30% Energy Savings", "Fire Retardant Grade"],
-    specifications: {
-      thickness: "25-100mm as required",
-      density: "38-48 kg/m³",
-      rValue: "6.0-7.0 per inch",
-      fireRating: "Class B1 available",
-      packaging: "A+B components in sets",
-    },
-     image: "roof_insulation.avif",
-     metaTitle: "Industrial Roof Insulation System India | ZAS INSOTHERM",
-    metaDesc: "PU foam-based roof insulation providing R-20+ thermal resistance. 30% energy savings for industrial, commercial and cold storage facilities.",
-    keywords: ["roof insulation India", "PU foam insulation", "thermal insulation for roofs", "industrial insulation"],
-  },
-  {
-    id: 4,
-    slug: "acid-alkali-resistant-furan",
-    name: "ZAS FURAN ARF-100",
-    category: "Acid Alkali Resistant",
-    tagline: "Industrial-Grade Furan Resin Chemical Resistant System",
-    shortDesc: "High-performance furan resin-based mortar and grout system for acid brick lining in chemically aggressive environments.",
-    description: `ZAS FURAN ARF-100 is a two-component furan resin system comprising resin, catalyst, and filler for use as mortar and grout in acid-proof brick and tile lining installations. It provides exceptional resistance to a broad range of acids, solvents, and elevated temperatures.
-
-    The cured system maintains structural integrity and chemical resistance at temperatures up to 180°C, making it suitable for high-temperature chemical process equipment, reactor floors, and chimney linings.`,
-    features: ["Resists 98% H₂SO₄", "Temperature to 180°C", "Low Shrinkage", "High Compressive Strength", "Chemical Inert", "FDA Grade Available"],
-    specifications: {
-      mixRatio: "Resin:Catalyst per data sheet",
-      potLife: "30-45 min at 25°C",
-      workingTemp: "-10°C to +180°C",
-      compStrength: ">80 MPa",
-      packaging: "Set packs: 5kg, 25kg",
-    },
-    image: "Industrial_Epoxy_Flooring.avif",
-     metaTitle: "Furan Resin Acid Resistant Mortar India | ZAS FURAN ARF-100",
-    metaDesc: "Industrial furan resin system for acid brick lining. Resists 98% H₂SO₄ up to 180°C. Chemical plant, ETP & fertilizer plant applications.",
-    keywords: ["furan resin India", "acid resistant mortar", "chemical resistant lining", "acid proof brick mortar"],
-  },
-  {
-    id: 5,
-    slug: "acid-resistant-lining-system",
-    name: "ZasChemLINE ARL-400",
-    category: "Acid Resistant Lining",
-    tagline: "Complete Chemical Resistant Lining System for Industrial Floors & Tanks",
-    shortDesc: "Epoxy novolac and vinyl ester-based chemical resistant lining system for industrial floors, tanks, and trenches.",
-    description: `ZasChemLINE ARL-400 is an advanced chemical resistant lining system based on epoxy novolac and vinyl ester resins, providing comprehensive protection against a wide spectrum of chemicals including acids, alkalis, solvents, and hydrocarbons.
-
-    The system is applied as a monolithic seamless coating in multiple layers, eliminating joints and penetration points. It bonds directly to concrete and steel, forming a durable chemical barrier that protects the substrate from degradation.`,
-    features: ["Broad Chemical Resistance", "Seamless Application", "High Bond Strength", "Thermal Shock Resistant", "FDA Compliant Grade", "Anti-Static Option"],
-    specifications: {
-      dft: "500μm – 3000μm as specified",
-      adhesion: ">2.5 MPa pull-off",
-      hardness: "Shore D 70-80",
-      tempResistance: "Up to 120°C continuous",
-      packaging: "A+B packs: 5kg, 20kg",
-    },
-    image: "acid_lining.avif",
-     metaTitle: "Chemical Resistant Lining System India | ZasChemLINE ARL-400",
-    metaDesc: "Epoxy novolac & vinyl ester chemical resistant floor and tank lining. Seamless protection for chemical plants, pharma & food processing facilities.",
-    keywords: ["chemical resistant lining India", "epoxy novolac coating", "vinyl ester lining", "tank lining India"],
-  },
-];
 
 export const projects = [
   {
@@ -549,18 +433,6 @@ export const seoData = {
   },
 };
 
-export const blogIdeas = [
-  { id: 1, title: "5 Signs Your Industrial Roof Needs Immediate Waterproofing", category: "Waterproofing" },
-  { id: 2, title: "Power Plant Cooling Tower Waterproofing: Complete Guide 2024", category: "Power Plant" },
-  { id: 3, title: "Polyurea vs Polyurethane: Which Waterproofing Is Right for Your Project?", category: "Materials" },
-  { id: 4, title: "Understanding Concrete Carbonation and How to Stop It", category: "Concrete Repair" },
-  { id: 5, title: "Acid Resistant Lining Selection Guide for Chemical Plants", category: "Chemical Resistance" },
-  { id: 6, title: "Epoxy vs PU Industrial Flooring: Which System Should You Choose?", category: "Flooring" },
-  { id: 7, title: "How Heat Reflective Coatings Can Cut Your Cooling Costs by 25%", category: "Energy Efficiency" },
-  { id: 8, title: "Tunnel Waterproofing: Challenges and Modern Solutions", category: "Tunnels" },
-  { id: 9, title: "Carbon Fiber Reinforcement: The Future of Structural Strengthening", category: "Structural" },
-  { id: 10, title: "Dam Rehabilitation: Case Study from Odisha Water Department", category: "Case Study" },
-];
 
 export const faqs = [
   {

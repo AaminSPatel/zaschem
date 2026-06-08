@@ -55,7 +55,7 @@ body {
 }
 
 /* Explicit scaling up for headings so they look big and professional */
-h1 {
+/* h1 {
   font-size: 3rem !important; 
   line-height: 1.15 !important;
   letter-spacing: -0.01em !important;
@@ -74,7 +74,7 @@ h3 {
   font-size: 1.4rem !important;
   line-height: 1.4 !important;
   font-weight: 700 !important;
-}
+} */
 
 /* Numbers like 150+ track records spacing adjustment */
 .stat-number {

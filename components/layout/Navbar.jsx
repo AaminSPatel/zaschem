@@ -5,21 +5,15 @@ import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import { siteConfig } from "@/data/siteData";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navLinks = [
+import ServiceLinksClient from '@/components/common/ServiceLinksClient';
+import { localServiceLinks } from '@/components/common/ServiceLinks';
+
+const baseNavLinks = [
   { label: "Home", href: "/" },
   {
     label: "Services",
     href: "/services",
-    children: [
-      { label: "Waterproofing Systems", href: "/services/waterproofing-systems" },
-      { label: "Structural Strengthening", href: "/services/structural-strengthening" },
-      { label: "Repair & Rehabilitation", href: "/services/repair-rehabilitation" },
-      { label: "Acid Resistant Lining", href: "/services/acid-resistant-lining" },
-      { label: "Industrial Flooring", href: "/services/industrial-flooring" },
-      { label: "Polyurea Waterproofing", href: "/services/polyurea-waterproofing" },
-      { label: "Heat Reflective Coating", href: "/services/heat-reflective-coating" },
-      { label: "PU Waterproofing", href: "/services/pu-waterproofing" },
-    ],
+    children: null,
   },
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" }
@@ -65,45 +59,59 @@ export default function Navbar() {
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group z-10" onClick={() => setMobileOpen(false)}>
-            <img src="/logo_1.avif" alt="Zaschem India" className="h-14 w-auto object-contain" />
+<img src="/logo_1.avif" alt="Zaschem India" loading="lazy" width={400} height={200} className="h-14 w-auto object-contain" />
           </Link>
 
           {/* Nav Links */}
-          <ul className="hidden lg:flex items-center gap-2 h-full">
-            {navLinks.map((link) => (
-              <li 
-                key={link.href} 
-                className="relative w-26 h-full flex items-center" 
-                onMouseEnter={() => link.children && setActiveDropdown(link.label)} 
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link href={link.href} className="flex w-full items-center gap-1.5 px-4 h-full font-display font-bold text-xs tracking-widest text-white hover:text-[#64dfdf] transition-colors uppercase relative group">
-                  {link.label}
-                  {link.children && (
-                    <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === link.label ? "rotate-180 text-[#64dfdf]" : ""}`} />
-                  )}
-                  <span className="absolute bottom-0  w-26 left-0 h-0.5 bg-[#f77f00] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                </Link>
+          <ServiceLinksClient localLinks={localServiceLinks}>
+            {(serviceLinks) => (
+              <ul className="hidden lg:flex items-center gap-2 h-full">
+                {baseNavLinks.map((link) => {
+                  const isServices = link.label === 'Services';
+                  const effectiveChildren = isServices ? serviceLinks : link.children;
 
-                <AnimatePresence>
-                  {link.children && activeDropdown === link.label && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 15 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      exit={{ opacity: 0, y: 15 }} 
-                      className="absolute top-full left-0 w-72 bg-[#002147] border border-white/10 shadow-2xl z-50 py-3 rounded-sm"
+                  return (
+                    <li
+                      key={link.href}
+                      className="relative w-26 h-full flex items-center"
+                      onMouseEnter={() => effectiveChildren && setActiveDropdown(link.label)}
+                      onMouseLeave={() => setActiveDropdown(null)}
                     >
-                      {link.children.map((child) => (
-                        <Link key={child.href} href={child.href} className="flex items-center gap-3 px-6 py-3 text-xs font-bold tracking-wider uppercase text-gray-300 hover:text-white hover:bg-[#001a35]/60 transition-all border-l-2 border-transparent hover:border-[#f77f00]" onClick={() => setActiveDropdown(null)}>
-                          {child.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </li>
-            ))}
-          </ul>
+                      <Link href={link.href} className="flex w-full justify-center items-center gap-1 px-2 h-full font-display font-bold text-xs tracking-widest text-white hover:text-[#64dfdf] transition-colors uppercase relative group">
+                        {link.label}
+                        {effectiveChildren && (
+                          <ChevronDown size={16} className={`transition-transform  w-8 duration-200 ${activeDropdown === link.label ? "rotate-180 text-[#f77f00]" : ""}`} />
+                        )}
+                        <span className="absolute bottom-0 scale-x-0  w-26 left-0 h-0.5 bg-[#f77f00]  group-hover:scale-x-100 transition-transform origin-left" />
+                      </Link>
+
+                      <AnimatePresence>
+                        {effectiveChildren && activeDropdown === link.label && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 15 }}
+                            className="absolute top-full left-0 w-72 bg-[#002147] border border-white/10 shadow-2xl z-50 py-3 rounded-sm"
+                          >
+                            {effectiveChildren.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                className="flex items-center gap-3 px-6 py-3 text-xs font-bold tracking-wider uppercase text-gray-300 hover:text-white hover:bg-[#001a35]/60 transition-all border-l-2 border-transparent hover:border-[#f77f00]"
+                                onClick={() => setActiveDropdown(null)}
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </ServiceLinksClient>
 
           {/* Action Area */}
           <div className="flex items-center gap-4">
@@ -128,31 +136,52 @@ export default function Navbar() {
                 <button onClick={() => setMobileOpen(false)} className="w-10 h-10 flex items-center justify-center text-gray-300 border border-white/10 rounded-sm"><X size={20} /></button>
               </div>
 
-              <div className="flex-1 py-6 px-4">
-                {navLinks.map((link) => (
-                  <div key={link.href} className="mb-2">
-                    <div className="flex items-center justify-between">
-                      <Link href={link.href} onClick={() => !link.children && setMobileOpen(false)} className="flex-1 py-3 px-3 font-display font-bold text-sm tracking-widest text-gray-300 uppercase hover:text-[#fcbf49] transition-colors">
-                        {link.label}
-                      </Link>
-                      {link.children && (
-                        <button onClick={() => setMobileExpanded(mobileExpanded === link.label ? null : link.label)} className="w-11 h-11 flex items-center justify-center text-gray-300">
-                          <ChevronDown size={18} className={`transition-transform ${mobileExpanded === link.label ? "rotate-180 text-[#64dfdf]" : ""}`} />
-                        </button>
-                      )}
-                    </div>
-                    {link.children && mobileExpanded === link.label && (
-                      <div className="ml-4 pl-4 border-l border-[#64dfdf]/30 space-y-1 my-1">
-                        {link.children.map((child) => (
-                          <Link key={child.href} href={child.href} onClick={() => setMobileOpen(false)} className="block py-2.5 text-xs font-semibold tracking-wide text-gray-300 hover:text-[#fcbf49] uppercase">
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+              <ServiceLinksClient localLinks={localServiceLinks}>
+                {(serviceLinks) => (
+                  <div className="flex-1 py-6 px-4">
+                    {baseNavLinks.map((link) => {
+                      const isServices = link.label === 'Services';
+                      const effectiveChildren = isServices ? serviceLinks : link.children;
+
+                      return (
+                        <div key={link.href} className="mb-2">
+                          <div className="flex items-center justify-between">
+                            <Link
+                              href={link.href}
+                              onClick={() => !effectiveChildren && setMobileOpen(false)}
+                              className="flex-1 py-3 px-3 font-display font-bold text-sm tracking-widest text-gray-300 uppercase hover:text-[#fcbf49] transition-colors"
+                            >
+                              {link.label}
+                            </Link>
+                            {effectiveChildren && (
+                              <button
+                                onClick={() => setMobileExpanded(mobileExpanded === link.label ? null : link.label)}
+                                className="w-11 h-11 flex items-center justify-center text-gray-300"
+                              >
+                                <ChevronDown size={18} className={`transition-transform ${mobileExpanded === link.label ? "rotate-180 text-[#64dfdf]" : ""}`} />
+                              </button>
+                            )}
+                          </div>
+                          {effectiveChildren && mobileExpanded === link.label && (
+                            <div className="ml-4 pl-4 border-l border-[#64dfdf]/30 space-y-1 my-1">
+                              {effectiveChildren.map((child) => (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className="block py-2.5 text-xs font-semibold tracking-wide text-gray-300 hover:text-[#fcbf49] uppercase"
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
-                ))}
-              </div>
+                )}
+              </ServiceLinksClient>
 
               <div className="p-6 border-t border-white/10">
                 <Link href="/contact" onClick={() => setMobileOpen(false)} className="block w-full text-center bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#002147] py-4 text-xs font-mono font-bold tracking-widest transition-colors rounded-sm shadow-md">GET FREE QUOTE</Link>

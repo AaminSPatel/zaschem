@@ -70,7 +70,7 @@ export function ServiceBreakdown({ data = [] }) {
     </div>
   );
 }
-
+/* 
 export function LoadingRows({ cols = 4, rows = 4 }) {
   return (
     <>
@@ -86,7 +86,7 @@ export function LoadingRows({ cols = 4, rows = 4 }) {
     </>
   );
 }
-
+ */
 export function EmptyState({ icon = '📭', message = 'No data found' }) {
   return (
     <div className="py-14 text-center text-gray-400">
