@@ -368,18 +368,18 @@ export const testimonials = [
 ];
 
 export const clients = [
-  { id: 1, name: "NTPC Limited", logo: "./ntpc.avif" },
-  { id: 2, name: "DMRC", logo: "./dmrc.avif" },
-  { id: 3, name: "Steel Authority of India", logo: './sail.avif' },
-  { id: 4, name: "ONGC", logo: './ongc.avif' },
-  { id: 5, name: "Sun Pharma", logo: ' ./sun_pharma.avif' },
-  { id: 6, name: "Reliance Industries", logo: ' ./reliance.avif' },
-  { id: 7, name: "L&T Construction", logo: ' ./l&t.avif' },
-  { id: 8, name: "Tata Steel", logo: ' ./tata_steel.avif' },
-  { id: 9, name: "NHAI", logo: ' ./nhai.avif' },
-  { id: 10, name: "SAIL", logo: ' ./sail.avif' },
-  { id: 11, name: "BHEL", logo: ' ./bhel.avif' },
-  { id: 12, name: "Indian Oil", logo: ' ./indian_oil.avif' },
+  { id: 1, name: "NTPC Limited", logo: "/ntpc.avif" },
+  { id: 2, name: "DMRC", logo: "/dmrc.avif" },
+  { id: 3, name: "Steel Authority of India", logo: '/sail.avif' },
+  { id: 4, name: "ONGC", logo: '/ongc.avif' },
+  { id: 5, name: "Sun Pharma", logo: '/sun_pharma.avif' },
+  { id: 6, name: "Reliance Industries", logo: '/reliance.avif' },
+  { id: 7, name: "L&T Construction", logo: '/l&t.avif' },
+  { id: 8, name: "Tata Steel", logo: '/tata_steel.avif' },
+  { id: 9, name: "NHAI", logo: '/nhai.avif' },
+  { id: 10, name: "SAIL", logo: '/sail.avif' },
+  { id: 11, name: "BHEL", logo: '/bhel.avif' },
+  { id: 12, name: "Indian Oil", logo: '/indian_oil.avif' },
 ];
 
 export const whyChooseUs = [

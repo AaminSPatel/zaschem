@@ -1,16 +1,26 @@
 'use client';
-import { clients } from '@/data/siteData';
+import Image from "next/image";
+import { clients } from "@/data/siteData";
 
 const ClientLogo = ({ name, logo }) => (
   <div className="flex items-center justify-center h-16 px-5 min-w-[170px] bg-white border border-[#002147]/10 rounded-sm group hover:border-[#f77f00] transition-all duration-200 shadow-sm">
-    <img 
-      src={logo} 
-      alt={`${name} - Client of ZASCHEM India`} 
+    <img
+      src={logo}
+      alt={`${name} - Client of ZASCHEM India`}
+      width={68}
+      height={56}
+      // Display height ~32px (h-8) but keep a safe small intrinsic size.
+      sizes="(max-width: 768px) 56px, 68px"
       className="h-8 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-200"
       loading="lazy"
+      onError={(e) => {
+        // eslint-disable-next-line no-param-reassign
+        e.currentTarget.src = "./power_plant.avif";
+      }}
     />
   </div>
 );
+
 
 export default function ClientsSection() {
   // Pure CSS marquee - no framer-motion animation
