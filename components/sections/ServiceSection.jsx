@@ -16,7 +16,7 @@ function ServiceCard({ service, index }) {
       viewport={{ once: true }}
       transition={{ duration: 0.3, delay: index * 0.05 }}  // Faster
     >
-      <Link href={`/services/${service.slug}`}>
+        <Link href={`/services/${service.slug}`} aria-label={`Learn more about ${service.title} service`}>
         <div className="relative bg-white text-[#002147] rounded-sm overflow-hidden border border-white/20 hover:border-[#f77f00] shadow-md hover:shadow-xl transition-all duration-200 group">
           
           {/* Image */}
@@ -59,7 +59,11 @@ function ServiceCard({ service, index }) {
               ))}
             </div>
 
-            <div className="inline-flex items-center gap-1 text-[#f77f00] text-[10px] font-mono font-bold tracking-wider uppercase group-hover:text-[#002147] transition-colors duration-200">
+
+            <div
+              className="inline-flex items-center gap-1 text-[#f77f00] text-[10px] font-mono font-bold tracking-wider uppercase group-hover:text-[#002147] transition-colors duration-200"
+              aria-label={`Learn more about ${service.title} service`}
+            >
               LEARN MORE <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform duration-200" />
             </div>
           </div>
@@ -113,6 +117,7 @@ export default function ServicesSection({ limit = 6 }) {
         <div className="text-center mt-10">
           <Link 
             href="/services" 
+            aria-label="View all industrial protection services"
             className="group inline-flex items-center gap-2 bg-white text-[#002147] hover:bg-[#f77f00] hover:text-white font-bold py-2.5 px-6 rounded-sm transition-all duration-200 shadow-md text-sm"
           >
             VIEW ALL SERVICES 

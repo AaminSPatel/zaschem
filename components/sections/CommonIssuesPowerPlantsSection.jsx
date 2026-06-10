@@ -2,50 +2,58 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 const SERVICE_CATEGORIES = [
   {
     id: "waterproofing",
     label: "Waterproofing",
     color: "#0ea5e9",
     issues: [
+      // Naye waterproofing services (image 1 se)
       {
         id: "w1",
         title: "Foundation Waterproofing",
-        description: "Protecting building foundations from groundwater and moisture ingress.",
+        description:
+          "Protecting building foundations from groundwater and moisture ingress.",
         image: "/issues/w6.avif",
       },
       {
         id: "w2",
         title: "Underground Structure Waterproofing",
-        description: "Waterproofing of underground structures, basements and parking areas.",
+        description:
+          "Waterproofing of underground structures, basements and parking areas.",
         image: "/issues/w7.avif",
       },
       {
         id: "w3",
         title: "Water Tanks Waterproofing",
-        description: "Leak-proofing of overhead and underground water storage tanks.",
+        description:
+          "Leak-proofing of overhead and underground water storage tanks.",
         image: "/issues/w8.avif",
       },
       {
         id: "w4",
         title: "Sunken Area Waterproofing",
-        description: "Waterproofing of sunken areas in bathrooms, kitchens and utility spaces.",
+        description:
+          "Waterproofing of sunken areas in bathrooms, kitchens and utility spaces.",
         image: "/issues/w9.avif",
       },
       {
         id: "w5",
         title: "Cable Trench Waterproofing",
-        description: "Sealing cable trenches to protect electrical infrastructure from water damage.",
+        description:
+          "Sealing cable trenches to protect electrical infrastructure from water damage.",
         image: "/issues/w10.avif",
       },
       {
         id: "w6",
         title: "Construction Joint Treatments",
-        description: "Treatment of construction joints to prevent water seepage and leakage.",
+        description:
+          "Treatment of construction joints to prevent water seepage and leakage.",
         image: "/issues/w11.avif",
       },
+      /*  { id: 'w7', title: 'Arresting Heavy Underground Leakages', description: 'Stopping active heavy water leakages in underground structures using injection systems.', image: '/issues/w12.avif' },
+       */
     ],
   },
   {
@@ -53,42 +61,54 @@ const SERVICE_CATEGORIES = [
     label: "Repair & Rehabilitation",
     color: "#f97316",
     issues: [
+      // Pehle se the (6 issues)
       {
         id: "r1",
         title: "Damaged Beam Soffit",
-        description: "Spalled beams repaired using carbon fibre wrapping and high-strength mortar.",
+        description:
+          "Spalled beams repaired using carbon fibre wrapping and high-strength mortar.",
         image: "/issues/r1.avif",
       },
       {
         id: "r2",
         title: "Column Deterioration",
-        description: "Corroded and crumbling columns restored to full load-bearing capacity.",
+        description:
+          "Corroded and crumbling columns restored to full load-bearing capacity.",
         image: "/issues/r2.avif",
       },
       {
         id: "r3",
         title: "Slab Crack Injection",
-        description: "Structural cracks sealed with low-viscosity epoxy injection.",
+        description:
+          "Structural cracks sealed with low-viscosity epoxy injection.",
         image: "/issues/r3.avif",
       },
       {
         id: "r4",
         title: "Old Building Restoration",
-        description: "Complete restoration and rehabilitation of aging buildings.",
+        description:
+          "Complete restoration and rehabilitation of aging buildings.",
         image: "/issues/r4.avif",
       },
+
       {
         id: "r5",
         title: "Concrete Spall Repair",
-        description: "Delaminated concrete rebuilt with polymer-modified mortars.",
+        description:
+          "Delaminated concrete rebuilt with polymer-modified mortars.",
         image: "/issues/r5.avif",
       },
+
+      // Naye repair services (image 2 se)
       {
         id: "r6",
         title: "Concrete & Bitumen Road Repair",
-        description: "Repair of damaged concrete and bitumen roads for smooth surface.",
+        description:
+          "Repair of damaged concrete and bitumen roads for smooth surface.",
         image: "/issues/r6.avif",
       },
+      /*  { id: 'r7', title: 'Concrete Strengthening', description: 'Strengthening weak concrete structures using advanced techniques.', image: '/issues/r7.avif' },
+       */
     ],
   },
   {
@@ -99,25 +119,29 @@ const SERVICE_CATEGORIES = [
       {
         id: "s1",
         title: "Column Jacketing",
-        description: "RC jacketing of under-designed columns to enhance load capacity.",
+        description:
+          "RC jacketing of under-designed columns to enhance load capacity.",
         image: "/issues/s1.avif",
       },
       {
         id: "s2",
         title: "Beam Strengthening",
-        description: "Carbon fibre laminates for flexural reinforcement of beams.",
+        description:
+          "Carbon fibre laminates for flexural reinforcement of beams.",
         image: "/issues/s2.avif",
       },
       {
         id: "s3",
         title: "Slab Load Enhancement",
-        description: "Slabs upgraded using FRP overlays for additional live loads.",
+        description:
+          "Slabs upgraded using FRP overlays for additional live loads.",
         image: "/issues/s3.avif",
       },
       {
         id: "s4",
         title: "Foundation Underpinning",
-        description: "Inadequate foundations underpinned with grouting for safety.",
+        description:
+          "Inadequate foundations underpinned with grouting for safety.",
         image: "/issues/w6.avif",
       },
       {
@@ -129,7 +153,8 @@ const SERVICE_CATEGORIES = [
       {
         id: "s6",
         title: "Rebar Fixing",
-        description: "Fixing reinforcement bars in existing concrete structures.",
+        description:
+          "Fixing reinforcement bars in existing concrete structures.",
         image: "./s6.avif",
       },
     ],
@@ -142,13 +167,15 @@ const SERVICE_CATEGORIES = [
       {
         id: "d1",
         title: "Penstock Liner Leakage",
-        description: "Polyurethane injection seals active leaks in penstock steel liners.",
+        description:
+          "Polyurethane injection seals active leaks in penstock steel liners.",
         image: "/issues/d1.avif",
       },
       {
         id: "d2",
         title: "Spillway Restoration",
-        description: "Cavitation-damaged spillway surfaces restored with polymer concrete.",
+        description:
+          "Cavitation-damaged spillway surfaces restored with polymer concrete.",
         image: "/issues/d2.avif",
       },
       {
@@ -166,15 +193,19 @@ const SERVICE_CATEGORIES = [
       {
         id: "d5",
         title: "Soil Stabilisation in Tunnels",
-        description: "Silt and soil stabilised around tunnel linings with grouting.",
+        description:
+          "Silt and soil stabilised around tunnel linings with grouting.",
         image: "/issues/d8.avif",
       },
       {
         id: "d6",
         title: "HRT/TRT Lining Cracks",
-        description: "Cracks in head race and tail race tunnels repaired by grouting.",
+        description:
+          "Cracks in head race and tail race tunnels repaired by grouting.",
         image: "/issues/d6.avif",
       },
+      /*  { id: 'd7', title: 'Surge Shaft Leakage', description: 'Shafts sealed against high-pressure water ingress.', image: '/issues/d7.avif' },
+       */
     ],
   },
   {
@@ -182,16 +213,19 @@ const SERVICE_CATEGORIES = [
     label: "Flooring & Joints",
     color: "#f59e0b",
     issues: [
+      // Pehle se the (6 issues)
       {
         id: "e1",
         title: "Expansion Joint Failure",
-        description: "Failed expansion joints replaced with flexible polyurea sealants.",
+        description:
+          "Failed expansion joints replaced with flexible polyurea sealants.",
         image: "/issues/e1.avif",
       },
       {
         id: "e2",
         title: "Trimix Flooring Issues",
-        description: "Dusty industrial floors vacuum-dewatered for maximum hardness.",
+        description:
+          "Dusty industrial floors vacuum-dewatered for maximum hardness.",
         image: "/issues/e2.avif",
       },
       {
@@ -203,13 +237,15 @@ const SERVICE_CATEGORIES = [
       {
         id: "e4",
         title: "Acid Resistant Flooring",
-        description: "Chemical plant flooring relaid with acid-resistant tiles.",
+        description:
+          "Chemical plant flooring relaid with acid-resistant tiles.",
         image: "/issues/e4.avif",
       },
       {
         id: "e5",
         title: "Vertical Joint Failure",
-        description: "Open vertical joints sealed with pre-compressed foam systems.",
+        description:
+          "Open vertical joints sealed with pre-compressed foam systems.",
         image: "/issues/e5.avif",
       },
       {
@@ -225,10 +261,12 @@ const SERVICE_CATEGORIES = [
     label: "Protective Coating",
     color: "#ec4899",
     issues: [
+      // Naye coating services (image 2 se)
       {
         id: "c1",
         title: "Chimney Protective Coatings",
-        description: "High-temperature resistant coatings for industrial chimneys.",
+        description:
+          "High-temperature resistant coatings for industrial chimneys.",
         image: "/issues/c1.avif",
       },
       {
@@ -252,13 +290,15 @@ const SERVICE_CATEGORIES = [
       {
         id: "c5",
         title: "Thermal Insulation for PEB Sheds",
-        description: "Thermal insulation coatings for pre-engineered buildings.",
+        description:
+          "Thermal insulation coatings for pre-engineered buildings.",
         image: "/issues/c5.avif",
       },
       {
         id: "c6",
         title: "STP/ETP Tank Waterproofing",
-        description: "Waterproofing and lining for sewage and effluent treatment plants.",
+        description:
+          "Waterproofing and lining for sewage and effluent treatment plants.",
         image: "/issues/c6.avif",
       },
     ],
@@ -302,11 +342,11 @@ export default function CommonIssuesSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {activeCategory.issues.map((issue) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6  gap-3">
+          {activeCategory.issues.map((issue, idx) => (
             <div
               key={issue.id}
-              className="bg-white/5 group rounded-xl p-3 text-center transition-all duration-200 cursor-pointer"
+              className="bg-white/5 group  rounded-xl p-3 text-center transition-all duration-200 cursor-pointer"
               style={{
                 backgroundColor:
                   hoveredId === issue.id
@@ -322,30 +362,37 @@ export default function CommonIssuesSection() {
               onMouseEnter={() => setHoveredId(issue.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Image Container */}
-              <div className="w-16 h-16 mx-auto mb-2 transition-all group-hover:border-4 group-hover:border-amber-600 duration-300 group-hover:h-14 group-hover:w-14 rounded-full overflow-hidden bg-white/10 flex items-center justify-center relative">
-                <Image
+              {/* Image */}
+              <div className="w-18 h-18 mx-auto mb-2 transition-all group-hover:border-4 group-hover:border-amber-600 duration-300 group-hover:h-16 group-hover:w-16 group-hover:-translate-y-4 rounded-full overflow-hidden bg-white/10 flex items-center justify-center">
+                <img
                   src={issue.image}
                   alt={issue.title}
-                  width={72}
-                  height={72}
-                  className="scale-110 transition-all duration-300 text-[8px] text-amber-300 hover:scale-100 object-cover"
+                  width={64}
+                  height={64}
+                  sizes="(max-width: 640px) 48px, 64px"
+                  className="min-w-18 min-h-18 scale-110 transition-all duration-300 text-[8px] text-amber-300 flex items-center hover:scale-100 object-cover"
+                  loading="lazy"
                   onError={(e) => {
-                    e.currentTarget.src = "./power_plant.avif";
+                    // Fallback for missing/broken image files
+                    // eslint-disable-next-line no-param-reassign
+                    e.currentTarget.src = "/issues/e2.avif";
                   }}
                 />
               </div>
 
               {/* Title */}
-              <h3 className="text-white transition-all duration-300 group-hover:text-sm text-xs font-medium mb-1 ">
+              <h3 className="text-white  transition-all duration-300 group-hover:text-sm text-xs font-medium mb-1 ">
                 {issue.title}
               </h3>
 
-              {/* Description */}
+              {/* Description - shows on hover */}
+              {/* Description - Mobile pe hamesha dikhega, Desktop pe hover pe */}
               <p
-                className={`text-gray-300 mt-2 leading-tight transition-all duration-300 ${
-                  hoveredId === issue.id ? "text-[12px]" : "text-[10px]"
-                } block`}
+                className={`
+  text-gray-300 mt-2 leading-tight  transition-all duration-300
+  ${hoveredId === issue.id ? " text-[12px]" : "text-[10px]"}
+  block
+`}
               >
                 {issue.description}
               </p>
@@ -354,63 +401,69 @@ export default function CommonIssuesSection() {
         </div>
 
         {/* Footer Hint with Internal Links */}
+        {/* Footer Hint with Natural Internal Links */}
         <div className="text-center mt-8 space-y-3">
+          {/* Main SEO Line - ZASCHEM INDIA keyword naturally embedded */}
           <p className="text-gray-400 text-xs leading-relaxed max-w-2xl mx-auto">
             <span className="font-semibold text-white/80">ZASCHEM INDIA</span>{" "}
-            specializes in{" "}
+            specializes in
             <Link
               href="/services/waterproofing-systems"
-              className="text-[#e8eaea] hover:underline mx-1 transition-colors"
+              className="text-[#48f2f2] hover:underline mx-1 transition-colors"
             >
               waterproofing systems
             </Link>
-            ,{" "}
+            ,
             <Link
               href="/services/structural-strengthening"
-              className="text-[#e8eaea] hover:underline mx-1 transition-colors"
+              className="text-[#cff330] hover:underline mx-1 transition-colors"
             >
               structural strengthening
             </Link>
-            ,{" "}
+            ,
             <Link
               href="/services/repair-rehabilitation"
-              className="text-[#e8eaea] hover:text-white mx-1 transition-colors"
+              className="text-[#e251f6] hover:text-white mx-1 transition-colors"
             >
               repair & rehabilitation
-            </Link>{" "}
-            and{" "}
+            </Link>
+            and
             <Link
               href="/services/heat-reflective-coating"
-              className="text-[#e8eaea] hover:underline ml-1 transition-colors"
+              className="text-[#c50973] hover:underline ml-1 transition-colors"
             >
-              heat reflective coating
-            </Link>{" "}
-            for power plants, infrastructure, and industrial buildings across India.
+              heat reflective coating{" "}
+            </Link>
+            for power plants, infrastructure, and industrial buildings across
+            India.
           </p>
 
+          {/* Second SEO Line - Services mention */}
           <p className="text-gray-500 text-[11px] leading-relaxed max-w-2xl mx-auto">
-            Explore our{" "}
+            Explore our
             <Link
               href="/services"
               className="text-gray-400 hover:text-white mx-1 transition-colors"
             >
               complete range of services
-            </Link>{" "}
-            or see how we've{" "}
+            </Link>
+            or see how we've
             <Link
               href="/projects"
               className="text-gray-400 hover:text-white mx-1 transition-colors"
             >
               executed 100+ projects
-            </Link>{" "}
-            for clients like NTPC, L&T, and Tata Motors.{" "}
+            </Link>
+            for clients like NTPC, L&T, and Tata Motors.
             <span className="hidden md:inline">
+              {" "}
               Hover any card above to see detailed issue description.
             </span>
           </p>
 
+          {/* CTA Line */}
           <p className="text-gray-600 text-[10px]">
-            Need a solution?{" "}
+            Need a solution?
             <Link
               href="/contact"
               className="text-[#f77f00] hover:underline ml-1 transition-colors"
