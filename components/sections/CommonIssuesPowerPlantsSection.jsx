@@ -439,18 +439,18 @@ export default function CommonIssuesSection() {
           </p>
 
           {/* Second SEO Line - Services mention */}
-          <p className="text-gray-500 text-[11px] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-gray-300 text-[11px] leading-relaxed max-w-2xl mx-auto">
             Explore our
             <Link
               href="/services"
-              className="text-gray-400 hover:text-white mx-1 transition-colors"
+              className="text-gray-200 hover:text-white mx-1 transition-colors"
             >
               complete range of services
             </Link>
             or see how we've
             <Link
               href="/projects"
-              className="text-gray-400 hover:text-white mx-1 transition-colors"
+              className="text-gray-200 hover:text-white mx-1 transition-colors"
             >
               executed 100+ projects
             </Link>
@@ -462,7 +462,7 @@ export default function CommonIssuesSection() {
           </p>
 
           {/* CTA Line */}
-          <p className="text-gray-600 text-[10px]">
+          <p className="text-gray-300 text-[10px]">
             Need a solution?
             <Link
               href="/contact"

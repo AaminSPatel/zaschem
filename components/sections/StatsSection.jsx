@@ -23,7 +23,7 @@ export default function StatsSection() {
           <h2 className="font-display font-black text-2xl md:text-3xl lg:text-4xl text-white tracking-tight">
             NUMBERS THAT SPEAK FOR THEMSELVES
           </h2>
-          <p className="text-gray-400 text-sm mt-3 max-w-2xl mx-auto">
+          <p className="text-gray-200 text-sm mt-3 max-w-2xl mx-auto">
             ZASCHEM INDIA has been delivering excellence in waterproofing, structural repair, and concrete strengthening since 2013
           </p>
         </motion.div>
