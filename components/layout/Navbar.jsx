@@ -59,7 +59,7 @@ export default function Navbar() {
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group z-10" onClick={() => setMobileOpen(false)}>
-<img src="/logo_1.avif" alt="Zaschem India" loading="lazy" width={400} height={200} className="h-14 w-auto object-contain" />
+<img src="/logo_1.avif" alt="Zaschem India" width={40} height={20} className="h-14 w-auto object-contain" />
           </Link>
 
           {/* Nav Links */}
