@@ -34,7 +34,7 @@ export default function HeroSection() {
                 src={s.image} 
                 alt={s.title} 
                 className="w-full h-full object-cover opacity-60 blend-multiply" 
-                loading={s.id === 1 ? '' : 'lazy'}
+               /*  loading={s.id === 1 ? '' : 'lazy'} */
                 decoding="async"
               
                 fetchPriority={s.id === 1 ? 'high' : 'auto'} 
