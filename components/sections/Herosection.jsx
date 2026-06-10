@@ -35,7 +35,7 @@ export default function HeroSection() {
                 alt={s.title} 
                 className="w-full h-full object-cover opacity-60 blend-multiply" 
                 loading={s.id === 1 ? '' : 'lazy'}
-                decoding={s.id === 1 ? '' : 'async'}
+                decoding={s.id === 1 ? '' : 'asy'}
               
                 fetchPriority={s.id === 1 ? 'high' : 'auto'} 
               />
@@ -63,11 +63,11 @@ export default function HeroSection() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIdx}
-             /*  initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              */ className="w-full max-w-3xl pt-14"
+              className="w-full max-w-3xl pt-14"
             >
               {/* Section Tag */}
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#fcbf49] text-[#003049] font-mono text-xs font-black tracking-widest uppercase mb-6 rounded-sm shadow-md">
@@ -145,10 +145,10 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
         <motion.div
           key={activeIdx}
-       /*    initial={{ width: '0%' }}
+          initial={{ width: '0%' }}
           animate={{ width: '100%' }}
           transition={{ duration: 5.5, ease: 'linear' }}
-          */ className="h-full bg-gradient-to-r from-[#f77f00] to-[#fcbf49]"
+          className="h-full bg-gradient-to-r from-[#f77f00] to-[#fcbf49]"
         />
       </div>
     </section>
