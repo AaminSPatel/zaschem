@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image'; // 1. Next.js Image इम्पोर्ट करें
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade, Navigation } from 'swiper/modules';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -27,16 +28,19 @@ export default function HeroSection() {
         onSlideChange={(swiper) => setActiveIdx(swiper.realIndex % heroSlides.length)}
         className="w-full h-full "
       >
-        {heroSlides.map((s) => (
+        {heroSlides.map((s, idx) => ( // यहाँ s.id === 1 की जगह index का उपयोग करना ज़्यादा सुरक्षित है
           <SwiperSlide key={s.id}>
             <div className="absolute inset-0 z-0">
-              <img 
+              {/* 2. साधारण <img> की जगह Next.js Image का इस्तेमाल */}
+              <Image 
                 src={s.image} 
                 alt={s.title} 
-                className="w-full h-full object-cover opacity-60 blend-multiply" 
-                loading={s.id === 1 ? undefined : 'lazy'}
-                decoding={s.id === 1 ? undefined : 'async'}
-                fetchPriority={s.id === 1 ? 'high' : 'auto'} 
+                fill // absolute parent को कवर करने के लिए object-cover के साथ fill ज़रूरी है
+                sizes="(max-w-768px) 100vw, 100vw" // मोबाइल पर सिर्फ मोबाइल की चौड़ाई जितनी इमेज डाउनलोड होगी
+                className="object-cover opacity-60 blend-multiply" 
+                priority={idx === 0} // पहली स्लाइड की इमेज को सबसे पहले लोड और रेंडर करेगा (बिना JS का वेट किए)
+                loading={idx === 0 ? undefined : 'lazy'}
+                decoding={idx === 0 ? 'sync' : 'async'}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#002147]/90 via-[#003366]/60 to-[#004080]/30" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#003366]/40 to-transparent" />
@@ -46,7 +50,7 @@ export default function HeroSection() {
         ))}
       </Swiper>
 
-      {/* CONTENT Overlay */}
+      {/* CONTENT Overlay (बाकी का कोड पहले जैसा ही रहेगा) */}
       <div className="absolute inset-0 z-20 flex items-center md:items-center pointer-events-none">
         <div className="absolute inset-0 z-0 opacity-20">
           <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -66,13 +70,11 @@ export default function HeroSection() {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="w-full max-w-3xl pt-14"
             >
-              {/* Section Tag */}
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#fcbf49] text-[#003049] font-mono text-xs font-black tracking-widest uppercase mb-6 rounded-sm shadow-md">
                 <Shield size={12} className="fill-[#003049]" />
                 ZasChem INDIA PVT. LTD.
               </div>
 
-              {/* Title */}
               <h1 className="font-display text-3xl font-black sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4 drop-shadow-md">
                 {slide.title.split(' ').map((word, i) => (
                   <span
@@ -90,17 +92,14 @@ export default function HeroSection() {
                 ))}
               </h1>
 
-              {/* Subtitle */}
               <p className="font-display font-bold text-lg sm:text-xl text-white tracking-wide mb-4 opacity-95">
                 {slide.subtitle}
               </p>
 
-              {/* Description */}
               <p className="hidden sm:block text-gray-100 text-sm md:text-base leading-relaxed mb-4 max-w-xl opacity-90">
                 {slide.description}
               </p>
 
-              {/* B2B Authority Badges */}
               <div className="flex flex-col gap-2 mb-6 text-white max-w-2xl">
                 <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold tracking-wide bg-black/30 backdrop-blur-sm px-3 py-2 rounded border-l-2 border-[#fcbf49]">
                   <CheckCircle2 size={16} className="text-[#fcbf49] shrink-0 mt-0.5" />
@@ -112,7 +111,6 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 pointer-events-auto">
                 <Link 
                   href={slide.cta.href} 
@@ -142,7 +140,6 @@ export default function HeroSection() {
         .swiper-button-next, .swiper-button-prev { display: none !important; }
       `}</style>
 
-      {/* Scroll Down Vertical Trigger */}
       <div className="absolute right-8 bottom-12 z-30 hidden lg:flex flex-col items-center gap-2">
         <span className="font-mono text-xs text-white/80 tracking-widest" style={{ writingMode: 'vertical-rl' }}>SCROLL DOWN</span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
@@ -150,7 +147,6 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Bottom active status bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
         <motion.div
           key={activeIdx}
