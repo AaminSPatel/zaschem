@@ -15,7 +15,7 @@ export default function ServiceDetailPageClient({ service, related }) {
         <div className="absolute inset-0 z-0">
           {service.image?.url ? (
             <img 
-              src={service.image.url} 
+              src={typeof service.image === 'string' ? service.image : (service.image?.url || '/indstry.avif')} 
               alt={`${service.title} Engineering Execution - ZasChem India`} 
               className="w-full h-full object-cover grayscale opacity-30 contrast-125 brightness-75 scale-105" 
             />
