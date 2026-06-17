@@ -1,15 +1,23 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle, ChevronRight, Shield } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, ChevronRight, Shield, ClipboardCheck, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { siteConfig } from '@/data/siteData';
 import { createContactInquiry } from '@/lib/apiClient';
 
 const services = [
-  'Waterproofing Systems', 'Structural Strengthening', 'Repair & Rehabilitation',
-  'Acid Resistant Lining', 'Industrial Flooring', 'Polyurea Waterproofing',
-  'Heat Reflective Coating', 'PU Waterproofing', 'Other',
+  'PU Waterproofing (ASTM C-836/C-898)',
+  'Structural Strengthening (Carbon/Glass Fiber Wrap)',
+  'Acid Alkali Resistance Furan Lining (IS 4860)',
+  'Acid Resistant Tile Lining (IS 4457)',
+  'Vacuum Dewatered Trimix Flooring',
+  'Concrete Repair & Structural Rehabilitation',
+  'Premium Polyurea Waterproofing System',
+  'Solar & Heat Reflective Elastomeric Coating',
+  'Cable Trench Sealing & Sub-Surface Injection',
+  'Soil Stabilization, Dam & Tunnel Repair',
+  'Core Cutting & Rebar Fixing'
 ];
 
 // High-intent SEO FAQ Data for direct search crawling
@@ -42,33 +50,27 @@ export default function ContactPage() {
     e.preventDefault();
     setStatus('loading');
 
-    console.log('[ContactPage] submit clicked');
-    console.log('[ContactPage] payload =', form);
-
     try {
       const res = await createContactInquiry(form);
-      console.log('[ContactPage] backend response =', res);
 
       if (!res?.success) {
         setStatus('error');
         return;
       }
 
-      // Open WhatsApp chat after backend save completes.
-      // Your number: 7004298988
       const inquiry = res?.data || {};
       const phoneTo = '7004298988';
 
       const messageLines = [
-        'New Contact Inquiry - ZasChem India',
+        'New Technical RFQ - ZasChem India',
         '',
         `Name: ${inquiry?.name || form?.name || ''}`,
         `Company: ${inquiry?.company || form?.company || ''}`,
         `Phone: ${inquiry?.phone || form?.phone || ''}`,
         `Email: ${inquiry?.email || form?.email || ''}`,
-        `Service Interested: ${inquiry?.serviceInterested || form?.service || ''}`,
+        `Service: ${inquiry?.serviceInterested || form?.service || ''}`,
         '',
-        'Message:',
+        'Project & Site Specifications:',
         `${inquiry?.message || form?.message || ''}`,
       ];
 
@@ -77,7 +79,6 @@ export default function ContactPage() {
 
       setStatus('success');
 
-      // Small wait so user sees success UI briefly (and request fully completes).
       setTimeout(() => {
         window.location.href = waUrl;
       }, 900);
@@ -88,9 +89,9 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-brand-dark min-h-screen text-white">
+    <div className="bg-[#002147] min-h-screen text-white font-sans overflow-x-hidden">
       {/* Hero Section with Premium Unsplash Structural Image Background */}
-      <section className="relative py-28 lg:py-36  overflow-hidden border-b border-white/5">
+      <section className="relative py-28 lg:py-36 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 z-0">
           <img 
             src="./industry.avif" 
@@ -103,7 +104,7 @@ export default function ContactPage() {
         
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#64dfdf] z-10" />
 
-         <div className="absolute inset-0 z-0 opacity-20">
+        <div className="absolute inset-0 z-0 opacity-20">
           <div className="absolute inset-0 bg-[radial-gradient(#64dfdf_1px,transparent_1px)] [background-size:24px_24px]" />
           <div 
             style={{ background: 'radial-gradient(circle at 80% 40%, rgba(100,223,223,0.15) 0%, transparent 70%)' }} 
@@ -117,31 +118,22 @@ export default function ContactPage() {
             <span className="text-[#f77f00]">CONTACT</span>
           </nav>
           
-         
-           <div 
+          <div 
             style={{ backgroundColor: 'rgba(100,223,223,0.08)', borderColor: 'rgba(100,223,223,0.2)', color: '#64dfdf' }} 
             className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] uppercase px-3 py-1.5 border rounded-sm mb-6"
           >
-            <Shield size={12} style={{ color: '#64dfdf' }} /> PAN-INDIA SERVICE NETWORKS
+            <Shield size={12} style={{ color: '#64dfdf' }} /> PAN-INDIA INDUSTRIAL NETWORK
           </div>
-           <h1 
+          <h1 
             style={{ color: '#ffffff' }} 
             className="font-display font-black text-4xl md:text-6xl tracking-tight leading-none mb-6"
           >
-            LET&apos;S DISCUSS<br />
-            <span style={{ color: '#f77f00' }}>YOUR INDUSTRIAL PROJECT</span><br />
-           
+            INITIATE PLAN SUBMISSION &<br />
+            <span style={{ color: '#f77f00' }}>TECHNICAL SITE EVALUATION</span>
           </h1>
           <p className="text-gray-300 text-base md:text-lg max-w-3xl leading-relaxed">
-            Get comprehensive commercial evaluation from expert <strong>industrial waterproofing contractors</strong>. ZasChem India provides technical assistance, seamless field assessment, and robust <strong>structural strengthening solutions</strong> tailored specifically for manufacturing plants, heavy warehouses, corporate infrastructure, and civil assets across India.
-         </p>
-         {/*  <h1 className="font-display font-black text-5xl md:text-6xl text-white tracking-tight leading-none mb-6">
-            LET&apos;S DISCUSS<br /><span className="text-[#f77f00] drop-shadow-sm">YOUR INDUSTRIAL PROJECT</span>
-          </h1>
-          
-          <p className="text-gray-300 text-base md:text-lg max-w-3xl leading-relaxed">
-            Get comprehensive commercial evaluation from expert <strong>industrial waterproofing contractors</strong>. ZasChem India provides technical assistance, seamless field assessment, and robust <strong>structural strengthening solutions</strong> tailored specifically for manufacturing plants, heavy warehouses, corporate infrastructure, and civil assets across India.
-          </p> */}
+            Connect with expert <strong>industrial waterproofing contractors</strong>. ZasChem India provides comprehensive field analysis, engineering assistance, and certified <strong>structural strengthening solutions</strong> engineered specifically to solve structural failure across India.
+          </p>
         </div>
       </section>
 
@@ -150,13 +142,32 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
           
           {/* Left/Middle Column: Interactive RFQ Form */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="lg:col-span-2">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="lg:col-span-2">
+            
+            {/* Psychological Trust Badges directly attached to Form Top boundary */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+              <div className="bg-[#001a35] border border-blue-900/50 p-3 rounded-sm flex items-center gap-2.5">
+                <ClipboardCheck size={16} className="text-[#64dfdf] shrink-0" />
+                <span className="text-xs font-mono font-bold text-gray-200">24-HR TECH RESPONSE</span>
+              </div>
+              <div className="bg-[#001a35] border border-blue-900/50 p-3 rounded-sm flex items-center gap-2.5">
+                <Shield size={16} className="text-[#fcbf49] shrink-0" />
+                <span className="text-xs font-mono font-bold text-gray-200">ND DIAGNOSTIC AUDIT</span>
+              </div>
+              <div className="bg-[#001a35] border border-blue-900/50 p-3 rounded-sm flex items-center gap-2.5">
+                <CheckCircle size={16} className="text-[#f77f00] shrink-0" />
+                <span className="text-xs font-mono font-bold text-gray-200">ZERO-REWORK GUARANTEE</span>
+              </div>
+            </div>
+
             <div className="bg-[#004080]/30 border border-white/10 p-8 md:p-10 rounded-sm backdrop-blur-sm relative">
               <div className="absolute top-0 left-0 w-12 h-[2px] bg-[#f77f00]" />
               
-              <h2 className="font-display font-black text-2xl text-white mb-2 tracking-wide">REQUEST A TECHNICAL QUOTE</h2>
-              <p className="text-gray-300 text-sm mb-8">
-                Submit your commercial asset dimensions, structural problems, and technical challenges below. Our specialized engineering squad will examine the design parameters to craft a high-performance, turnkey asset protection outline.
+              <h2 className="font-display font-black text-xl md:text-2xl text-white mb-2 tracking-wide uppercase">
+                Submit Your Project Details / BOQ
+              </h2>
+              <p className="text-gray-300 text-xs md:text-sm mb-8 leading-relaxed">
+                Provide your structural breakdown, dimensions, or specific material codes below. Our chemical application wing will isolate your concrete failures to execute a flawless solution setup.
               </p>
 
               {status === 'success' ? (
@@ -164,9 +175,9 @@ export default function ContactPage() {
                   <div className="w-16 h-16 bg-green-500/10 border border-green-500/30 flex items-center justify-center mb-4 rounded-sm">
                     <CheckCircle size={32} className="text-green-400" />
                   </div>
-                  <h3 className="font-display font-black text-2xl text-white mb-2">MESSAGE RECEIVED SUCCESSFULLY!</h3>
+                  <h3 className="font-display font-black text-2xl text-white mb-2">TECHNICAL RFQ ROUTED!</h3>
                   <p className="text-gray-300 text-sm max-w-md leading-relaxed">
-                    Thank you for connecting with ZasChem India Private Limited. Your enquiry has been dispatched to our industrial project evaluation center. An expert engineer will review your blueprint and contact you within 24 business hours.
+                    Thank you. Your parameters have reached our evaluation center. Opening direct encrypted communication with our core engineering desk...
                   </p>
                 </div>
               ) : (
@@ -176,54 +187,66 @@ export default function ContactPage() {
                       <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">FULL NAME *</label>
                       <input name="name" required value={form.name} onChange={handle}
                         className="w-full bg-[#002147]/80 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors placeholder:text-gray-500 rounded-sm"
-                        placeholder="Your full name" />
+                        placeholder="e.g., Er. Corporate Lead" />
                     </div>
                     <div>
-                      <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">COMPANY NAME *</label>
+                      <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">COMPANY / AGENCY NAME *</label>
                       <input name="company" required value={form.company} onChange={handle}
                         className="w-full bg-[#002147]/80 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors placeholder:text-gray-500 rounded-sm"
-                        placeholder="Company / Organization Name" />
+                        placeholder="e.g., NTPC / L&T / Infrastructure Org" />
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">PHONE NUMBER *</label>
+                      <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">MOBILE CONTACT HELPLINE *</label>
                       <input name="phone" type="tel" required value={form.phone} onChange={handle}
                         className="w-full bg-[#002147]/80 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors placeholder:text-gray-500 rounded-sm"
-                        placeholder="+91 XXXXX XXXXX" />
+                        placeholder="10-Digit Mobile Number" />
                     </div>
                     <div>
-                      <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">EMAIL ADDRESS</label>
+                      <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">OFFICIAL CORPORATE EMAIL</label>
                       <input name="email" type="email" value={form.email} onChange={handle}
                         className="w-full bg-[#002147]/80 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors placeholder:text-gray-500 rounded-sm"
-                        placeholder="email@company.com" />
+                        placeholder="purchase/project@company.com" />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">SERVICE REQUIRED *</label>
-                    <select name="service" required value={form.service} onChange={handle}
-                      className="w-full bg-orange-400 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors rounded-sm appearance-none">
-                      <option value="" className="bg-[#eeeeee]">Select dynamic engineering service...</option>
-                      {services.map((s) => <option key={s} value={s} className="bg-[#eeeeee]">{s}</option>)}
-                    </select>
+                    <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">TECHNICAL CIVIL CLASSIFICATION *</label>
+                    <div className="relative">
+                      <select name="service" required value={form.service} onChange={handle}
+                        style={{ color: form.service ? '#ffffff' : '#a0aec0' }}
+                        className="w-full bg-[#002147] border border-white/10 px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors rounded-sm appearance-none cursor-pointer">
+                        <option value="" className="bg-[#002147] text-gray-400">Select required engineering code standard...</option>
+                        {services.map((s) => <option key={s} value={s} className="bg-[#002147] text-white">{s}</option>)}
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                        <ChevronRight size={16} className="rotate-90" />
+                      </div>
+                    </div>
                   </div>
                   
                   <div>
-                    <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">PROJECT DESCRIPTION & SITE SPECIFICATIONS *</label>
+                    <label className="block font-mono text-[11px] tracking-wider text-gray-300 uppercase mb-2">PROJECT TIMELINE, DIMENSIONS & SITE CHALLENGES *</label>
                     <textarea name="message" required rows={5} value={form.message} onChange={handle}
-                      className="w-full bg-[#002147]/80 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors placeholder:text-gray-500 resize-none rounded-sm"
-                      placeholder="Please specify structural parameters, dimensions in sq. ft., specific substrate leaks, acid layout types, or severe concrete vulnerabilities for specialized rehabilitation scheduling..." />
+                      className="w-full bg-[#002147]/80 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[#64dfdf] transition-colors placeholder:text-gray-500 resize-none rounded-sm leading-relaxed"
+                      placeholder="Paste your BOQ parameters or specify:
+- Structural area scope (e.g., 15,000 sqm roof, cooling tower pit)
+- Concrete degradation details (e.g., severe basement waterlogging, cable trench leakages, concrete spalling)
+- Desired timeline requirements..." />
                   </div>
                   
                   {status === 'error' && (
-                    <p className="text-red-400 font-mono text-xs">Transmission failure. Internal channel breakdown — Please call our emergency engineering support desk directly.</p>
+                    <div className="flex items-center gap-2 text-red-400 font-mono text-xs bg-red-500/10 p-3 border border-red-500/20 rounded-sm">
+                      <AlertTriangle size={14} />
+                      <span>Transmission error. Please dispatch your parameters directly via our corporate line.</span>
+                    </div>
                   )}
                   
                   <button type="submit" disabled={status === 'loading'}
-                    className="group inline-flex items-center gap-2 justify-center bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#002147] font-mono font-bold text-xs tracking-widest py-4 px-10 transition-all duration-300 disabled:opacity-60 uppercase rounded-sm shadow-md">
-                    {status === 'loading' ? 'PROCESSING ENQUIRY...' : <><Send size={14} /> DISPATCH ENQUIRY</>}
+                    className="group inline-flex items-center gap-2 justify-center bg-[#f77f00] hover:bg-[#fcbf49] text-white hover:text-[#002147] font-mono font-bold text-xs tracking-widest py-4 px-10 transition-all duration-300 disabled:opacity-60 uppercase rounded-sm shadow-md cursor-pointer">
+                    {status === 'loading' ? 'TRANSMITTING DESIGN PARAMETERS...' : <><Send size={14} /> DISPATCH TECHNICAL RFQ</>}
                   </button>
                 </form>
               )}
@@ -231,7 +254,7 @@ export default function ContactPage() {
             
             {/* Extended Long-Form SEO Structural Content Block */}
             <div className="mt-8 p-6 border border-white/5 bg-[#002147]/30 rounded-sm">
-              <h3 className="font-display font-bold text-base text-[#fcbf49] mb-3">PAN-INDIA COMMERCIAL & INDUSTRIAL REHABILITATION HUB</h3>
+              <h3 className="font-display font-bold text-base text-[#fcbf49] mb-3 uppercase">PAN-INDIA INDUSTRIAL STRUCTURAL RESTORATION CORE</h3>
               <p className="text-gray-300 text-xs leading-relaxed mb-4">
                 As prominent <strong>premium polyurea coating providers India</strong> and certified experts in high-grade chemical treatment frameworks, ZasChem India executes specialized chemical mitigation maneuvers for basement rafts, heavy roofs, thermal power cooling tower channels, and massive chemical storage vaults.
               </p>
@@ -246,7 +269,7 @@ export default function ContactPage() {
             {/* Contact Info Block */}
             <div className="bg-[#004080]/30 border border-white/10 p-7 rounded-sm backdrop-blur-sm relative">
               <div className="absolute top-0 left-0 w-8 h-[2px] bg-[#64dfdf]" />
-              <h3 className="font-display font-bold text-base text-white mb-6 tracking-wide">OFFICIAL COMMUNICATIVE CHANNELS</h3>
+              <h3 className="font-display font-bold text-base text-white mb-6 tracking-wide uppercase">OFFICIAL COMMUNICATIVE CHANNELS</h3>
               
               <div className="space-y-6">
                 <a href={`tel:${siteConfig.phone}`} className="flex items-start gap-4 group">
@@ -327,13 +350,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* SEO Optimized FAQ Accordion Grid using Static Array Context */}
+      {/* SEO Optimized FAQ Accordion Grid */}
       <section className="py-24 bg-[#001a35] border-t border-white/10">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="font-mono text-xs font-bold tracking-[0.2em] text-[#f77f00] uppercase mb-3">FAQ DESK</div>
-            <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-tight">
-              INDUSTRIAL WATERPROOFING & REPAIR TECHNICAL INTENT
+            <h2 className="font-display font-black text-3xl md:text-4xl text-white tracking-tight uppercase">
+              Industrial Technical Reference Desk
             </h2>
           </div>
           

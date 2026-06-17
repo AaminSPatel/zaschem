@@ -330,7 +330,7 @@ export default function CommonIssuesSection() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(idx)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${
                 activeTab === idx
                   ? "bg-white text-[#002147] shadow-lg"
                   : "bg-white/10 text-gray-300 hover:bg-white/20"
@@ -342,11 +342,11 @@ export default function CommonIssuesSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6  gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {activeCategory.issues.map((issue, idx) => (
             <div
               key={issue.id}
-              className="bg-white/5 group  rounded-xl p-3 text-center transition-all duration-200 cursor-pointer"
+              className="bg-white/5 group rounded-xl p-3 text-center transition-all duration-300 cursor-pointer"
               style={{
                 backgroundColor:
                   hoveredId === issue.id
@@ -357,50 +357,74 @@ export default function CommonIssuesSection() {
                     ? `1px solid ${activeCategory.color}40`
                     : "1px solid rgba(255,255,255,0.08)",
                 transform:
-                  hoveredId === issue.id ? "translateY(-2px)" : "translateY(0)",
+                  hoveredId === issue.id ? "translateY(-4px)" : "translateY(0)",
+                boxShadow:
+                  hoveredId === issue.id
+                    ? `0 4px 20px rgba(0,0,0,0.3)`
+                    : "none",
               }}
               onMouseEnter={() => setHoveredId(issue.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Image */}
-              <div className="w-18 h-18 mx-auto mb-2 transition-all group-hover:border-4 group-hover:border-amber-600 duration-300 group-hover:h-16 group-hover:w-16 group-hover:-translate-y-4 rounded-full overflow-hidden bg-white/10 flex items-center justify-center">
+              {/* Image with subtle hover effect */}
+              <div
+                className="w-18 h-18 mx-auto mb-2 rounded-full overflow-hidden bg-white/10 flex items-center justify-center transition-all duration-300"
+                style={{
+                  transform:
+                    hoveredId === issue.id ? "scale(1.05)" : "scale(1)",
+                  border:
+                    hoveredId === issue.id
+                      ? `2px solid ${activeCategory.color}60`
+                      : "2px solid transparent",
+                }}
+              >
                 <img
                   src={issue.image}
                   alt={issue.title}
                   width={64}
                   height={64}
                   sizes="(max-width: 640px) 48px, 64px"
-                  className="min-w-18 min-h-18 scale-110 transition-all duration-300 text-[8px] text-amber-300 flex items-center hover:scale-100 object-cover"
+                  className="min-w-18 min-h-18 object-cover transition-all duration-300"
                   loading="lazy"
                   onError={(e) => {
-                    // Fallback for missing/broken image files
-                    // eslint-disable-next-line no-param-reassign
                     e.currentTarget.src = "/issues/e2.avif";
                   }}
                 />
               </div>
 
-              {/* Title */}
-              <h3 className="text-white  transition-all duration-300 group-hover:text-sm text-xs font-medium mb-1 ">
+              {/* Title with subtle color change on hover */}
+              <h3
+                className="text-white text-xs font-medium mb-1 transition-all duration-300"
+                style={{
+                  color: hoveredId === issue.id ? activeCategory.color : "#fff",
+                }}
+              >
                 {issue.title}
               </h3>
 
-              {/* Description - shows on hover */}
-              {/* Description - Mobile pe hamesha dikhega, Desktop pe hover pe */}
+              {/* Description - appears with smooth fade on hover */}
               <p
                 className={`
-  text-gray-300 mt-2 leading-tight  transition-all duration-300
-  ${hoveredId === issue.id ? " text-[12px]" : "text-[10px]"}
-  block
-`}
+                  text-gray-300 mt-2 leading-tight transition-all duration-300
+                  ${
+                    hoveredId === issue.id
+                      ? "opacity-100 text-[11px]"
+                      : "opacity-0 text-[10px]"
+                  }
+                  hidden sm:block
+                `}
               >
+                {issue.description}
+              </p>
+
+              {/* Mobile: Always visible but with subtle style */}
+              <p className="text-gray-300 mt-2 leading-tight text-[9px] sm:hidden">
                 {issue.description}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Footer Hint with Internal Links */}
         {/* Footer Hint with Natural Internal Links */}
         <div className="text-center mt-8 space-y-3">
           {/* Main SEO Line - ZASCHEM INDIA keyword naturally embedded */}

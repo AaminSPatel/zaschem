@@ -4,6 +4,8 @@ import './globals.css';
 //import Navbar from '';
 import Footer from '../components/layout/Footer';
 import Navbar from '../components/layout/Navbar';
+import Script from "next/script"; // Import Script component
+
 //import '@/styles/admin.css'; 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
@@ -40,7 +42,7 @@ export const metadata = {
   },
   robots: { index: true, follow: true },
 };
-
+//<script src="https://cdn.counter.dev/script.js" data-id="d928e81c-295b-43a0-8a1e-29c2538a8422" data-utcoffset="6"></script>
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${barlow.variable} ${shareTechMono.variable}`}>
@@ -48,6 +50,12 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+         <Script 
+          src="https://cdn.counter.dev/script.js" 
+          data-id="d928e81c-295b-43a0-8a1e-29c2538a8422" 
+          data-utcoffset="6"
+          strategy="afterInteractive" // Isse page load hone ke baad script chalegi
+        />
       </body>
     </html>
   );

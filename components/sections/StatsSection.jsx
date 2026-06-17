@@ -56,7 +56,7 @@ export default function StatsSection() {
           })}
         </div>
         
-        <p className="text-center text-gray-500 text-[10px] mt-6">
+        <p className="text-center text-gray-200 text-[10px] mt-6">
           Trusted by NTPC, L&T, Tata Motors, BGR Energy, GE POWER, and 100+ industrial clients across India
         </p>
       </div>
