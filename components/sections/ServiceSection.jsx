@@ -61,10 +61,10 @@ function ServiceCard({ service, index }) {
 
 
             <div
-              className="inline-flex items-center gap-1 text-[#f77f00] text-[10px] font-mono font-bold tracking-wider uppercase group-hover:text-[#002147] transition-colors duration-200"
+              className="inline-flex items-center gap-1 text-[#f77f00] text-[8px] font-mono font-bold tracking-wider uppercase group-hover:text-[#002147] transition-colors duration-200"
               aria-label={`Learn more about ${service.title} service`}
             >
-              LEARN MORE <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+              LEARN MORE ABOUT {service.title}<ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform duration-200" />
             </div>
           </div>
         </div>

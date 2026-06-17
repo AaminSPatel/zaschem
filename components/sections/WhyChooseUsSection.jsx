@@ -67,7 +67,7 @@ export default function WhyChooseUsSection() {
                   className="p-5 bg-[#004080]/30 border border-white/5 hover:border-[#f77f00] transition-all duration-200 rounded-sm"
                 >
                   <div className="text-[#f77f00] font-display font-black text-3xl mb-1 tracking-tight">{card.value}</div>
-                  <h4 className="font-display font-bold text-sm text-white mb-1">{card.title}</h4>
+                  <h3 className="font-display font-bold text-sm text-white mb-1">{card.title}</h3>
                   <p className="text-gray-300 text-[11px] leading-relaxed">{card.desc}</p>
                 </motion.div>
               ))}

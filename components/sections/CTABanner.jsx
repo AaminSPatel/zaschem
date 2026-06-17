@@ -52,7 +52,7 @@ export default function CTABanner() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 href="/contact" 
-                className="group inline-flex items-center gap-2 justify-center bg-[#f77f00] hover:bg-white text-white hover:text-[#002147] font-bold text-base py-4 px-8 shadow-xl transition-all duration-300 rounded-sm"
+                className="group inline-flex items-center gap-2 justify-center bg-[#d97102] hover:bg-white text-white hover:text-[#002147] font-bold text-base py-4 px-8 shadow-xl transition-all duration-300 rounded-sm"
               >
                 GET FREE CONSULTATION 
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

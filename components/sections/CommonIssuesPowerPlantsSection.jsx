@@ -428,7 +428,7 @@ export default function CommonIssuesSection() {
         {/* Footer Hint with Natural Internal Links */}
         <div className="text-center mt-8 space-y-3">
           {/* Main SEO Line - ZASCHEM INDIA keyword naturally embedded */}
-          <p className="text-gray-400 text-xs leading-relaxed max-w-2xl mx-auto">
+          <p className="text-gray-200 text-xs leading-relaxed max-w-2xl mx-auto">
             <span className="font-semibold text-white/80">ZASCHEM INDIA</span>{" "}
             specializes in
             <Link
@@ -447,14 +447,14 @@ export default function CommonIssuesSection() {
             ,
             <Link
               href="/services/repair-rehabilitation"
-              className="text-[#e251f6] hover:text-white mx-1 transition-colors"
+              className="text-[#fdc4fe] hover:text-white mx-1 transition-colors"
             >
               repair & rehabilitation
             </Link>
             and
             <Link
               href="/services/heat-reflective-coating"
-              className="text-[#c50973] hover:underline ml-1 transition-colors"
+              className="text-[#e88c95] hover:underline ml-1 transition-colors"
             >
               heat reflective coating{" "}
             </Link>
@@ -490,7 +490,7 @@ export default function CommonIssuesSection() {
             Need a solution?
             <Link
               href="/contact"
-              className="text-[#f77f00] hover:underline ml-1 transition-colors"
+              className="text-[#f79225] hover:underline ml-1 transition-colors"
             >
               Request a site inspection →
             </Link>
